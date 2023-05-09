@@ -78,7 +78,7 @@ namespace FormApp
             {
                 if (monto > 0)
                 {
-                    if (this.monto > Convert.ToInt32(totalPagar))
+                    if (this.monto >= Convert.ToInt32(totalPagar) && CantidadComprar.Value>0)
                     {
                         ListaCompras lista = new ListaCompras(carne[DatosCarne.SelectedIndex].CortesCarne, totalPagar, Convert.ToInt32(CantidadComprar.Value));
 

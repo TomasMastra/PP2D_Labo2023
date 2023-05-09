@@ -254,14 +254,12 @@ namespace FormApp
 
             if (esRecargo.Checked != false)
             {
-                Factura factura = new Factura(1, Convert.ToSingle(total * 0.05), cliente.Mail);
-                cliente.ListaFacturas.Add(factura);
+                cliente.crearFacturas(total, false);
             }
             else
             {
 
-                Factura factura = new Factura(1, total, cliente.Mail);
-                cliente.ListaFacturas.Add(factura);
+                cliente.crearFacturas(total, false);
             }
         }
 
