@@ -16,6 +16,9 @@ namespace Clases
 
         }
 
+        /// <summary>
+        /// Constructor del vendedor, se le pasan los atributos y llama a this()
+        /// </summary>
         public Vendedor(Usuario usuario,List<Carniceria> carniceria, int horasTrabajadas, int sueldo) : this(usuario)
         {
             this.carne = carniceria;
@@ -25,24 +28,38 @@ namespace Clases
 
         }
 
+        /// <summary>
+        /// Propiedad HorasTrabajadas con getter y setter que permite devolver o asignarle un valor 
+        /// </summary>
         public int HorasTrabajadas
         {
             get { return horasTrabajadas; }
             set { horasTrabajadas = value; }
         }
 
+        /// <summary>
+        /// Propiedad Sueldo con getter y setter que permite devolver o asignarle un valor 
+        /// </summary>
         public int Sueldo
         {
             get { return sueldo; }
             set { sueldo = value; }
         }
 
+        /// <summary>
+        /// Propiedad Carniceria con getter y setter que permite devolver o asignarle un valor 
+        /// </summary>
         public List<Carniceria> Carne
         {
             get { return carne; }
             set { carne = value; }
         }
 
+        /// <summary>
+        /// Muestra datos del vendedor usando un stringBuilder que concatena todos los datos y sobrecarga. La clase es override
+        /// porque necesita utilizar la clase Mostrar() de usuario. El .base hace referencia a eso mismo, la clase padre y en caso de no 
+        /// ponerlo se llamaria asi misma lo que se conoce como metodo recursivo
+        /// </summary>
         public override string Mostrar()
         {
             StringBuilder sb = new StringBuilder();
