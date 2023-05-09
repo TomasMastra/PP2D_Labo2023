@@ -193,11 +193,11 @@ namespace FormApp
             {
                 float total = listaClientes[ListClientes.SelectedIndex].ObtenerPrecioTotal();
 
-                    restarCantidad(listaClientes[ListClientes.SelectedIndex]);
-                    crearFacturas(listaClientes[ListClientes.SelectedIndex], total);
-                    listaClientes[ListClientes.SelectedIndex].ListaCompras.Clear();
-                    //ListClientes.SelectedIndex = -1;
-                    ListaProductos.Items.Clear();
+                restarCantidad(listaClientes[ListClientes.SelectedIndex]);
+                crearFacturas(listaClientes[ListClientes.SelectedIndex], total);
+                listaClientes[ListClientes.SelectedIndex].ListaCompras.Clear();
+                //ListClientes.SelectedIndex = -1;
+                ListaProductos.Items.Clear();
 
 
             }

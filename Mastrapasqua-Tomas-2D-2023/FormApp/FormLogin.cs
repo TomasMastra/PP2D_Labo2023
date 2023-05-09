@@ -33,7 +33,7 @@ namespace FormApp
 
         }
 
-       
+
 
 
         public List<Usuario> harcodearUsuarios()
@@ -123,7 +123,7 @@ namespace FormApp
 
         }
 
-        
+
 
         private void BotonLogin_Click(object sender, EventArgs e)
         {
@@ -147,7 +147,9 @@ namespace FormApp
                     int index = buscarVendedor(usuario[indexUserMail], vendedorCarniceria);
                     Heladera vendedorMenu = new Heladera(vendedorCarniceria[index], this, clienteCarniceria);
                     vendedorMenu.Show();
+                   
                     this.Hide();
+                    
                 }
                 else
                 {
@@ -159,10 +161,18 @@ namespace FormApp
                             FormVenta cliente = new FormVenta(carne, clienteCarniceria[index], this);
                             cliente.Show();
                             this.Hide();
+                            
                         }
                     }
 
                 }
+            }
+            else
+            {
+                TextError.ForeColor= Color.Red;
+               
+
+
             }
 
         }

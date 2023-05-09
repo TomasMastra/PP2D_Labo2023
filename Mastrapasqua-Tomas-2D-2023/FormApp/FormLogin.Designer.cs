@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             BotonLogin = new Button();
             TextMail = new TextBox();
             TextPassword = new TextBox();
             TextError = new Label();
             comboBox1 = new ComboBox();
             pictureBox1 = new PictureBox();
+            bindingSource1 = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             SuspendLayout();
             // 
             // BotonLogin
@@ -130,6 +133,7 @@
             Text = "Login";
             Load += FormLogin_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -141,5 +145,6 @@
         private Label TextError;
         private ComboBox comboBox1;
         private PictureBox pictureBox1;
+        private BindingSource bindingSource1;
     }
 }

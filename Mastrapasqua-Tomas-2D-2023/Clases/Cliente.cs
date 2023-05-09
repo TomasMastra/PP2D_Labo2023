@@ -125,14 +125,14 @@ namespace Clases
 
             if (recargo != false)
             {
-                Factura factura = new Factura(1, Convert.ToSingle(total * 0.05), cliente.Mail);
-                cliente.ListaFacturas.Add(factura);
+                Factura factura = new Factura(1, Convert.ToSingle(total * 0.05), Mail);
+                ListaFacturas.Add(factura);
             }
             else
             {
 
-                Factura factura = new Factura(1, total, cliente.Mail);
-                cliente.ListaFacturas.Add(factura);
+                Factura factura = new Factura(1, total, Mail);
+                ListaFacturas.Add(factura);
             }
         }
     }

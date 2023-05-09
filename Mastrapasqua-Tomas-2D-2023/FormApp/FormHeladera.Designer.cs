@@ -65,7 +65,7 @@
             // 
             pictureBox3.BackColor = Color.FromArgb(30, 30, 30);
             pictureBox3.Image = Properties.Resources.Carniceria_Mastra_26_4_2023__1_1;
-            pictureBox3.Location = new Point(884, 194);
+            pictureBox3.Location = new Point(884, 182);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(197, 92);
             pictureBox3.TabIndex = 35;
