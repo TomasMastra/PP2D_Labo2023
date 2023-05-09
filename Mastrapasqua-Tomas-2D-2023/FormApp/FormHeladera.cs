@@ -259,7 +259,7 @@ namespace FormApp
             else
             {
 
-                cliente.crearFacturas(total, false);
+                cliente.crearFacturas(total, true);
             }
         }
 
