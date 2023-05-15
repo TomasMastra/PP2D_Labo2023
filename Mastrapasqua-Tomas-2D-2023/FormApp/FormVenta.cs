@@ -1,7 +1,5 @@
 ﻿using Clases;
-
-
-
+using System.Security.Cryptography.X509Certificates;
 
 namespace FormApp
 {
@@ -225,14 +223,32 @@ namespace FormApp
             GrupoCarne.Enabled = true;
             BotonAgregarCarro.Enabled = true;
             BotonBorrar.Enabled = true;
+            Recargo.Enabled = true;
 
 
+        }
+
+        public void crearFacturasCompra(float total)
+        {
+
+            if (Recargo.Checked != true)
+            {
+                Factura factura = vendedorCarniceria.crearFacturas(total, cliente.Nombre, false);
+                //vendedorCarniceria.ListaFacturas.Add(f);
+            }
+            else
+            {
+
+                Factura factura = vendedorCarniceria.crearFacturas(total, cliente.Nombre, true);
+                //vendedorCarniceria.ListaFacturas.Add(f);
+
+            }
         }
 
         private void BotonComprar_Click_1(object sender, EventArgs e)
         {
 
-            float total=0;
+            float total = 0;
             if (cliente.ListaCompras.Count > 0)
             {
                 for (int i = 0; i < cliente.ListaCompras.Count; i++)
@@ -255,7 +271,7 @@ namespace FormApp
                     }
                 }
 
-                vendedorCarniceria.crearFacturas(total, cliente.Nombre, true);
+                crearFacturasCompra(total);
                 DatosCarne.SelectedIndex = -1;
                 FormCarro formCarro = new FormCarro(vendedorCarniceria.ListaFacturas[vendedorCarniceria.ListaFacturas.Count - 1]);
                 formCarro.Show();
@@ -266,15 +282,9 @@ namespace FormApp
                 MessageBox.Show("No hay nada en el carro para poder comprar");
             }
 
-           /* if (cliente.ListaCompras.Count > 0)
-            {
-                vendedorCarniceria.crearFacturas(total, cliente.Nombre, true);
-                DatosCarne.SelectedIndex = -1;
-                FormCarro formCarro = new FormCarro(vendedorCarniceria.ListaFacturas[vendedorCarniceria.ListaFacturas.Count - 1]);
-                formCarro.Show();
-                cliente.ListaCompras.Clear();
-            }*/
-            
+           
+
+
         }
     }
 }

@@ -88,6 +88,8 @@ namespace FormApp
                 {
                     Carniceria carne = new Carniceria(TextBoxCorte.Text, Convert.ToInt32(Precio.Value), Convert.ToInt32(Cantidad.Value), ((Tipo)Enum.Parse(typeof(Tipo), ListaTipos.Items[ListaTipos.SelectedIndex].ToString())));                   
                     this.carne.Carne.Add(carne);
+                    
+
                     this.Hide();
                 }
                 else
@@ -101,10 +103,10 @@ namespace FormApp
                 if (ListaCortesCarne.SelectedIndex > -1 && TextBoxCorte.Text != string.Empty && Precio.Value > 0 && ListaTipos.SelectedIndex > -1)
                 {
 
-                    this.carne.Carne[ListaCortesCarne.SelectedIndex].CortesCarne = TextBoxCorte.Text;
-                    this.carne.Carne[ListaCortesCarne.SelectedIndex].TipoCarne = (Tipo)Enum.Parse(typeof(Tipo), ListaTipos.Items[ListaTipos.SelectedIndex].ToString());
-                    this.carne.Carne[ListaCortesCarne.SelectedIndex].PreciosCarne = Convert.ToInt32(Precio.Value);
-                    this.carne.Carne[ListaCortesCarne.SelectedIndex].CantidadCarne = Convert.ToInt32(Cantidad.Value);
+                   
+                    carne.Carne[ListaCortesCarne.SelectedIndex].modificar(TextBoxCorte.Text, (Tipo)Enum.Parse(typeof(Tipo), ListaTipos.Items[ListaTipos.SelectedIndex].ToString()), Convert.ToInt32(Cantidad.Value), Convert.ToInt32(Precio.Value));
+                    
+
                     this.Hide();
                 }
                 else
@@ -114,6 +116,8 @@ namespace FormApp
 
                 }
             }
+
+            
         }
 
                 private void FormAlta_Load(object sender, EventArgs e)
@@ -129,7 +133,7 @@ namespace FormApp
         /// <summary>
         /// Boton para regresar al menu
         /// </summary>
-        private void BotonRegresar_Click(object sender, EventArgs e)
+                private void BotonRegresar_Click(object sender, EventArgs e)
                 {
                     this.Hide();
                 }

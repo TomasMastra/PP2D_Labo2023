@@ -44,7 +44,6 @@ namespace FormApp
 
             //this.listaFacturas = listaClientes;
 
-            MessageBox.Show($"{facturas[0].Total}");
             if (facturas.Count > 0 && facturas != null)
             {
                 foreach(Factura factura in facturas)
@@ -55,6 +54,7 @@ namespace FormApp
             else
             {
                 MessageBox.Show($"Hubo un error");
+                this.Hide();
             }
 
         }

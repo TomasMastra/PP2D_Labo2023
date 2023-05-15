@@ -69,10 +69,16 @@ namespace Clases
             set { tipoCarne = value; }
         }
 
-        public void modificar()
+        public void modificar(string corte, Tipo tipo, int cantidad, int precio)
         {
+            CortesCarne = corte;
+            TipoCarne = tipo;
+            CantidadCarne = cantidad;
+            PreciosCarne = precio;
 
         }
+
+        
 
         public int restarCantidad(int cantidadComprada)
         {
@@ -81,6 +87,7 @@ namespace Clases
             return CantidadCarne;
         }
        
+        
 
       
 

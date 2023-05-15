@@ -50,6 +50,7 @@
             BotonIngresarMonto = new Button();
             TextoMonto = new Label();
             BotonComprar = new Button();
+            Recargo = new CheckBox();
             GrupoCarne.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)CantidadComprar).BeginInit();
             SuspendLayout();
@@ -308,12 +309,25 @@
             BotonComprar.UseVisualStyleBackColor = false;
             BotonComprar.Click += BotonComprar_Click_1;
             // 
+            // Recargo
+            // 
+            Recargo.AutoSize = true;
+            Recargo.Enabled = false;
+            Recargo.ForeColor = SystemColors.ButtonHighlight;
+            Recargo.Location = new Point(464, 42);
+            Recargo.Name = "Recargo";
+            Recargo.Size = new Size(91, 19);
+            Recargo.TabIndex = 24;
+            Recargo.Text = "Con recargo";
+            Recargo.UseVisualStyleBackColor = true;
+            // 
             // FormVenta
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(13, 16, 47);
             ClientSize = new Size(800, 450);
+            Controls.Add(Recargo);
             Controls.Add(BotonComprar);
             Controls.Add(TextoMonto);
             Controls.Add(BotonIngresarMonto);
@@ -390,5 +404,6 @@
         private Button BotonIngresarMonto;
         private Label TextoMonto;
         private Button BotonComprar;
+        private CheckBox Recargo;
     }
 }
