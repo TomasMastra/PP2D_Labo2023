@@ -12,11 +12,15 @@ namespace Clases
         int precioTotal;
         int cantidadComprada;
 
+        public ListaCompras()
+        {
+            
+        }
         /// <summary>
         /// Constructor ListaCompras que guarda todos los datos guardados en el carrito, una vez que el vendedor le acepte la venta
         /// los elementos del carrito se eliminaran
         /// </summary>
-        public ListaCompras(string producto, int precioTotal, int cantidadCompra) 
+        public ListaCompras(string producto, int precioTotal, int cantidadCompra) :this()
         { 
             this.producto = producto;
             this.precioTotal = precioTotal;
@@ -51,7 +55,11 @@ namespace Clases
         }
 
         
-
+       /* public ListaCompras AgregarProducto(string producto, int precioTotal, int cantidad)
+        {
+            ListaCompras carro = new Factura(producto, precioTotal, cantidad);
+            ListaCompras.Add(carro);
+        }*/
 
        
         

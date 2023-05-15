@@ -8,6 +8,7 @@ namespace Clases
         int horasTrabajadas;
         int sueldo;
         List<Carniceria> carne;
+        List<Factura> facturas;
 
         public Vendedor(Usuario usuario) : base(usuario)
         {
@@ -19,11 +20,13 @@ namespace Clases
         /// <summary>
         /// Constructor del vendedor, se le pasan los atributos y llama a this()
         /// </summary>
-        public Vendedor(Usuario usuario,List<Carniceria> carniceria, int horasTrabajadas, int sueldo) : this(usuario)
+        public Vendedor(Usuario usuario,List<Carniceria> carniceria, int horasTrabajadas, int sueldo, List<Factura>facturas) : this(usuario)
         {
             this.carne = carniceria;
             this.sueldo = sueldo;
             this.horasTrabajadas = horasTrabajadas;
+            this.facturas = facturas;
+            this.carne = carne;
             
 
         }
@@ -55,6 +58,12 @@ namespace Clases
             set { carne = value; }
         }
 
+        public List<Factura> ListaFacturas
+        {
+            get { return facturas; }
+            set { facturas = value; }
+        }
+
         /// <summary>
         /// Muestra datos del vendedor usando un stringBuilder que concatena todos los datos y sobrecarga. La clase es override
         /// porque necesita utilizar la clase Mostrar() de usuario. El .base hace referencia a eso mismo, la clase padre y en caso de no 
@@ -71,7 +80,29 @@ namespace Clases
             return sb.ToString();
         }
 
-        
+        public Factura crearFacturas(float total, string nombre,bool recargo)
+        {
+
+
+            if (recargo != false)
+            {
+                Factura factura = new Factura(1, Convert.ToSingle(total + total * 0.05), nombre);
+                ListaFacturas.Add(factura);
+                return factura;
+
+            }
+            else
+            {
+
+                Factura factura = new Factura(1, total, nombre);
+                ListaFacturas.Add(factura);
+                return factura;
+
+            }
+
+        }
+
+
 
 
     }

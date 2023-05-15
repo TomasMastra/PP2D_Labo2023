@@ -15,38 +15,46 @@ namespace FormApp
     public partial class FormCarro : Form
     {
         Cliente cliente;
-        List<Cliente> listaFacturas;
-        bool esCarro;
+        Vendedor vendedor;
+        List<Factura> facturas;
+        //List<Cliente> listaFacturas;
+        public FormCarro(Factura factura)
+        {
+            InitializeComponent();
+            //this.vendedor = vendedor;
+            //this.facturas = facturas;
+            this.Name = "FormFacturas";
+
+            inicializarFacturas(factura);
+        }
+
         public FormCarro(Cliente cliente)
         {
             InitializeComponent();
-            this.esCarro = false;
-            this.cliente = cliente;
-            this.Name = "FormFacturas";
-            inicializarFacturas(cliente);
-        }
-
-        public FormCarro(Cliente cliente, bool esCarro)
-        {
-            InitializeComponent();
 
             this.cliente = cliente;
-            if (esCarro = true)
-            {
+            
                 inicializarCarro();
-            }
+            
         }
 
-        public FormCarro(List<Cliente> listaClientes)
+        public FormCarro(List<Factura> facturas, bool esListado)
         {
             InitializeComponent();
 
-            this.listaFacturas = listaClientes;
+            //this.listaFacturas = listaClientes;
 
-
-            foreach (Cliente c in listaFacturas)
+            MessageBox.Show($"{facturas[0].Total}");
+            if (facturas.Count > 0 && facturas != null)
             {
-                inicializarFacturas(c);
+                foreach(Factura factura in facturas)
+                {
+                    inicializarFacturas(factura);
+                }
+            }
+            else
+            {
+                MessageBox.Show($"Hubo un error");
             }
 
         }
@@ -55,14 +63,14 @@ namespace FormApp
         /// Carga una dataGriedView con las facturas del cliente, si se usa un form para llamar esta funcion
         /// se puede mostrar las facturas de todos los clientes, esto lo usa el vendedor para ver todas las facturas
         /// </summary>
-        public void inicializarFacturas(Cliente cliente)
+        public void inicializarFacturas(Factura factura)
         {
 
 
-            for (int i = 0; i < cliente.ListaFacturas.Count; i++)
+
+
+            //for (int i = 0; i < factura.Count; i++)
             {
-
-
                 // Nueva fila para poder cargar datos del vendedor
                 DataGridViewRow row = new DataGridViewRow();
 
@@ -74,17 +82,18 @@ namespace FormApp
 
                 // Celda 2 creada
                 DataGridViewCell cellTotal = new DataGridViewTextBoxCell();
-                cellTotal.Value = cliente.ListaFacturas[i].Total.ToString();
+                cellTotal.Value = factura.Total.ToString();
                 row.Cells.Add(cellTotal);
 
                 // Celda 3 creada
                 DataGridViewCell cellMail = new DataGridViewTextBoxCell();
-                cellMail.Value = cliente.ListaFacturas[i].Mail;
+                cellMail.Value = factura.Mail;
                 row.Cells.Add(cellMail);
 
 
                 dataGridView1.Rows.Add(row);
             }
+            
         }
 
         /// <summary>

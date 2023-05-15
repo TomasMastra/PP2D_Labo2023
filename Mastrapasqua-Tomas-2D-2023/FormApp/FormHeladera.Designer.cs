@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
             pictureBox3 = new PictureBox();
             saludo = new Label();
             botonRegresar = new Button();
@@ -42,30 +42,35 @@
             Column2 = new DataGridViewTextBoxColumn();
             Column3 = new DataGridViewTextBoxColumn();
             Column4 = new DataGridViewImageColumn();
-            FotoCarne = new PictureBox();
             botoAgregar = new Button();
             button1 = new Button();
             Eliminar = new Button();
             button7 = new Button();
             Actualizar = new Button();
-            ListaProductos = new ListView();
-            columnHeader1 = new ColumnHeader();
             ListClientes = new ListBox();
             lista = new Label();
-            button2 = new Button();
+            BotonComprar = new Button();
             BotonFacturas = new Button();
             BotonUsuario = new Button();
             esRecargo = new CheckBox();
+            BotonAgregarCarro = new Button();
+            BotonVerCarro = new Button();
+            ListCarro = new ListBox();
+            Cantidad = new NumericUpDown();
+            cantidadComprarCarne = new Label();
+            PrecioKilo = new Label();
+            PrecioTotal = new Label();
+            BotonCancelarCliente = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCarne).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)FotoCarne).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Cantidad).BeginInit();
             SuspendLayout();
             // 
             // pictureBox3
             // 
             pictureBox3.BackColor = Color.FromArgb(30, 30, 30);
             pictureBox3.Image = Properties.Resources.Carniceria_Mastra_26_4_2023__1_1;
-            pictureBox3.Location = new Point(884, 182);
+            pictureBox3.Location = new Point(613, 43);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(197, 92);
             pictureBox3.TabIndex = 35;
@@ -97,45 +102,45 @@
             // 
             // dataGridViewCarne
             // 
-            dataGridViewCellStyle1.BackColor = Color.Black;
-            dataGridViewCellStyle1.ForeColor = SystemColors.ButtonShadow;
-            dataGridViewCarne.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.BackColor = Color.Black;
+            dataGridViewCellStyle6.ForeColor = SystemColors.ButtonShadow;
+            dataGridViewCarne.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             dataGridViewCarne.BackgroundColor = Color.Black;
             dataGridViewCarne.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.Black;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ButtonShadow;
-            dataGridViewCellStyle2.SelectionBackColor = Color.Black;
-            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
-            dataGridViewCarne.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = Color.Black;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = SystemColors.ButtonShadow;
+            dataGridViewCellStyle7.SelectionBackColor = Color.Black;
+            dataGridViewCellStyle7.SelectionForeColor = Color.Black;
+            dataGridViewCarne.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dataGridViewCarne.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCarne.Columns.AddRange(new DataGridViewColumn[] { Column1, ColumnTipo, Column2, Column3, Column4 });
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.Black;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = SystemColors.ButtonShadow;
-            dataGridViewCellStyle3.SelectionBackColor = Color.DimGray;
-            dataGridViewCellStyle3.SelectionForeColor = Color.White;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dataGridViewCarne.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = Color.Black;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = SystemColors.ButtonShadow;
+            dataGridViewCellStyle8.SelectionBackColor = Color.DimGray;
+            dataGridViewCellStyle8.SelectionForeColor = Color.White;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            dataGridViewCarne.DefaultCellStyle = dataGridViewCellStyle8;
             dataGridViewCarne.GridColor = SystemColors.ActiveCaptionText;
             dataGridViewCarne.Location = new Point(12, 61);
             dataGridViewCarne.Name = "dataGridViewCarne";
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.Black;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = SystemColors.ButtonShadow;
-            dataGridViewCellStyle4.SelectionBackColor = Color.Black;
-            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dataGridViewCarne.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridViewCellStyle5.BackColor = Color.Black;
-            dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = SystemColors.ButtonShadow;
-            dataGridViewCellStyle5.SelectionBackColor = Color.Black;
-            dataGridViewCellStyle5.SelectionForeColor = Color.Black;
-            dataGridViewCarne.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = Color.Black;
+            dataGridViewCellStyle9.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle9.ForeColor = SystemColors.ButtonShadow;
+            dataGridViewCellStyle9.SelectionBackColor = Color.Black;
+            dataGridViewCellStyle9.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
+            dataGridViewCarne.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle10.BackColor = Color.Black;
+            dataGridViewCellStyle10.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle10.ForeColor = SystemColors.ButtonShadow;
+            dataGridViewCellStyle10.SelectionBackColor = Color.Black;
+            dataGridViewCellStyle10.SelectionForeColor = Color.Black;
+            dataGridViewCarne.RowsDefaultCellStyle = dataGridViewCellStyle10;
             dataGridViewCarne.RowTemplate.Height = 25;
             dataGridViewCarne.Size = new Size(592, 528);
             dataGridViewCarne.TabIndex = 55;
@@ -169,16 +174,6 @@
             Column4.Resizable = DataGridViewTriState.True;
             Column4.SortMode = DataGridViewColumnSortMode.Automatic;
             // 
-            // FotoCarne
-            // 
-            FotoCarne.BackColor = Color.Black;
-            FotoCarne.BorderStyle = BorderStyle.Fixed3D;
-            FotoCarne.Location = new Point(620, 112);
-            FotoCarne.Name = "FotoCarne";
-            FotoCarne.Size = new Size(229, 196);
-            FotoCarne.TabIndex = 58;
-            FotoCarne.TabStop = false;
-            // 
             // botoAgregar
             // 
             botoAgregar.BackColor = Color.Black;
@@ -197,7 +192,7 @@
             button1.BackColor = Color.Black;
             button1.FlatStyle = FlatStyle.Flat;
             button1.ForeColor = SystemColors.ButtonShadow;
-            button1.Location = new Point(624, 61);
+            button1.Location = new Point(789, 6);
             button1.Name = "button1";
             button1.Size = new Size(21, 23);
             button1.TabIndex = 73;
@@ -243,26 +238,15 @@
             Actualizar.UseVisualStyleBackColor = false;
             Actualizar.Click += Actualizar_Click;
             // 
-            // ListaProductos
-            // 
-            ListaProductos.BackColor = SystemColors.MenuText;
-            ListaProductos.Columns.AddRange(new ColumnHeader[] { columnHeader1 });
-            ListaProductos.ForeColor = SystemColors.ButtonHighlight;
-            ListaProductos.Location = new Point(884, 292);
-            ListaProductos.Name = "ListaProductos";
-            ListaProductos.Size = new Size(229, 182);
-            ListaProductos.TabIndex = 93;
-            ListaProductos.UseCompatibleStateImageBehavior = false;
-            // 
             // ListClientes
             // 
             ListClientes.BackColor = SystemColors.MenuText;
             ListClientes.ForeColor = SystemColors.ButtonHighlight;
             ListClientes.FormattingEnabled = true;
             ListClientes.ItemHeight = 15;
-            ListClientes.Location = new Point(620, 345);
+            ListClientes.Location = new Point(906, 41);
             ListClientes.Name = "ListClientes";
-            ListClientes.Size = new Size(225, 244);
+            ListClientes.Size = new Size(225, 184);
             ListClientes.TabIndex = 94;
             ListClientes.SelectedIndexChanged += ListClientes_SelectedIndexChanged;
             // 
@@ -271,24 +255,24 @@
             lista.AutoSize = true;
             lista.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
             lista.ForeColor = SystemColors.ControlLight;
-            lista.Location = new Point(624, 328);
+            lista.Location = new Point(909, 24);
             lista.Name = "lista";
-            lista.Size = new Size(123, 14);
+            lista.Size = new Size(116, 14);
             lista.TabIndex = 95;
-            lista.Text = "Listado de compras";
+            lista.Text = "Listado de clientes";
             // 
-            // button2
+            // BotonComprar
             // 
-            button2.BackColor = Color.Black;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.ForeColor = SystemColors.ButtonHighlight;
-            button2.Location = new Point(884, 485);
-            button2.Name = "button2";
-            button2.Size = new Size(229, 44);
-            button2.TabIndex = 97;
-            button2.Text = "Aceptar compra";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += BotonAceptar_Click;
+            BotonComprar.BackColor = Color.Black;
+            BotonComprar.FlatStyle = FlatStyle.Flat;
+            BotonComprar.ForeColor = Color.Lime;
+            BotonComprar.Location = new Point(906, 266);
+            BotonComprar.Name = "BotonComprar";
+            BotonComprar.Size = new Size(225, 44);
+            BotonComprar.TabIndex = 97;
+            BotonComprar.Text = "Finalizar compra";
+            BotonComprar.UseVisualStyleBackColor = false;
+            BotonComprar.Click += BotonAceptar_Click;
             // 
             // BotonFacturas
             // 
@@ -320,12 +304,103 @@
             // 
             esRecargo.AutoSize = true;
             esRecargo.ForeColor = SystemColors.ButtonHighlight;
-            esRecargo.Location = new Point(884, 535);
+            esRecargo.Location = new Point(909, 241);
             esRecargo.Name = "esRecargo";
-            esRecargo.Size = new Size(119, 19);
+            esRecargo.Size = new Size(118, 19);
             esRecargo.TabIndex = 100;
-            esRecargo.Text = "Pago con recargo";
+            esRecargo.Text = "Paga con recargo";
             esRecargo.UseVisualStyleBackColor = true;
+            // 
+            // BotonAgregarCarro
+            // 
+            BotonAgregarCarro.BackColor = Color.Black;
+            BotonAgregarCarro.FlatStyle = FlatStyle.Flat;
+            BotonAgregarCarro.ForeColor = SystemColors.ButtonHighlight;
+            BotonAgregarCarro.Location = new Point(1149, 266);
+            BotonAgregarCarro.Name = "BotonAgregarCarro";
+            BotonAgregarCarro.Size = new Size(229, 44);
+            BotonAgregarCarro.TabIndex = 101;
+            BotonAgregarCarro.Text = "Agregar al carro";
+            BotonAgregarCarro.UseVisualStyleBackColor = false;
+            BotonAgregarCarro.Click += FormVender_Click;
+            // 
+            // BotonVerCarro
+            // 
+            BotonVerCarro.BackColor = Color.Black;
+            BotonVerCarro.FlatStyle = FlatStyle.Flat;
+            BotonVerCarro.ForeColor = SystemColors.ButtonHighlight;
+            BotonVerCarro.Location = new Point(1149, 316);
+            BotonVerCarro.Name = "BotonVerCarro";
+            BotonVerCarro.Size = new Size(229, 44);
+            BotonVerCarro.TabIndex = 102;
+            BotonVerCarro.Text = "Ver carro";
+            BotonVerCarro.UseVisualStyleBackColor = false;
+            BotonVerCarro.Click += BotonVerCarro_Click;
+            // 
+            // ListCarro
+            // 
+            ListCarro.BackColor = Color.Black;
+            ListCarro.ForeColor = SystemColors.MenuBar;
+            ListCarro.FormattingEnabled = true;
+            ListCarro.ItemHeight = 15;
+            ListCarro.Location = new Point(1145, 42);
+            ListCarro.Name = "ListCarro";
+            ListCarro.Size = new Size(233, 169);
+            ListCarro.TabIndex = 103;
+            ListCarro.SelectedIndexChanged += ListCarro_SelectedIndexChanged;
+            // 
+            // Cantidad
+            // 
+            Cantidad.BackColor = Color.Black;
+            Cantidad.ForeColor = SystemColors.ButtonHighlight;
+            Cantidad.Location = new Point(1258, 217);
+            Cantidad.Name = "Cantidad";
+            Cantidad.Size = new Size(120, 23);
+            Cantidad.TabIndex = 104;
+            Cantidad.ValueChanged += Cantidad_ValueChanged;
+            // 
+            // cantidadComprarCarne
+            // 
+            cantidadComprarCarne.AutoSize = true;
+            cantidadComprarCarne.ForeColor = SystemColors.ButtonHighlight;
+            cantidadComprarCarne.Location = new Point(1145, 219);
+            cantidadComprarCarne.Name = "cantidadComprarCarne";
+            cantidadComprarCarne.Size = new Size(112, 15);
+            cantidadComprarCarne.TabIndex = 105;
+            cantidadComprarCarne.Text = "Cantidad a comprar";
+            // 
+            // PrecioKilo
+            // 
+            PrecioKilo.AutoSize = true;
+            PrecioKilo.ForeColor = SystemColors.ButtonHighlight;
+            PrecioKilo.Location = new Point(1145, 240);
+            PrecioKilo.Name = "PrecioKilo";
+            PrecioKilo.Size = new Size(81, 15);
+            PrecioKilo.TabIndex = 106;
+            PrecioKilo.Text = "Precio por KG:";
+            // 
+            // PrecioTotal
+            // 
+            PrecioTotal.AutoSize = true;
+            PrecioTotal.ForeColor = SystemColors.ButtonHighlight;
+            PrecioTotal.Location = new Point(1258, 242);
+            PrecioTotal.Name = "PrecioTotal";
+            PrecioTotal.Size = new Size(70, 15);
+            PrecioTotal.TabIndex = 107;
+            PrecioTotal.Text = "Precio total:";
+            // 
+            // BotonCancelarCliente
+            // 
+            BotonCancelarCliente.BackColor = Color.Black;
+            BotonCancelarCliente.FlatStyle = FlatStyle.Flat;
+            BotonCancelarCliente.ForeColor = Color.Red;
+            BotonCancelarCliente.Location = new Point(906, 316);
+            BotonCancelarCliente.Name = "BotonCancelarCliente";
+            BotonCancelarCliente.Size = new Size(225, 44);
+            BotonCancelarCliente.TabIndex = 108;
+            BotonCancelarCliente.Text = "Cancelar compra";
+            BotonCancelarCliente.UseVisualStyleBackColor = false;
+            BotonCancelarCliente.Click += BotonCancelarCliente_Click;
             // 
             // Heladera
             // 
@@ -333,19 +408,25 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(30, 30, 30);
             ClientSize = new Size(1390, 651);
+            Controls.Add(BotonCancelarCliente);
+            Controls.Add(PrecioTotal);
+            Controls.Add(PrecioKilo);
+            Controls.Add(cantidadComprarCarne);
+            Controls.Add(Cantidad);
+            Controls.Add(ListCarro);
+            Controls.Add(BotonVerCarro);
+            Controls.Add(BotonAgregarCarro);
             Controls.Add(esRecargo);
             Controls.Add(BotonUsuario);
             Controls.Add(BotonFacturas);
-            Controls.Add(button2);
+            Controls.Add(BotonComprar);
             Controls.Add(lista);
             Controls.Add(ListClientes);
-            Controls.Add(ListaProductos);
             Controls.Add(Actualizar);
             Controls.Add(button7);
             Controls.Add(Eliminar);
             Controls.Add(button1);
             Controls.Add(botoAgregar);
-            Controls.Add(FotoCarne);
             Controls.Add(dataGridViewCarne);
             Controls.Add(botonRegresar);
             Controls.Add(pictureBox3);
@@ -355,7 +436,7 @@
             Load += FormVendedor_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCarne).EndInit();
-            ((System.ComponentModel.ISupportInitialize)FotoCarne).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Cantidad).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -366,7 +447,6 @@
         private PictureBox pictureBox3;
         private Label saludo;
         private Button botonRegresar;
-        private PictureBox FotoCarne;
 #pragma warning disable CS0169 // El campo 'Heladera.numericUpDown11' nunca se usa
         private NumericUpDown numericUpDown11;
 #pragma warning restore CS0169 // El campo 'Heladera.numericUpDown11' nunca se usa
@@ -386,13 +466,22 @@
         private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewImageColumn Column4;
-        private ListView ListaProductos;
+        private ListView CarroCliente;
         private ColumnHeader columnHeader1;
         private ListBox ListClientes;
         private Label lista;
-        private Button button2;
+        private Button BotonComprar;
         private Button BotonFacturas;
         private Button BotonUsuario;
         private CheckBox esRecargo;
+        private Button BotonAgregarCarro;
+        private Button BotonVerCarro;
+        private ListBox ListCarro;
+        private NumericUpDown Cantidad;
+        private Label cantidadComprarCarne;
+        private Label PrecioKilo;
+        private Label PrecioTotal;
+        private Button BotonCancelarCliente;
+        //private ListBox CarroCliente;
     }
 }

@@ -31,7 +31,7 @@
             Corte = new DataGridViewTextBoxColumn();
             DatosCorteCarne = new Label();
             botonRegresar = new Button();
-            button1 = new Button();
+            BotonAgregarCarro = new Button();
             DatosCarne = new ListBox();
             GrupoCarne = new GroupBox();
             TotalPagar = new Label();
@@ -43,12 +43,13 @@
             Buscar = new Button();
             BotonSiguiente = new Button();
             BotonCarro = new Button();
-            Facturas = new Button();
+            BotonBorrar = new Button();
             BotonUsuario = new Button();
             TextMontoMaximo = new TextBox();
             MontoText = new Label();
             BotonIngresarMonto = new Button();
             TextoMonto = new Label();
+            BotonComprar = new Button();
             GrupoCarne.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)CantidadComprar).BeginInit();
             SuspendLayout();
@@ -61,6 +62,7 @@
             // DatosCorteCarne
             // 
             DatosCorteCarne.AutoSize = true;
+            DatosCorteCarne.Enabled = false;
             DatosCorteCarne.ForeColor = SystemColors.ButtonFace;
             DatosCorteCarne.Location = new Point(565, 20);
             DatosCorteCarne.Name = "DatosCorteCarne";
@@ -72,7 +74,7 @@
             botonRegresar.BackColor = Color.Black;
             botonRegresar.FlatStyle = FlatStyle.Flat;
             botonRegresar.ForeColor = SystemColors.ButtonHighlight;
-            botonRegresar.Location = new Point(25, 12);
+            botonRegresar.Location = new Point(12, 12);
             botonRegresar.Name = "botonRegresar";
             botonRegresar.Size = new Size(75, 23);
             botonRegresar.TabIndex = 3;
@@ -80,22 +82,24 @@
             botonRegresar.UseVisualStyleBackColor = false;
             botonRegresar.Click += botonRegresar_Click;
             // 
-            // button1
+            // BotonAgregarCarro
             // 
-            button1.BackColor = Color.Black;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.ForeColor = SystemColors.ButtonHighlight;
-            button1.Location = new Point(375, 310);
-            button1.Name = "button1";
-            button1.Size = new Size(334, 45);
-            button1.TabIndex = 6;
-            button1.Text = "Agregar al carro";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += BotonComprar_Click;
+            BotonAgregarCarro.BackColor = Color.Black;
+            BotonAgregarCarro.Enabled = false;
+            BotonAgregarCarro.FlatStyle = FlatStyle.Flat;
+            BotonAgregarCarro.ForeColor = SystemColors.ButtonHighlight;
+            BotonAgregarCarro.Location = new Point(375, 310);
+            BotonAgregarCarro.Name = "BotonAgregarCarro";
+            BotonAgregarCarro.Size = new Size(334, 45);
+            BotonAgregarCarro.TabIndex = 6;
+            BotonAgregarCarro.Text = "Agregar al carro";
+            BotonAgregarCarro.UseVisualStyleBackColor = false;
+            BotonAgregarCarro.Click += BotonComprar_Click;
             // 
             // DatosCarne
             // 
             DatosCarne.BackColor = SystemColors.MenuText;
+            DatosCarne.Enabled = false;
             DatosCarne.ForeColor = SystemColors.MenuBar;
             DatosCarne.FormattingEnabled = true;
             DatosCarne.ItemHeight = 15;
@@ -113,6 +117,7 @@
             GrupoCarne.Controls.Add(CantidadDisponible);
             GrupoCarne.Controls.Add(Precio);
             GrupoCarne.Controls.Add(Tipo);
+            GrupoCarne.Enabled = false;
             GrupoCarne.ForeColor = SystemColors.Control;
             GrupoCarne.Location = new Point(375, 204);
             GrupoCarne.Name = "GrupoCarne";
@@ -167,6 +172,7 @@
             // TextBoxBuscar
             // 
             TextBoxBuscar.BackColor = SystemColors.InfoText;
+            TextBoxBuscar.Enabled = false;
             TextBoxBuscar.ForeColor = SystemColors.Window;
             TextBoxBuscar.Location = new Point(30, 138);
             TextBoxBuscar.Name = "TextBoxBuscar";
@@ -177,6 +183,7 @@
             // Buscar
             // 
             Buscar.BackColor = Color.Black;
+            Buscar.Enabled = false;
             Buscar.FlatStyle = FlatStyle.Flat;
             Buscar.ForeColor = SystemColors.ButtonHighlight;
             Buscar.Location = new Point(136, 138);
@@ -190,6 +197,7 @@
             // BotonSiguiente
             // 
             BotonSiguiente.BackColor = Color.Black;
+            BotonSiguiente.Enabled = false;
             BotonSiguiente.FlatStyle = FlatStyle.Flat;
             BotonSiguiente.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             BotonSiguiente.ForeColor = SystemColors.ButtonHighlight;
@@ -204,6 +212,7 @@
             // BotonCarro
             // 
             BotonCarro.BackColor = Color.Black;
+            BotonCarro.Enabled = false;
             BotonCarro.FlatStyle = FlatStyle.Flat;
             BotonCarro.ForeColor = SystemColors.ButtonHighlight;
             BotonCarro.Location = new Point(355, 16);
@@ -214,25 +223,27 @@
             BotonCarro.UseVisualStyleBackColor = false;
             BotonCarro.Click += BotonCarro_Click;
             // 
-            // Facturas
+            // BotonBorrar
             // 
-            Facturas.BackColor = Color.Black;
-            Facturas.FlatStyle = FlatStyle.Flat;
-            Facturas.ForeColor = SystemColors.ButtonHighlight;
-            Facturas.Location = new Point(474, 16);
-            Facturas.Name = "Facturas";
-            Facturas.Size = new Size(103, 23);
-            Facturas.TabIndex = 17;
-            Facturas.Text = "Ver facturas";
-            Facturas.UseVisualStyleBackColor = false;
-            Facturas.Click += Facturas_Click;
+            BotonBorrar.BackColor = Color.Black;
+            BotonBorrar.Enabled = false;
+            BotonBorrar.FlatStyle = FlatStyle.Flat;
+            BotonBorrar.ForeColor = SystemColors.ButtonHighlight;
+            BotonBorrar.Location = new Point(375, 361);
+            BotonBorrar.Name = "BotonBorrar";
+            BotonBorrar.Size = new Size(334, 39);
+            BotonBorrar.TabIndex = 17;
+            BotonBorrar.Text = "borrar";
+            BotonBorrar.UseVisualStyleBackColor = false;
+            BotonBorrar.Click += BotonCancelarCompra_Click;
             // 
             // BotonUsuario
             // 
             BotonUsuario.BackColor = Color.Black;
+            BotonUsuario.Enabled = false;
             BotonUsuario.FlatStyle = FlatStyle.Flat;
             BotonUsuario.ForeColor = SystemColors.ButtonHighlight;
-            BotonUsuario.Location = new Point(586, 16);
+            BotonUsuario.Location = new Point(571, 16);
             BotonUsuario.Name = "BotonUsuario";
             BotonUsuario.Size = new Size(103, 23);
             BotonUsuario.TabIndex = 18;
@@ -244,7 +255,7 @@
             // 
             TextMontoMaximo.BackColor = SystemColors.InactiveCaptionText;
             TextMontoMaximo.ForeColor = SystemColors.MenuBar;
-            TextMontoMaximo.Location = new Point(12, 61);
+            TextMontoMaximo.Location = new Point(12, 41);
             TextMontoMaximo.Name = "TextMontoMaximo";
             TextMontoMaximo.PlaceholderText = "Monto";
             TextMontoMaximo.Size = new Size(100, 23);
@@ -254,7 +265,7 @@
             // 
             MontoText.AutoSize = true;
             MontoText.ForeColor = SystemColors.ButtonHighlight;
-            MontoText.Location = new Point(12, 43);
+            MontoText.Location = new Point(441, 403);
             MontoText.Name = "MontoText";
             MontoText.Size = new Size(194, 15);
             MontoText.TabIndex = 20;
@@ -265,7 +276,7 @@
             BotonIngresarMonto.BackColor = Color.Black;
             BotonIngresarMonto.FlatStyle = FlatStyle.Flat;
             BotonIngresarMonto.ForeColor = SystemColors.ButtonHighlight;
-            BotonIngresarMonto.Location = new Point(118, 62);
+            BotonIngresarMonto.Location = new Point(118, 42);
             BotonIngresarMonto.Name = "BotonIngresarMonto";
             BotonIngresarMonto.Size = new Size(75, 22);
             BotonIngresarMonto.TabIndex = 21;
@@ -277,11 +288,25 @@
             // 
             TextoMonto.AutoSize = true;
             TextoMonto.ForeColor = Color.Red;
-            TextoMonto.Location = new Point(12, 87);
+            TextoMonto.Location = new Point(12, 67);
             TextoMonto.Name = "TextoMonto";
             TextoMonto.Size = new Size(302, 15);
             TextoMonto.TabIndex = 22;
             TextoMonto.Text = "Ingrese el monto para acceder al resto de las funcionnes";
+            // 
+            // BotonComprar
+            // 
+            BotonComprar.BackColor = Color.Black;
+            BotonComprar.Enabled = false;
+            BotonComprar.FlatStyle = FlatStyle.Flat;
+            BotonComprar.ForeColor = SystemColors.ButtonHighlight;
+            BotonComprar.Location = new Point(464, 16);
+            BotonComprar.Name = "BotonComprar";
+            BotonComprar.Size = new Size(103, 23);
+            BotonComprar.TabIndex = 23;
+            BotonComprar.Text = "Comprar carro \U0001f6d2";
+            BotonComprar.UseVisualStyleBackColor = false;
+            BotonComprar.Click += BotonComprar_Click_1;
             // 
             // FormVenta
             // 
@@ -289,19 +314,20 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(13, 16, 47);
             ClientSize = new Size(800, 450);
+            Controls.Add(BotonComprar);
             Controls.Add(TextoMonto);
             Controls.Add(BotonIngresarMonto);
             Controls.Add(MontoText);
             Controls.Add(TextMontoMaximo);
             Controls.Add(BotonUsuario);
-            Controls.Add(Facturas);
+            Controls.Add(BotonBorrar);
             Controls.Add(BotonCarro);
             Controls.Add(BotonSiguiente);
             Controls.Add(Buscar);
             Controls.Add(TextBoxBuscar);
             Controls.Add(GrupoCarne);
             Controls.Add(DatosCarne);
-            Controls.Add(button1);
+            Controls.Add(BotonAgregarCarro);
             Controls.Add(botonRegresar);
             Controls.Add(DatosCorteCarne);
             Name = "FormVenta";
@@ -345,7 +371,7 @@
         private Label Carro;
 #pragma warning restore CS0169 // El campo 'FormVenta.Carro' nunca se usa
         private Button botonRegresar;
-        private Button button1;
+        private Button BotonAgregarCarro;
         private ListBox DatosCarne;
         private GroupBox GrupoCarne;
         private Label CantidadDisponible;
@@ -357,11 +383,12 @@
         private NumericUpDown CantidadComprar;
         private Button BotonCarro;
         private Label TotalPagar;
-        private Button Facturas;
+        private Button BotonBorrar;
         private Button BotonUsuario;
         private TextBox TextMontoMaximo;
         private Label MontoText;
         private Button BotonIngresarMonto;
         private Label TextoMonto;
+        private Button BotonComprar;
     }
 }

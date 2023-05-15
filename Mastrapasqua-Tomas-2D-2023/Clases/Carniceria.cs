@@ -68,6 +68,18 @@ namespace Clases
             get { return tipoCarne; }
             set { tipoCarne = value; }
         }
+
+        public void modificar()
+        {
+
+        }
+
+        public int restarCantidad(int cantidadComprada)
+        {
+            CantidadCarne = CantidadCarne - cantidadComprada;
+
+            return CantidadCarne;
+        }
        
 
       

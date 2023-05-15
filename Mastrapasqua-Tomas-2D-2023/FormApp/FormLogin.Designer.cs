@@ -33,9 +33,10 @@
             TextMail = new TextBox();
             TextPassword = new TextBox();
             TextError = new Label();
-            comboBox1 = new ComboBox();
             pictureBox1 = new PictureBox();
             bindingSource1 = new BindingSource(components);
+            Cliente = new Button();
+            Vendedor = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             SuspendLayout();
@@ -92,21 +93,6 @@
             TextError.TabIndex = 8;
             TextError.Text = "No se encontro el usuario ingresado";
             // 
-            // comboBox1
-            // 
-            comboBox1.BackColor = Color.FromArgb(30, 30, 30);
-            comboBox1.Cursor = Cursors.Hand;
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.FlatStyle = FlatStyle.Flat;
-            comboBox1.ForeColor = SystemColors.ButtonHighlight;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(30, 380);
-            comboBox1.Name = "comboBox1";
-            comboBox1.RightToLeft = RightToLeft.No;
-            comboBox1.Size = new Size(194, 23);
-            comboBox1.TabIndex = 9;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
-            // 
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.Carniceria_Mastra_26_4_2023__1_1;
@@ -116,14 +102,41 @@
             pictureBox1.TabIndex = 10;
             pictureBox1.TabStop = false;
             // 
+            // Cliente
+            // 
+            Cliente.BackColor = Color.Black;
+            Cliente.FlatStyle = FlatStyle.Flat;
+            Cliente.ForeColor = SystemColors.ButtonHighlight;
+            Cliente.Location = new Point(31, 426);
+            Cliente.Name = "Cliente";
+            Cliente.Size = new Size(75, 23);
+            Cliente.TabIndex = 11;
+            Cliente.Text = "Cliente";
+            Cliente.UseVisualStyleBackColor = false;
+            Cliente.Click += Cliente_Click;
+            // 
+            // Vendedor
+            // 
+            Vendedor.BackColor = Color.Black;
+            Vendedor.FlatStyle = FlatStyle.Flat;
+            Vendedor.ForeColor = SystemColors.ButtonHighlight;
+            Vendedor.Location = new Point(149, 426);
+            Vendedor.Name = "Vendedor";
+            Vendedor.Size = new Size(75, 23);
+            Vendedor.TabIndex = 12;
+            Vendedor.Text = "Vendedor";
+            Vendedor.UseVisualStyleBackColor = false;
+            Vendedor.Click += Vendedor_Click;
+            // 
             // FormLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(30, 30, 30);
             ClientSize = new Size(273, 479);
+            Controls.Add(Vendedor);
+            Controls.Add(Cliente);
             Controls.Add(pictureBox1);
-            Controls.Add(comboBox1);
             Controls.Add(TextError);
             Controls.Add(TextPassword);
             Controls.Add(TextMail);
@@ -143,8 +156,9 @@
         private TextBox TextMail;
         private TextBox TextPassword;
         private Label TextError;
-        private ComboBox comboBox1;
         private PictureBox pictureBox1;
         private BindingSource bindingSource1;
+        private Button Cliente;
+        private Button Vendedor;
     }
 }

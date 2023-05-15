@@ -9,7 +9,7 @@ namespace Clases
         float dinero;
         float totalGastado;
         List<ListaCompras> listado;
-        List<Factura> facturas;
+        //List<Factura> facturas;
 
 
         public Cliente(Usuario usuario) :base(usuario)
@@ -17,18 +17,16 @@ namespace Clases
             this.dinero = 0;
             this.totalGastado = 0;
             listado = new List<ListaCompras>();
-            facturas = new List<Factura>();
         }
 
         /// <summary>
         /// Constructor de Cliente con sus argumentos correspondientes y que llama al constructor :this()
         /// </summary>
-        public Cliente(Usuario usuario, float dinero, float totalGastado, List<ListaCompras> listado, List<Factura>facturas) : this(usuario)
+        public Cliente(Usuario usuario, float dinero, float totalGastado, List<ListaCompras> listado) : this(usuario)
         {
             this.dinero = dinero;
             this.totalGastado = totalGastado;
             this.listado = listado;
-            this.facturas = facturas;
         }
         /// <summary>
         /// Propiedad Dinero con getter y setter que permite devolver o asignarle un valor de un float
@@ -60,11 +58,11 @@ namespace Clases
         /// <summary>
         /// Propiedad Factura con getter y setter que permite devolver o asignarle un valor List
         /// </summary>
-        public List<Factura> ListaFacturas
+        /*public List<Factura> ListaFacturas
         {
             get { return facturas; }
             set { facturas = value; }
-        }
+        }*/
 
         /// <summary>
         /// Muestra datos de un cliente mediante un stringbuilder y el uso de sobrecarga. Retorno el stringBuilder que tiene todos los datos del cliente
@@ -119,10 +117,10 @@ namespace Clases
             return !(cliente1 == cliente2);
         }
 
-        public void crearFacturas(float total, bool recargo)
+        /*public void crearFacturas(float total, bool recargo)
         {
 
-
+            
             if (recargo != false)
             {
                 Factura factura = new Factura(1, Convert.ToSingle(total * 0.05), Mail);
@@ -134,6 +132,11 @@ namespace Clases
                 Factura factura = new Factura(1, total, Mail);
                 ListaFacturas.Add(factura);
             }
+        }*/
+
+        public void vaciarCarro()
+        {
+            ListaCompras.Clear();
         }
     }
 }

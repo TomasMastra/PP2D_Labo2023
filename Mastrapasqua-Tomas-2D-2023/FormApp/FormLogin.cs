@@ -9,14 +9,18 @@ namespace FormApp
         List<Cliente> clienteCarniceria = new List<Cliente>();
         List<Carniceria> carne = new List<Carniceria>();
         List<Usuario> usuario = new List<Usuario>();
+        List<Factura> facturas = new List<Factura>();
         public FormLogin() /*  */
         {
             InitializeComponent();
+            
 
 
         }
 
-        private void FormLogin_Load(object sender, EventArgs e)
+        
+
+        private void FormLogin_Load(object sender, EventArgs e) 
         {
             this.usuario = harcodearUsuarios();
             this.carne = harcodearCarniceria();
@@ -54,6 +58,8 @@ namespace FormApp
 
             return listaUsuarios;
         }
+
+
         public List<Carniceria> harcodearCarniceria()
         {
             List<string> corteCarne = new List<string> { "Asado", "Vacio", "Bondiola", "Chorizo", "Pollo", "Huevos x 30", "Chimichurri", "Huevo de pavo x 6" };
@@ -78,7 +84,7 @@ namespace FormApp
         public Vendedor harcodearVendedor(Usuario usuario)
         {
 
-            Vendedor vendedor = new Vendedor(usuario, carne, 2, 2);
+            Vendedor vendedor = new Vendedor(usuario, carne, 2, 2, facturas);
 
             return vendedor;
         }
@@ -86,25 +92,23 @@ namespace FormApp
         public Cliente harcodearCliente(Usuario usuario)
         {
 
-            List<string> producto = new List<string> { "Asado", "Vacio", "Chimichurri" };
-            List<int> precios = new List<int> { 3000, 2000, 1200 };
-            List<int> cantidad = new List<int> { 1, 1, 4 };
+            
 
 
             List<ListaCompras> listaCompras = new List<ListaCompras>();
             List<Factura> facturas = new List<Factura>();
 
-            for (int i = 0; i < producto.Count; i++)
+            //for (int i = 0; i < producto.Count; i++)
             {
-                ListaCompras listaProductos = new ListaCompras(producto[i], precios[i], cantidad[i]);
-                Factura listaFacturas = new Factura(i, 20000, usuario.Mail);
+                ListaCompras listaProductos = new ListaCompras();
+                //Factura listaFacturas = new Factura(i, 20000, usuario.Mail);
 
-                listaCompras.Add(listaProductos);
-                facturas.Add(listaFacturas);
+                //listaCompras.Add(listaProductos);
+                //facturas.Add(listaFacturas);
 
 
             }
-            Cliente cliente = new Cliente(usuario, 20000, 2, listaCompras, facturas);
+            Cliente cliente = new Cliente(usuario, 20000, 2, listaCompras);
 
 
             return cliente;
@@ -112,10 +116,7 @@ namespace FormApp
 
         public void establecerDatos()
         {
-            foreach (Usuario user in usuario)
-            {
-                comboBox1.Items.Add(user.Mail.ToString());
-            }
+
 
             TextMail.Text = "";
             TextPassword.Text = "";
@@ -145,11 +146,11 @@ namespace FormApp
                 if (usuario[indexUserMail].Rol == 1)
                 {
                     int index = buscarVendedor(usuario[indexUserMail], vendedorCarniceria);
-                    Heladera vendedorMenu = new Heladera(vendedorCarniceria[index], this, clienteCarniceria);
+                    Heladera vendedorMenu = new Heladera(vendedorCarniceria[index], this, clienteCarniceria, facturas);
                     vendedorMenu.Show();
-                   
+
                     this.Hide();
-                    
+
                 }
                 else
                 {
@@ -158,10 +159,10 @@ namespace FormApp
                         if (usuario[indexUserMail].Rol == 0)
                         {
                             int index = buscarCliente(usuario[indexUserMail], clienteCarniceria);
-                            FormVenta cliente = new FormVenta(carne, clienteCarniceria[index], this);
+                            FormVenta cliente = new FormVenta(carne, clienteCarniceria[index], vendedorCarniceria[0], this);
                             cliente.Show();
                             this.Hide();
-                            
+
                         }
                     }
 
@@ -169,8 +170,8 @@ namespace FormApp
             }
             else
             {
-                TextError.ForeColor= Color.Red;
-               
+                TextError.ForeColor = Color.Red;
+
 
 
             }
@@ -261,29 +262,17 @@ namespace FormApp
             return index;
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void Cliente_Click(object sender, EventArgs e)
         {
-            int indexMail;
-
-
-            indexMail = buscarMail(usuario, comboBox1.Items[comboBox1.SelectedIndex].ToString());
-
-            if (indexMail >= 0 && indexMail < usuario.Count)
-            {
-
-
-                TextMail.Text = this.usuario[indexMail].Mail;
-                TextPassword.Text = this.usuario[indexMail].Password;
-            }
-
-
-
-
+            TextMail.Text = usuario[1].Mail;
+            TextPassword.Text = usuario[1].Password;
         }
 
-
-
-
+        private void Vendedor_Click(object sender, EventArgs e)
+        {
+            TextMail.Text = usuario[0].Mail;
+            TextPassword.Text = usuario[0].Password;
+        }
     }
 
 }

@@ -13,6 +13,7 @@ namespace FormApp
         private Vendedor vendedorCarniceria;
         private List<Carniceria> carne;
         private Cliente cliente;
+        private List<Factura> facturas;
         float sumaCarroActual;
         Form formLogin;
         float monto;
@@ -23,15 +24,14 @@ namespace FormApp
             InitializeComponent();
         }
 
-        public FormVenta(List<Carniceria> carne, Cliente cliente, Form formLogin) : this()
+        public FormVenta(List<Carniceria> carne, Cliente cliente, Vendedor vendedor, Form formLogin) : this()
         {
 
 
             this.carne = carne;
             this.cliente = cliente;
             this.formLogin = formLogin;
-
-
+            this.vendedorCarniceria = vendedor;
 
 
         }
@@ -63,6 +63,7 @@ namespace FormApp
 
         private void botonRegresar_Click(object sender, EventArgs e)
         {
+            cliente.ListaCompras.Clear();
             formLogin.Show();
             this.Hide();
         }
@@ -78,7 +79,7 @@ namespace FormApp
             {
                 if (monto > 0)
                 {
-                    if (this.monto >= Convert.ToInt32(totalPagar) && CantidadComprar.Value>0)
+                    if (this.monto >= Convert.ToInt32(totalPagar) && CantidadComprar.Value > 0)
                     {
                         ListaCompras lista = new ListaCompras(carne[DatosCarne.SelectedIndex].CortesCarne, totalPagar, Convert.ToInt32(CantidadComprar.Value));
 
@@ -165,18 +166,24 @@ namespace FormApp
         {
             if (monto > 0)
             {
-                FormCarro formCarro = new FormCarro(cliente, true);
+                FormCarro formCarro = new FormCarro(cliente);
                 formCarro.Show();
             }
 
         }
 
-        private void Facturas_Click(object sender, EventArgs e)
+        private void BotonCancelarCompra_Click(object sender, EventArgs e)
         {
-            if (monto > 0)
+            if (cliente.ListaCompras.Count > 0)
             {
-                FormCarro formCarro = new FormCarro(cliente);
-                formCarro.Show();
+                /*FormCarro formCarro = new FormCarro(cliente);
+                formCarro.Show();*/
+
+                cliente.vaciarCarro();
+            }
+            else
+            {
+                MessageBox.Show($"No hay nada en el carro de {cliente.Nombre}");
             }
         }
 
@@ -197,6 +204,7 @@ namespace FormApp
                 this.monto = monto;
                 TextoMonto.Text = $"Monto disponible: {monto.ToString()}";
                 TextoMonto.ForeColor = Color.Red;
+                Activar();
             }
             else
             {
@@ -205,6 +213,68 @@ namespace FormApp
             }
         }
 
+        public void Activar()
+        {
+            BotonCarro.Enabled = true;
+            BotonComprar.Enabled = true;
+            BotonUsuario.Enabled = true;
+            TextBoxBuscar.Enabled = true;
+            Buscar.Enabled = true;
+            BotonSiguiente.Enabled = true;
+            DatosCarne.Enabled = true;
+            GrupoCarne.Enabled = true;
+            BotonAgregarCarro.Enabled = true;
+            BotonBorrar.Enabled = true;
 
+
+        }
+
+        private void BotonComprar_Click_1(object sender, EventArgs e)
+        {
+
+            float total=0;
+            if (cliente.ListaCompras.Count > 0)
+            {
+                for (int i = 0; i < cliente.ListaCompras.Count; i++)
+                {
+                    total = cliente.ObtenerPrecioTotal();
+
+                    for (int j = 0; j < carne.Count; j++)
+                    {
+                        if (cliente.ListaCompras[i].Producto == carne[j].CortesCarne)
+                        {
+                            if (carne[j].CantidadCarne >= cliente.ListaCompras[i].CantidadComprada)
+                            {
+                                carne[j].CantidadCarne = carne[j].CantidadCarne - cliente.ListaCompras[i].CantidadComprada;
+                            }
+                            else
+                            {
+                                MessageBox.Show($"La bolsa con {carne[j].CortesCarne} no se pudo comprar debido a que no hay stock // {carne[j].CantidadCarne}");
+                            }
+                        }
+                    }
+                }
+
+                vendedorCarniceria.crearFacturas(total, cliente.Nombre, true);
+                DatosCarne.SelectedIndex = -1;
+                FormCarro formCarro = new FormCarro(vendedorCarniceria.ListaFacturas[vendedorCarniceria.ListaFacturas.Count - 1]);
+                formCarro.Show();
+                cliente.ListaCompras.Clear();
+            }
+            else
+            {
+                MessageBox.Show("No hay nada en el carro para poder comprar");
+            }
+
+           /* if (cliente.ListaCompras.Count > 0)
+            {
+                vendedorCarniceria.crearFacturas(total, cliente.Nombre, true);
+                DatosCarne.SelectedIndex = -1;
+                FormCarro formCarro = new FormCarro(vendedorCarniceria.ListaFacturas[vendedorCarniceria.ListaFacturas.Count - 1]);
+                formCarro.Show();
+                cliente.ListaCompras.Clear();
+            }*/
+            
+        }
     }
 }

@@ -8,19 +8,22 @@ namespace FormApp
         Form FormLogin;
         Vendedor vendedorCarniceria;
         List<Cliente> listaClientes;
+        List<Factura> facturas;
         public Heladera()
         {
             InitializeComponent();
 
         }
 
-        public Heladera(Vendedor vendedor, Form formLogin, List<Cliente> listaClientes) : this()
+        public Heladera(Vendedor vendedor, Form formLogin, List<Cliente> listaClientes, List<Factura> facturas) : this()
         {
 
             this.vendedorCarniceria = vendedor;
             this.FormLogin = formLogin;
             dataGridViewCarne.CurrentCell = null;//ver
             this.listaClientes = listaClientes;
+            this.facturas = facturas;
+
 
 
 
@@ -53,6 +56,7 @@ namespace FormApp
                 }
             }
             cargarDataGridView(vendedorCarniceria);
+            cargarListBox();
 
 
 
@@ -92,6 +96,14 @@ namespace FormApp
                 row.Cells.Add(cell4);
                 //
                 dataGridViewCarne.Rows.Add(row);
+            }
+        }
+
+        public void cargarListBox()
+        {
+            foreach (Carniceria carne in vendedorCarniceria.Carne)
+            {
+                ListCarro.Items.Add(carne.CortesCarne);
             }
         }
 
@@ -161,43 +173,39 @@ namespace FormApp
 
         private void ListClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListaProductos.Items.Clear();
-            //MessageBox.Show($"{listaClientes[ListClientes.SelectedIndex].ListaCompras.Count}");
-            if (ListClientes.SelectedIndex >= 0 && listaClientes[ListClientes.SelectedIndex].ListaCompras.Count > 0)
+            if (ListClientes.SelectedIndex > -1 && listaClientes[ListClientes.SelectedIndex].ListaCompras.Count == 0)
             {
-                for (int i = 0; i < listaClientes[ListClientes.SelectedIndex].ListaCompras.Count; i++)
+                //for (int i = 0; i < listaClientes[ListClientes.SelectedIndex].ListaCompras.Count; i++)
                 {
-                    {
-                        ListaProductos.Items.Add(listaClientes[ListClientes.SelectedIndex].ListaCompras[i].Producto.ToString());
+                    BotonVerCarro.Text = $"Ver carro de {listaClientes[ListClientes.SelectedIndex].Nombre}";
+                    ListClientes.Enabled = false;
 
-
-
-                    }
                 }
 
             }
-            else
-            {
-                ListaProductos.Items.Add("No hay nada en la lista");
-            }
+
         }
 
         private void BotonAceptar_Click(object sender, EventArgs e)
         {
-            //FormLogin f = new FormLogin();
-            // int index;
 
-            //MessageBox.Show($"{listaClientes[ListClientes.SelectedIndex].Nombre}\n{listaClientes[ListClientes.SelectedIndex].ListaCompras[0].PrecioTotal}\n{listaClientes[ListClientes.SelectedIndex].ListaCompras[1].PrecioTotal}\n{listaClientes[ListClientes.SelectedIndex].ListaCompras[2].PrecioTotal}");
-            //if (ListClientes.Items.Count > 0 && listaClientes[ListClientes.SelectedIndex].ListaCompras.Count > 0 && ListClientes.SelectedIndex >=)
-            if (ListClientes.Items.Count > 0 && ListClientes.SelectedIndex >= 0 && listaClientes[ListClientes.SelectedIndex].ListaCompras.Count > 0)
+            if (ListClientes.Items.Count > 0 && ListClientes.SelectedIndex >= 0)
             {
-                float total = listaClientes[ListClientes.SelectedIndex].ObtenerPrecioTotal();
 
-                restarCantidad(listaClientes[ListClientes.SelectedIndex]);
-                crearFacturas(listaClientes[ListClientes.SelectedIndex], total);
-                listaClientes[ListClientes.SelectedIndex].ListaCompras.Clear();
-                //ListClientes.SelectedIndex = -1;
-                ListaProductos.Items.Clear();
+                if (listaClientes[ListClientes.SelectedIndex].ListaCompras.Count > 0)
+                {
+                    float total = listaClientes[ListClientes.SelectedIndex].ObtenerPrecioTotal();
+
+                    restarCantidad(listaClientes[ListClientes.SelectedIndex]);
+                    crearFacturas(listaClientes[ListClientes.SelectedIndex], total, vendedorCarniceria);
+                    listaClientes[ListClientes.SelectedIndex].ListaCompras.Clear();
+                    ListClientes.SelectedIndex = -1;
+                    ListClientes.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("No agrego nada al carro");
+                }
 
 
             }
@@ -214,8 +222,19 @@ namespace FormApp
 
         private void BotonFacturas_Click(object sender, EventArgs e)
         {
-            FormCarro formFacturas = new FormCarro(listaClientes);
-            formFacturas.Show();
+            if (vendedorCarniceria.ListaFacturas != null && vendedorCarniceria.ListaFacturas.Count > 0)
+            {
+
+
+                FormCarro formFacturas = new FormCarro(vendedorCarniceria.ListaFacturas, true);
+                formFacturas.Show();
+
+            }
+            else
+            {
+                MessageBox.Show("No hay facturas disponibles");
+
+            }
         }
 
         public void restarCantidad(Cliente listado)
@@ -227,15 +246,16 @@ namespace FormApp
                 {
                     if (listado.ListaCompras[i].Producto == vendedorCarniceria.Carne[j].CortesCarne)
                     {
+
                         if (vendedorCarniceria.Carne[j].CantidadCarne >= listado.ListaCompras[i].CantidadComprada)
                         {
-                            //MessageBox.Show($"{vendedorCarniceria.Carne[j].CantidadCarne -listado.ListaCompras[i].CantidadComprada}");
-
-                            vendedorCarniceria.Carne[j].CantidadCarne = vendedorCarniceria.Carne[j].CantidadCarne - listado.ListaCompras[i].CantidadComprada;
+                            //MessageBox.Show($"{vendedorCarniceria.Carne[j].CantidadCarne} // {listado.ListaCompras[i].CantidadComprada}");
+                            //vendedorCarniceria.Carne[j].CantidadCarne = vendedorCarniceria.Carne[j].CantidadCarne - listado.ListaCompras[i].CantidadComprada;
+                            MessageBox.Show($"// {vendedorCarniceria.Carne[j].restarCantidad(listado.ListaCompras[i].CantidadComprada)}");
                         }
                         else
                         {
-                            MessageBox.Show($"El corte de carne {vendedorCarniceria.Carne[j].CortesCarne} no se vendeio debido a que no hay stock suficiente");
+                            MessageBox.Show($"El corte de carne {vendedorCarniceria.Carne[j].CortesCarne} no se vendio debido a que no hay stock suficiente");
                         }
                     }
 
@@ -248,21 +268,93 @@ namespace FormApp
         /// <summary>
         /// Crea la factura al cliente
         /// </summary>
-        public void crearFacturas(Cliente cliente, float total)
+        public void crearFacturas(Cliente cliente, float total, Vendedor vendedor)
         {
 
 
-            if (esRecargo.Checked != false)
+            if (esRecargo.Checked != true)
             {
-                cliente.crearFacturas(total, false);
+                Factura f = vendedor.crearFacturas(total, cliente.Nombre, false);
+                //vendedorCarniceria.ListaFacturas.Add(f);
             }
             else
             {
 
-                cliente.crearFacturas(total, true);
+                Factura f = vendedor.crearFacturas(total, cliente.Nombre, true);
+                //vendedorCarniceria.ListaFacturas.Add(f);
+
             }
         }
 
+        private void BotonVerCarro_Click(object sender, EventArgs e)
+        {
+            if (ListClientes.SelectedIndex > -1)
+            {
+                FormCarro formCarro = new FormCarro(listaClientes[ListClientes.SelectedIndex]);
+                formCarro.Show();
+            }
+            else
+            {
+                MessageBox.Show("No selecciono ningun cliente");
+            }
+        }
 
+        private void FormVender_Click(object sender, EventArgs e)
+        {
+
+            if (ListCarro.SelectedIndex > -1 && ListClientes.SelectedIndex > -1 && Cantidad.Value > 0)
+            {
+                if (Convert.ToInt32(dataGridViewCarne.Rows[ListCarro.SelectedIndex].Cells[3].Value) > 0 && Cantidad.Value > 0)
+                {
+                    string corteCarne = dataGridViewCarne.Rows[ListCarro.SelectedIndex].Cells[0].Value.ToString();
+                    int cantidad = Convert.ToInt32(Cantidad.Value);
+                    int precioTotal = Convert.ToInt32(dataGridViewCarne.Rows[ListCarro.SelectedIndex].Cells[2].Value) * cantidad;
+
+
+                    ListaCompras carro = new ListaCompras(corteCarne, precioTotal, cantidad);
+
+                    listaClientes[ListClientes.SelectedIndex].ListaCompras.Add(carro);
+                }
+                else
+                {
+                    MessageBox.Show("No hay mas stock de ese corte de carne seleccionado");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("No selecciono ningun corte de carne");
+            }
+        }
+
+        private void ListCarro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Cantidad.Maximum = vendedorCarniceria.Carne[ListCarro.SelectedIndex].CantidadCarne;
+            Cantidad.Value = 0;
+            PrecioKilo.Text = $"Precio (KILO): {vendedorCarniceria.Carne[ListCarro.SelectedIndex].PreciosCarne.ToString()}$";
+            PrecioTotal.Text = $"Precio total: {(vendedorCarniceria.Carne[ListCarro.SelectedIndex].PreciosCarne * Cantidad.Value).ToString()}$";
+
+
+        }
+
+        private void Cantidad_ValueChanged(object sender, EventArgs e)
+        {
+            PrecioTotal.Text = $"Precio total: {(vendedorCarniceria.Carne[ListCarro.SelectedIndex].PreciosCarne * Cantidad.Value).ToString()}$";
+        }
+
+        private void BotonCancelarCliente_Click(object sender, EventArgs e)
+        {
+            if ((ListClientes.SelectedIndex > -1))
+            {
+                listaClientes[ListClientes.SelectedIndex].vaciarCarro();
+                ListClientes.Enabled = true;
+                ListClientes.SelectedIndex = -1;
+            }else
+            {
+                MessageBox.Show("No hay ningun cliente seleccionado para calcelar la compra");
+            }
+
+
+        }
     }
 }
