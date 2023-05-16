@@ -216,6 +216,10 @@ namespace FormApp
             {
 
                 cliente.vaciarCarro();
+                TotalPagar.Text = "0";
+                TotalComprar.Text = "0";
+                DatosCarne.SelectedIndex = -1;
+
             }
             else
             {
