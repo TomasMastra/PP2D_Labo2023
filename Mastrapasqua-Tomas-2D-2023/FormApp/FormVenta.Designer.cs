@@ -34,6 +34,9 @@
             BotonAgregarCarro = new Button();
             DatosCarne = new ListBox();
             GrupoCarne = new GroupBox();
+            CosteCarrro = new Label();
+            Pagar = new Label();
+            TotalComprar = new Label();
             TotalPagar = new Label();
             CantidadComprar = new NumericUpDown();
             CantidadDisponible = new Label();
@@ -51,6 +54,7 @@
             TextoMonto = new Label();
             BotonComprar = new Button();
             Recargo = new CheckBox();
+            ValorCarro = new Label();
             GrupoCarne.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)CantidadComprar).BeginInit();
             SuspendLayout();
@@ -113,6 +117,9 @@
             // GrupoCarne
             // 
             GrupoCarne.BackColor = Color.Black;
+            GrupoCarne.Controls.Add(CosteCarrro);
+            GrupoCarne.Controls.Add(Pagar);
+            GrupoCarne.Controls.Add(TotalComprar);
             GrupoCarne.Controls.Add(TotalPagar);
             GrupoCarne.Controls.Add(CantidadComprar);
             GrupoCarne.Controls.Add(CantidadDisponible);
@@ -127,14 +134,42 @@
             GrupoCarne.TabStop = false;
             GrupoCarne.Text = "Datos del corte de carne";
             // 
+            // CosteCarrro
+            // 
+            CosteCarrro.AutoSize = true;
+            CosteCarrro.Location = new Point(190, 82);
+            CosteCarrro.Name = "CosteCarrro";
+            CosteCarrro.Size = new Size(91, 15);
+            CosteCarrro.TabIndex = 8;
+            CosteCarrro.Text = "Coste del Carro:";
+            // 
+            // Pagar
+            // 
+            Pagar.AutoSize = true;
+            Pagar.Location = new Point(154, 57);
+            Pagar.Name = "Pagar";
+            Pagar.Size = new Size(145, 15);
+            Pagar.TabIndex = 7;
+            Pagar.Text = "Costo de corte comprado:";
+            // 
+            // TotalComprar
+            // 
+            TotalComprar.AutoSize = true;
+            TotalComprar.Location = new Point(286, 82);
+            TotalComprar.Name = "TotalComprar";
+            TotalComprar.Size = new Size(13, 15);
+            TotalComprar.TabIndex = 6;
+            TotalComprar.Text = "0";
+            // 
             // TotalPagar
             // 
             TotalPagar.AutoSize = true;
-            TotalPagar.Location = new Point(211, 71);
+            TotalPagar.Location = new Point(295, 57);
             TotalPagar.Name = "TotalPagar";
-            TotalPagar.Size = new Size(77, 15);
+            TotalPagar.Size = new Size(13, 15);
             TotalPagar.TabIndex = 5;
-            TotalPagar.Text = "Total a pagar:";
+            TotalPagar.Text = "0";
+            TotalPagar.Click += TotalPagar_Click;
             // 
             // CantidadComprar
             // 
@@ -149,6 +184,7 @@
             // CantidadDisponible
             // 
             CantidadDisponible.AutoSize = true;
+            CantidadDisponible.BackColor = Color.Black;
             CantidadDisponible.Location = new Point(22, 55);
             CantidadDisponible.Name = "CantidadDisponible";
             CantidadDisponible.Size = new Size(0, 15);
@@ -157,6 +193,7 @@
             // Precio
             // 
             Precio.AutoSize = true;
+            Precio.BackColor = Color.Black;
             Precio.Location = new Point(22, 40);
             Precio.Name = "Precio";
             Precio.Size = new Size(0, 15);
@@ -165,6 +202,7 @@
             // Tipo
             // 
             Tipo.AutoSize = true;
+            Tipo.BackColor = Color.Black;
             Tipo.Location = new Point(22, 25);
             Tipo.Name = "Tipo";
             Tipo.Size = new Size(0, 15);
@@ -321,12 +359,23 @@
             Recargo.Text = "Con recargo";
             Recargo.UseVisualStyleBackColor = true;
             // 
+            // ValorCarro
+            // 
+            ValorCarro.AutoSize = true;
+            ValorCarro.ForeColor = Color.White;
+            ValorCarro.Location = new Point(381, 186);
+            ValorCarro.Name = "ValorCarro";
+            ValorCarro.Size = new Size(85, 15);
+            ValorCarro.TabIndex = 25;
+            ValorCarro.Text = "Valor del carro:";
+            // 
             // FormVenta
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(13, 16, 47);
             ClientSize = new Size(800, 450);
+            Controls.Add(ValorCarro);
             Controls.Add(Recargo);
             Controls.Add(BotonComprar);
             Controls.Add(TextoMonto);
@@ -405,5 +454,9 @@
         private Label TextoMonto;
         private Button BotonComprar;
         private CheckBox Recargo;
+        private Label ValorCarro;
+        private Label TotalComprar;
+        private Label CosteCarrro;
+        private Label Pagar;
     }
 }

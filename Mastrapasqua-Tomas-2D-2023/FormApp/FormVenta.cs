@@ -99,6 +99,7 @@ namespace FormApp
                         monto = monto - totalPagar;
                         TextoMonto.Text = $"Monto disponible: {monto.ToString()}";
                         MessageBox.Show($"Monto disponible: {monto}");
+                        TotalComprar.Text = (Convert.ToInt32(TotalPagar.Text) + Convert.ToInt32(TotalComprar.Text)).ToString();
 
                     }
                     else
@@ -186,7 +187,10 @@ namespace FormApp
         /// </summary>
         private void CantidadComprar_ValueChanged(object sender, EventArgs e)
         {
-            TotalPagar.Text = (Convert.ToInt32(CantidadComprar.Value) * carne[DatosCarne.SelectedIndex].PreciosCarne).ToString();
+            if (DatosCarne.SelectedIndex > -1)
+            {
+                TotalPagar.Text = (Convert.ToInt32(CantidadComprar.Value) * carne[DatosCarne.SelectedIndex].PreciosCarne).ToString();
+            }
         }
 
         /// <summary>
@@ -338,6 +342,11 @@ namespace FormApp
 
 
 
+
+        }
+
+        private void TotalPagar_Click(object sender, EventArgs e)
+        {
 
         }
     }
