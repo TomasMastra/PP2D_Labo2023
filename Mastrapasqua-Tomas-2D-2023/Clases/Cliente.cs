@@ -87,53 +87,22 @@ namespace Clases
 
             for (int i = 0; i < ListaCompras.Count;i++)
             {
-                total = total + ListaCompras[i].PrecioTotal;
+                if (ListaCompras[i].Comprado == true)
+                {
+                    total = total + ListaCompras[i].PrecioTotal;
+                }
+                    
+                
             }
             return total;
         }
 
-        /// <summary>
-        /// Compara 2 clientes por su mail, si son iguales retorna true
-        /// </summary>
-        public static bool operator ==(Cliente cliente1, Cliente cliente2)
-        {
+        
 
-            if (cliente1.Mail.Equals(cliente2.Mail))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
 
         /// <summary>
-        /// Compara 2 clientes por su mail y si son diferentes retorna false
+        /// Vacía el carro del cliente luego de haber comprado o cancelado la compra
         /// </summary>
-        public static bool operator!=(Cliente cliente1, Cliente cliente2)
-        {
-
-            return !(cliente1 == cliente2);
-        }
-
-        /*public void crearFacturas(float total, bool recargo)
-        {
-
-            
-            if (recargo != false)
-            {
-                Factura factura = new Factura(1, Convert.ToSingle(total * 0.05), Mail);
-                ListaFacturas.Add(factura);
-            }
-            else
-            {
-
-                Factura factura = new Factura(1, total, Mail);
-                ListaFacturas.Add(factura);
-            }
-        }*/
-
         public void vaciarCarro()
         {
             ListaCompras.Clear();

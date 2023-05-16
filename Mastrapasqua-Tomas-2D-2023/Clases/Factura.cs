@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Clases
 {
     /// <summary>
-    /// Clase de factura, guarda las facturas de compra de los clientes
+    /// Clase de factura, guarda las facturas de compra de los clientes para luego mostrarlas
     /// </summary>
     public class Factura
     {
@@ -54,6 +54,7 @@ namespace Clases
         }
 
         
+
 
 
     }

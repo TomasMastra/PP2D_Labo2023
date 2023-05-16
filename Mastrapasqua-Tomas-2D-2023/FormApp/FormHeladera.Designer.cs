@@ -223,7 +223,7 @@
             button7.TabIndex = 91;
             button7.Text = "Modificar";
             button7.UseVisualStyleBackColor = false;
-            button7.Click += button7_Click;
+            button7.Click += BotonModificar_Click;
             // 
             // Actualizar
             // 

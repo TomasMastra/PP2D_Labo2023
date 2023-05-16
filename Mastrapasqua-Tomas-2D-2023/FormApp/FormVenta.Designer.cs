@@ -234,7 +234,7 @@
             BotonBorrar.Name = "BotonBorrar";
             BotonBorrar.Size = new Size(334, 39);
             BotonBorrar.TabIndex = 17;
-            BotonBorrar.Text = "borrar";
+            BotonBorrar.Text = "Vaciar carro";
             BotonBorrar.UseVisualStyleBackColor = false;
             BotonBorrar.Click += BotonCancelarCompra_Click;
             // 

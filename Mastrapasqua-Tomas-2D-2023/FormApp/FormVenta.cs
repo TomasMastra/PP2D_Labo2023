@@ -6,7 +6,6 @@ namespace FormApp
     public partial class FormVenta : Form
     {
 
-        //Vendedor vendedorCariceria;
 
         private Vendedor vendedorCarniceria;
         private List<Carniceria> carne;
@@ -22,6 +21,13 @@ namespace FormApp
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Constructor de la clase FormVenta.
+        /// </summary>
+        /// <param name="carne">Lista de objetos Carniceria</param>
+        /// <param name="cliente">Objeto Cliente</param>
+        /// <param name="vendedor">Objeto Vendedor</param>
+        /// <param name="formLogin">Formulario de inicio de sesión (login)</param>
         public FormVenta(List<Carniceria> carne, Cliente cliente, Vendedor vendedor, Form formLogin) : this()
         {
 
@@ -43,6 +49,9 @@ namespace FormApp
 
         }
 
+        /// <summary>
+        /// Inicializa el formulario y carga la lista de objetos Carniceria en el control ListBox
+        /// </summary>
         public void inicializar()
         {
             for (int i = 0; i < carne.Count; i++)
@@ -56,9 +65,10 @@ namespace FormApp
         }
 
 
-
-
-
+        /// <summary>
+        /// Evento que se desencadena al hacer clic en el botón "Regresar"
+        /// Limpia la lista de compras del cliente y muestra el formulario de inicio de sesión
+        /// </summary>
         private void botonRegresar_Click(object sender, EventArgs e)
         {
             cliente.ListaCompras.Clear();
@@ -68,7 +78,11 @@ namespace FormApp
 
 
 
-
+        /// <summary>
+        /// Evento que se desencadena al hacer clic en el boton "Comprar carro"
+        /// Agrega un producto al carro y le muestra al usuario el dinero que le queda
+        /// Valida que tenga el dinero suficiente
+        /// </summary>
         private void BotonComprar_Click(object sender, EventArgs e)
         {
             int totalPagar;
@@ -105,7 +119,10 @@ namespace FormApp
 
 
 
-
+        /// <summary>
+        /// Evento que se desencadena al seleccionar un elemento en el control ListBox "DatosCarne"
+        /// Muestra información detallada sobre el elemento seleccionado
+        /// </summary>
         private void DatosCarne_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -118,11 +135,14 @@ namespace FormApp
                 CantidadComprar.Value = 0;
                 CantidadComprar.Maximum = carne[DatosCarne.SelectedIndex].CantidadCarne; ;
 
-                //CantidadDisponible.Text = "Cantidad disponible: " + carne.CantidadCarne[DatosCarne.SelectedIndex].ToString();
 
             }
         }
 
+        /// <summary>
+        /// Evento que se desencadena al hacer clic en el botón "Buscar"
+        /// Busca y selecciona el siguiente elemento en el control ListBox "DatosCarne" que coincide con el texto de búsqueda
+        /// </summary>
         private void Buscar_Click(object sender, EventArgs e)
         {
             string buscar = TextBoxBuscar.Text.ToLower();
@@ -130,6 +150,10 @@ namespace FormApp
 
         }
 
+        /// <summary>
+        /// Evento que se desencadena al hacer clic en el botón "BotonSiguiente"
+        /// Busca y selecciona el siguiente elemento en el control ListBox "DatosCarne" que coincide con el texto de búsqueda, a partir de la posición actual
+        /// </summary>
         private void BotonSiguiente_Click(object sender, EventArgs e)
         {
             string buscar = TextBoxBuscar.Text.ToLower();
@@ -137,6 +161,9 @@ namespace FormApp
 
         }
 
+        /// <summary>
+        /// Busca y selecciona un elemento del listBox desde un indice a otro
+        /// </summary>
         public void buscarIndiceCarne(int from, int to, string buscar)
         {
             for (int i = from; i < to; i++)
@@ -153,13 +180,19 @@ namespace FormApp
         }
 
 
-
+        /// <summary>
+        /// Evento que se desencadena al cambiar el valor en el control NumericUpDown "CantidadComprar"
+        /// Calcula y muestra el total a pagar en función de la cantidad seleccionada y el precio de la carne
+        /// </summary>
         private void CantidadComprar_ValueChanged(object sender, EventArgs e)
         {
             TotalPagar.Text = (Convert.ToInt32(CantidadComprar.Value) * carne[DatosCarne.SelectedIndex].PreciosCarne).ToString();
-            //CalcularTotal((Convert.ToInt32(CantidadComprar.Value) * carne[DatosCarne.SelectedIndex].PreciosCarne).ToString());
         }
 
+        /// <summary>
+        /// Evento que se desencadena al hacer clic en el botón "BotónCarro"
+        /// Abre el formulario "FormCarro" para mostrar el carrito de compras del cliente
+        /// </summary>
         private void BotonCarro_Click(object sender, EventArgs e)
         {
             if (monto > 0)
@@ -169,13 +202,14 @@ namespace FormApp
             }
 
         }
-
+        /// <summary>
+        /// Evento que se desencadena al hacer clic en el botón "BotonCancelarCompra"
+        /// Vacía el carrito de compras del cliente
+        /// </summary>
         private void BotonCancelarCompra_Click(object sender, EventArgs e)
         {
             if (cliente.ListaCompras.Count > 0)
             {
-                /*FormCarro formCarro = new FormCarro(cliente);
-                formCarro.Show();*/
 
                 cliente.vaciarCarro();
             }
@@ -185,6 +219,10 @@ namespace FormApp
             }
         }
 
+        /// <summary>
+        /// Evento que se desencadena al hacer clic en el botón "BotonUsuario"
+        /// Muestra la información del cliente en un mensaje de MessageBox
+        /// </summary>
         private void BotonUsuario_Click(object sender, EventArgs e)
         {
             if (monto > 0)
@@ -193,6 +231,10 @@ namespace FormApp
             }
         }
 
+        /// <summary>
+        /// Evento que se desencadena al hacer clic en el botón "BotonIngresarMonto"
+        /// Verifica y asigna el monto máximo de pago ingresado por el cliente
+        /// </summary>
         private void BotonIngresarMonto_Click(object sender, EventArgs e)
         {
 
@@ -211,6 +253,9 @@ namespace FormApp
             }
         }
 
+        /// <summary>
+        /// Activa los controles y funcionalidades una vez que se ingresa el monto máximo de pago
+        /// </summary>
         public void Activar()
         {
             BotonCarro.Enabled = true;
@@ -228,23 +273,31 @@ namespace FormApp
 
         }
 
+        /// <summary>
+        /// Crea una factura de compra para las compras realizadas por el cliente
+        /// Si se selecciona el recargo, crea una factura con recargo
+        /// </summary>
+        /// <param name="total">El total a pagar</param>
         public void crearFacturasCompra(float total)
         {
 
             if (Recargo.Checked != true)
             {
                 Factura factura = vendedorCarniceria.crearFacturas(total, cliente.Nombre, false);
-                //vendedorCarniceria.ListaFacturas.Add(f);
             }
             else
             {
 
                 Factura factura = vendedorCarniceria.crearFacturas(total, cliente.Nombre, true);
-                //vendedorCarniceria.ListaFacturas.Add(f);
 
             }
         }
 
+        /// <summary>
+        /// Evento que se desencadena al hacer clic en el botón "BotónComprar"
+        /// Realiza la compra de los productos en el carrito del cliente
+        /// Actualiza la cantidad de carne disponible y crea una factura de compra
+        /// </summary>
         private void BotonComprar_Click_1(object sender, EventArgs e)
         {
 
@@ -262,10 +315,11 @@ namespace FormApp
                             if (carne[j].CantidadCarne >= cliente.ListaCompras[i].CantidadComprada)
                             {
                                 carne[j].CantidadCarne = carne[j].CantidadCarne - cliente.ListaCompras[i].CantidadComprada;
+                                cliente.ListaCompras[i].Comprado = true;
                             }
                             else
                             {
-                                MessageBox.Show($"La bolsa con {carne[j].CortesCarne} no se pudo comprar debido a que no hay stock // {carne[j].CantidadCarne}");
+                                MessageBox.Show($"La bolsa con {carne[j].CortesCarne} no se pudo comprar debido a que no hay stock ");
                             }
                         }
                     }
@@ -282,7 +336,7 @@ namespace FormApp
                 MessageBox.Show("No hay nada en el carro para poder comprar");
             }
 
-           
+
 
 
         }

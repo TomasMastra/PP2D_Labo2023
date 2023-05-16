@@ -91,7 +91,7 @@ namespace Clases
 
         /// <summary>
         /// Muestra los datos del usuario mediante un stringbuilder, la clase es virtual porque permite que las clases derivadas
-        /// usen y le den implementacion a este metodo. Todo esto usando sobrecarga
+        /// usen y le den implementación a este método. Todo esto usando polimorfismo
         /// </summary>
         public virtual string Mostrar()
         {
@@ -102,6 +102,31 @@ namespace Clases
             sb.Append($"Id: {id}  \n");
 
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// Compara 2 usuarios por su mail, si son iguales retorna true
+        /// </summary>
+        public static bool operator ==(Usuario user1, Usuario user2)
+        {
+
+            if (user1.Mail.Equals(user2.Mail))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Compara 2 usuarios por su mail y si son diferentes retorna false
+        /// </summary>
+        public static bool operator !=(Usuario user1, Usuario user2)
+        {
+
+            return !(user1 == user2);
         }
     }
 }

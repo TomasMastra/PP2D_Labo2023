@@ -111,7 +111,6 @@
             TextError.Size = new Size(259, 15);
             TextError.TabIndex = 5;
             TextError.Text = "Hay campos vacios, revise el tipo, corte y precio";
-            TextError.Click += TextError_Click;
             // 
             // TextCorte
             // 

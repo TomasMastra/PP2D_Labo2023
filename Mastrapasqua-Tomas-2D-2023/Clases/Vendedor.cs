@@ -3,6 +3,9 @@ using System.Text;
 
 namespace Clases
 {
+    /// <summary>
+    /// Clase de vendedor que hereda de Usuario
+    /// </summary>
     public class Vendedor : Usuario
     {
         int horasTrabajadas;
@@ -10,6 +13,9 @@ namespace Clases
         List<Carniceria> carne;
         List<Factura> facturas;
 
+        /// <summary>
+        /// Constructor del vendedor
+        /// </summary>
         public Vendedor(Usuario usuario) : base(usuario)
         {
             this.sueldo = 0;
@@ -67,7 +73,7 @@ namespace Clases
         /// <summary>
         /// Muestra datos del vendedor usando un stringBuilder que concatena todos los datos y sobrecarga. La clase es override
         /// porque necesita utilizar la clase Mostrar() de usuario. El .base hace referencia a eso mismo, la clase padre y en caso de no 
-        /// ponerlo se llamaria asi misma lo que se conoce como metodo recursivo
+        /// ponerlo se llamaría asi misma lo que se conoce como método recursivo
         /// </summary>
         public override string Mostrar()
         {
@@ -80,6 +86,9 @@ namespace Clases
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Crea una factura dependiendo de si el cliente pago con recargo o no
+        /// </summary>
         public Factura crearFacturas(float total, string nombre,bool recargo)
         {
 

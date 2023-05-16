@@ -11,6 +11,7 @@ namespace Clases
         string producto;
         int precioTotal;
         int cantidadComprada;
+        bool comprado;
 
         public ListaCompras()
         {
@@ -25,6 +26,7 @@ namespace Clases
             this.producto = producto;
             this.precioTotal = precioTotal;
             this.cantidadComprada = cantidadCompra;
+            this.comprado = false;
         }
 
         /// <summary>
@@ -54,16 +56,11 @@ namespace Clases
             set { cantidadComprada = value; }
         }
 
-        
-       /* public ListaCompras AgregarProducto(string producto, int precioTotal, int cantidad)
+        public bool Comprado
         {
-            ListaCompras carro = new Factura(producto, precioTotal, cantidad);
-            ListaCompras.Add(carro);
-        }*/
-
-       
-        
-
+            get { return comprado; }
+            set { comprado = value; }
+        }
 
     }
 }

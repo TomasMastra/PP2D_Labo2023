@@ -1,4 +1,6 @@
 using Clases;
+using System.Media;
+
 
 namespace FormApp
 {
@@ -10,16 +12,20 @@ namespace FormApp
         List<Carniceria> carne = new List<Carniceria>();
         List<Usuario> usuario = new List<Usuario>();
         List<Factura> facturas = new List<Factura>();
-        public FormLogin() /*  */
+
+        /// <summary>
+        /// Constructor de la clase FormLogin
+        /// </summary>
+        public FormLogin() 
         {
             InitializeComponent();
-            
-
 
         }
 
-        
 
+        /// <summary>
+        /// Se ejecuta al cargar el formulario FormLogin, harcodea algunos usuarios e inicializa algunas cosas
+        /// </summary>
         private void FormLogin_Load(object sender, EventArgs e) 
         {
             this.usuario = harcodearUsuarios();
@@ -34,12 +40,11 @@ namespace FormApp
 
             establecerDatos();
 
-
         }
 
 
 
-
+        
         public List<Usuario> harcodearUsuarios()
         {
             Usuario usuario1 = new Usuario(1, 20, "Tomas Mastrapasqua", "tomas@gmail.com", "12345", 1);
@@ -54,12 +59,13 @@ namespace FormApp
             listaUsuarios.Add(usuario3);
             listaUsuarios.Add(usuario4);
 
-
-
             return listaUsuarios;
         }
 
-
+        /// <summary>
+        /// Genera una lista de objetos de tipo Carniceria harcodeados
+        /// </summary>
+        /// <returns>Lista de objetos Carniceria harcodeados.</returns>
         public List<Carniceria> harcodearCarniceria()
         {
             List<string> corteCarne = new List<string> { "Asado", "Vacio", "Bondiola", "Chorizo", "Pollo", "Huevos x 30", "Chimichurri", "Huevo de pavo x 6" };
@@ -81,6 +87,11 @@ namespace FormApp
 
         }
 
+        /// <summary>
+        /// Genera un objeto de tipo Vendedor con datos harcodeados.
+        /// </summary>
+        /// <param name="usuario">Usuario asociado al vendedor.</param>
+        /// <returns>Objeto Vendedor con datos harcodeados.</returns>
         public Vendedor harcodearVendedor(Usuario usuario)
         {
 
@@ -89,11 +100,13 @@ namespace FormApp
             return vendedor;
         }
 
+        /// <summary>
+        /// Genera un objeto de tipo Cliente con datos harcodeados.
+        /// </summary>
+        /// <param name="usuario">Usuario asociado al cliente.</param>
+        /// <returns>Objeto Cliente con datos harcodeados.</returns>
         public Cliente harcodearCliente(Usuario usuario)
         {
-
-            
-
 
             List<ListaCompras> listaCompras = new List<ListaCompras>();
             List<Factura> facturas = new List<Factura>();
@@ -114,18 +127,21 @@ namespace FormApp
             return cliente;
         }
 
+        /// <summary>
+        /// Establece los datos del formulario
+        /// </summary>
         public void establecerDatos()
         {
-
-
             TextMail.Text = "";
             TextPassword.Text = "";
-
 
         }
 
 
-
+        /// <summary>
+        /// Evento que se dispara al hacer clic en el botón de inicio de sesión
+        /// Dependiendo del tipo de usuario se ingresa a un form o a otro
+        /// </summary>
         private void BotonLogin_Click(object sender, EventArgs e)
         {
 
@@ -137,19 +153,21 @@ namespace FormApp
             indexUserPassword = buscarPassword(usuario, TextPassword.Text.ToString());
 
 
-
-
-
             if (indexUserMail >= 0 && indexUserMail < usuario.Count && usuario[indexUserMail].Password == TextPassword.Text)
             {
+                /*SoundPlayer sonidoLogin = new SoundPlayer();
+                sonidoLogin.SoundLocation = "C:/Users/Tomas Mastra/source/repos/FormApp/Resources";
+
+                sonidoLogin.Play();*/
 
                 if (usuario[indexUserMail].Rol == 1)
                 {
                     int index = buscarVendedor(usuario[indexUserMail], vendedorCarniceria);
                     Heladera vendedorMenu = new Heladera(vendedorCarniceria[index], this, clienteCarniceria, facturas);
-                    vendedorMenu.Show();
 
+                    vendedorMenu.Show();
                     this.Hide();
+                  
 
                 }
                 else
@@ -166,20 +184,29 @@ namespace FormApp
                         }
                     }
 
+                    
+
                 }
             }
             else
             {
                 TextError.ForeColor = Color.Red;
-
+                /*SoundPlayer sonidoError = new SoundPlayer();
+                sonidoError.SoundLocation = "C:/Users/Tomas Mastra/source/repos/FormApp/Resources/Error.wav";
+                sonidoError.Play();*/
 
 
             }
 
         }
 
-
-        public int buscarMail(List<Usuario> usuario, string mail)
+        /// <summary>
+        /// Busca el índice del usuario por correo electrónico
+        /// </summary>
+        /// <param name="usuario">Lista de usuarios.</param>
+        /// <param name="mail">Correo electrónico a buscar.</param>
+        /// <returns>Índice del usuario si se encuentra, de lo contrario, -1 (No se encontró nada)</returns>
+        public static int buscarMail(List<Usuario> usuario, string mail)//static
         {
             int index = -1;
             for (int i = 0; i < usuario.Count; i++)
@@ -200,6 +227,12 @@ namespace FormApp
 
         }
 
+        /// <summary>
+        /// Busca el índice del usuario por contraseña
+        /// </summary>
+        /// <param name="usuario">Lista de usuarios</param>
+        /// <param name="password">Contraseña a buscar</param>
+        /// <returns>Índice del usuario si se encuentra, de lo contrario, -1</returns>
         public int buscarPassword(List<Usuario> usuario, string password)
         {
             int index = -1;
@@ -221,6 +254,12 @@ namespace FormApp
 
         }
 
+        /// <summary>
+        /// Busca el índice del vendedor por usuario.
+        /// </summary>
+        /// <param name="usuario">Usuario asociado al vendedor.</param>
+        /// <param name="vendedor">Lista de vendedores.</param>
+        /// <returns>Índice del vendedor si se encuentra, de lo contrario, -1.</returns>
         public int buscarVendedor(Usuario usuario, List<Vendedor> vendedor)
         {
             int index = -1;
@@ -241,6 +280,12 @@ namespace FormApp
             return index;
         }
 
+        /// <summary>
+        /// Busca el índice del cliente por usuario.
+        /// </summary>
+        /// <param name="usuario">Usuario asociado al cliente.</param>
+        /// <param name="cliente">Lista de clientes.</param>
+        /// <returns>Índice del cliente si se encuentra, de lo contrario, -1.</returns>
         public int buscarCliente(Usuario usuario, List<Cliente> cliente)
         {
             int index = -1;
@@ -260,12 +305,18 @@ namespace FormApp
             return index;
         }
 
+        /// <summary>
+        /// Sucede cuando se hace clic en el botón Cliente y completa los datos en los textBox 
+        /// </summary>
         private void Cliente_Click(object sender, EventArgs e)
         {
             TextMail.Text = usuario[1].Mail;
             TextPassword.Text = usuario[1].Password;
         }
 
+        /// <summary>
+        /// Sucede cuando se hace clic en el botón Vendedor y completa los datos en los textBox 
+        /// </summary>
         private void Vendedor_Click(object sender, EventArgs e)
         {
             TextMail.Text = usuario[0].Mail;

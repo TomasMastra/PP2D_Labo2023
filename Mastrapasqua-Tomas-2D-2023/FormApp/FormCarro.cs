@@ -33,9 +33,9 @@ namespace FormApp
             InitializeComponent();
 
             this.cliente = cliente;
-            
-                inicializarCarro();
-            
+
+            inicializarCarro();
+
         }
 
         public FormCarro(List<Factura> facturas, bool esListado)
@@ -46,7 +46,7 @@ namespace FormApp
 
             if (facturas.Count > 0 && facturas != null)
             {
-                foreach(Factura factura in facturas)
+                foreach (Factura factura in facturas)
                 {
                     inicializarFacturas(factura);
                 }
@@ -93,7 +93,7 @@ namespace FormApp
 
                 dataGridView1.Rows.Add(row);
             }
-            
+
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace FormApp
         }
 
 
-        
+
 
         private void FormCarro_Load(object sender, EventArgs e)
         {

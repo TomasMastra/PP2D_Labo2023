@@ -7,36 +7,50 @@ namespace FormApp
         bool modificar;
         Vendedor carne;
         Form heladera;
-        public FormAlta(Vendedor carne, Form heladera)
+
+        /// <summary>
+        /// Constructor de la clase FormLogin
+        /// Ingresa cuando se va a agregar un nuevo corte
+        /// </summary>
+        public FormAlta(Vendedor carne, Heladera heladera)
         {
 
             InitializeComponent();
-            //Precio.Value = Convert.ToInt32(carne.PreciosCarne[1]);
             this.carne = carne;
             this.modificar = false;
             this.heladera = heladera;
-            cargarTipos();
 
 
         }
-
-        public FormAlta(Vendedor carne, bool modificar, Form heladera)
+        /// <summary>
+        /// Constructor de la clase FormLogin
+        /// Ingresa cuando se va a modificar un corte y modificar es true
+        /// </summary>
+        public FormAlta(Vendedor carne, bool modificar, Heladera heladera)
         {
             InitializeComponent();
             this.modificar = modificar;
             this.carne = carne;
             ListaCortesCarne.Visible = true;
             cargarComboBox(carne);
-            cargarTipos();
             BotonAgregar.ForeColor = Color.Yellow;
             BotonAgregar.Text = "modificar";
             TextModificar.ForeColor = Color.Yellow;
             this.heladera = heladera;
-            //TextBoxCorte.Text = carne.CortesCarne.ToString();
-
 
 
         }
+
+        /// <summary>
+        /// Inicializa algunos datos 
+        /// </summary>
+        private void FormAlta_Load(object sender, EventArgs e)
+        {
+            cargarTipos();
+
+        }
+
+
         /// <summary>
         /// Carga el combobox con los datos. Esto sucede cuando se va a modificar y 
         /// el vendedor ingreso esModificar en true
@@ -66,7 +80,7 @@ namespace FormApp
         }
 
         /// <summary>
-        /// Al momento de la modificacion cuando el vendedor elije el corte se completan los campos con sus respectivos datos 
+        /// Al momento de la modificacion cuando el vendedor elige el corte se completan los campos con sus respectivos datos 
         /// </summary>
         private void ListaCortesCarne_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -79,7 +93,7 @@ namespace FormApp
         }
 
         /// <summary>
-        /// dependiendo el valor de esModificar realiza acciones diferentes como agregar o modificar
+        /// Dependiendo el valor de esModificar realiza acciones diferentes como agregar o modificar
         /// </summary>
         private void BotonAgregar_Click(object sender, EventArgs e)
         {
@@ -91,7 +105,7 @@ namespace FormApp
                 {
                     Carniceria carne = new Carniceria(TextBoxCorte.Text, Convert.ToInt32(Precio.Value), Convert.ToInt32(Cantidad.Value), ((Tipo)Enum.Parse(typeof(Tipo), ListaTipos.Items[ListaTipos.SelectedIndex].ToString())));                   
                     this.carne.Carne.Add(carne);
-                    heladera.Show();
+                    //this.heladera.
 
                     this.Hide();
                     
@@ -125,23 +139,14 @@ namespace FormApp
             
         }
 
-                private void FormAlta_Load(object sender, EventArgs e)
-                {
-
-                }
-
-                private void TextError_Click(object sender, EventArgs e)
-                {
-
-                }
 
         /// <summary>
         /// Boton para regresar al menu
         /// </summary>
-                private void BotonRegresar_Click(object sender, EventArgs e)
-                {
-                    this.Hide();
-                }
+        private void BotonRegresar_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
             }
         }
     
