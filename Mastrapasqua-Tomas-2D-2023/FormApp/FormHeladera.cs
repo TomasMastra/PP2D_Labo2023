@@ -1,4 +1,5 @@
 ﻿using Clases;
+using System.Diagnostics;
 
 namespace FormApp
 {
@@ -12,6 +13,9 @@ namespace FormApp
         public Heladera()
         {
             InitializeComponent();
+            MessageBox.Show("sajshajshashahs");
+
+
 
         }
 
@@ -23,8 +27,7 @@ namespace FormApp
             dataGridViewCarne.CurrentCell = null;//ver
             this.listaClientes = listaClientes;
             this.facturas = facturas;
-
-
+            cargarDataGridView(vendedorCarniceria);
 
 
         }
@@ -141,8 +144,9 @@ namespace FormApp
         private void botoAgregar_Click(object sender, EventArgs e)//BIEN
         {
 
-            FormAlta formAlta = new FormAlta(vendedorCarniceria);
+            FormAlta formAlta = new FormAlta(vendedorCarniceria, this);
             formAlta.Show();
+            this.Hide();
 
         }
 
@@ -161,7 +165,7 @@ namespace FormApp
 
         private void button7_Click(object sender, EventArgs e)
         {
-            FormAlta formAlta = new FormAlta(vendedorCarniceria, true);
+            FormAlta formAlta = new FormAlta(vendedorCarniceria, true, this);
             formAlta.Show();
         }
 

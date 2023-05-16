@@ -198,7 +198,6 @@ namespace FormApp
             return index;
 
 
-            return 6;
         }
 
         public int buscarPassword(List<Usuario> usuario, string password)
@@ -220,7 +219,6 @@ namespace FormApp
             return index;
 
 
-            return 7;
         }
 
         public int buscarVendedor(Usuario usuario, List<Vendedor> vendedor)

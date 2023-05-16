@@ -14,6 +14,7 @@ namespace Clases
         int cantidadDisponible;
         Tipo tipoCarne;
 
+
         /// <summary>
         /// Esta clase representa una carniceria con sus cortes de carne y otros elementos
         /// </summary>
@@ -31,6 +32,8 @@ namespace Clases
             this.tipoCarne = tipo;
 
         }
+
+        
 
         /// <summary>
         /// Propiedad CortesCarne con getter y setter que permite devolver o asignarle un valor 

@@ -6,19 +6,21 @@ namespace FormApp
     {
         bool modificar;
         Vendedor carne;
-        public FormAlta(Vendedor carne)
+        Form heladera;
+        public FormAlta(Vendedor carne, Form heladera)
         {
 
             InitializeComponent();
             //Precio.Value = Convert.ToInt32(carne.PreciosCarne[1]);
             this.carne = carne;
             this.modificar = false;
+            this.heladera = heladera;
             cargarTipos();
 
 
         }
 
-        public FormAlta(Vendedor carne, bool modificar)
+        public FormAlta(Vendedor carne, bool modificar, Form heladera)
         {
             InitializeComponent();
             this.modificar = modificar;
@@ -29,6 +31,7 @@ namespace FormApp
             BotonAgregar.ForeColor = Color.Yellow;
             BotonAgregar.Text = "modificar";
             TextModificar.ForeColor = Color.Yellow;
+            this.heladera = heladera;
             //TextBoxCorte.Text = carne.CortesCarne.ToString();
 
 
@@ -88,9 +91,10 @@ namespace FormApp
                 {
                     Carniceria carne = new Carniceria(TextBoxCorte.Text, Convert.ToInt32(Precio.Value), Convert.ToInt32(Cantidad.Value), ((Tipo)Enum.Parse(typeof(Tipo), ListaTipos.Items[ListaTipos.SelectedIndex].ToString())));                   
                     this.carne.Carne.Add(carne);
-                    
+                    heladera.Show();
 
                     this.Hide();
+                    
                 }
                 else
                 {
@@ -105,7 +109,8 @@ namespace FormApp
 
                    
                     carne.Carne[ListaCortesCarne.SelectedIndex].modificar(TextBoxCorte.Text, (Tipo)Enum.Parse(typeof(Tipo), ListaTipos.Items[ListaTipos.SelectedIndex].ToString()), Convert.ToInt32(Cantidad.Value), Convert.ToInt32(Precio.Value));
-                    
+
+                    heladera.Show();
 
                     this.Hide();
                 }
