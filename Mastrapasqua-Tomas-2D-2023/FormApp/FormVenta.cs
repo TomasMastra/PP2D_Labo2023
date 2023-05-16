@@ -338,6 +338,8 @@ namespace FormApp
                 FormCarro formCarro = new FormCarro(vendedorCarniceria.ListaFacturas[vendedorCarniceria.ListaFacturas.Count - 1]);
                 formCarro.Show();
                 cliente.ListaCompras.Clear();
+                TotalPagar.Text = "0";
+                TotalComprar.Text = "0";    
             }
             else
             {
