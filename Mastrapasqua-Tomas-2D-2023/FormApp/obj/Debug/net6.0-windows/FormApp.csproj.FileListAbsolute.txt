@@ -22,4 +22,4 @@ C:\Users\Tomas Mastra\source\repos\FormApp\obj\Debug\net6.0-windows\FormApp.Prop
 C:\Users\Tomas Mastra\source\repos\FormApp\obj\Debug\net6.0-windows\FormApp.Heladera.resources
 C:\Users\Tomas Mastra\source\repos\FormApp\obj\Debug\net6.0-windows\FormApp.FormVenta.resources
 C:\Users\Tomas Mastra\source\repos\FormApp\obj\Debug\net6.0-windows\FormApp.FormAlta.resources
-C:\Users\Tomas Mastra\source\repos\FormApp\obj\Debug\net6.0-windows\FormApp.FormCarro.resources
+C:\Users\Tomas Mastra\source\repos\FormApp\obj\Debug\net6.0-windows\FormApp.Factura.resources

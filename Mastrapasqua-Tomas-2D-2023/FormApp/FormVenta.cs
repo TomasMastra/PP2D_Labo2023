@@ -1,16 +1,18 @@
 ﻿using Clases;
 using System.Security.Cryptography.X509Certificates;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace FormApp
 {
     public partial class FormVenta : Form
     {
+        //Cosas a mejorar /o cambiar
+        //al momento de ingresar el monto poner un limite
+        //validar que cuando ingrese float no se bugee
+        //sacar texto de abajo del boton de comprar
 
 
-        private Vendedor vendedorCarniceria;
-        private List<Carniceria> carne;
         private Cliente cliente;
-        private List<Factura> facturas;
         float sumaCarroActual;
         Form formLogin;
         float monto;
@@ -28,14 +30,12 @@ namespace FormApp
         /// <param name="cliente">Objeto Cliente</param>
         /// <param name="vendedor">Objeto Vendedor</param>
         /// <param name="formLogin">Formulario de inicio de sesión (login)</param>
-        public FormVenta(List<Carniceria> carne, Cliente cliente, Vendedor vendedor, Form formLogin) : this()
+        public FormVenta(Cliente cliente, Form formLogin) : this()
         {
 
 
-            this.carne = carne;
             this.cliente = cliente;
             this.formLogin = formLogin;
-            this.vendedorCarniceria = vendedor;
 
 
         }
@@ -54,6 +54,8 @@ namespace FormApp
         /// </summary>
         public void inicializar()
         {
+            List<Carniceria> carne = ListaCarne.Obtener();
+
             for (int i = 0; i < carne.Count; i++)
             {
 
@@ -64,17 +66,17 @@ namespace FormApp
 
         }
 
-
         /// <summary>
         /// Evento que se desencadena al hacer clic en el botón "Regresar"
         /// Limpia la lista de compras del cliente y muestra el formulario de inicio de sesión
         /// </summary>
         private void botonRegresar_Click(object sender, EventArgs e)
         {
-            cliente.ListaCompras.Clear();
+            //cliente.ListaCompras.Clear();
             formLogin.Show();
             this.Hide();
         }
+
 
 
 
@@ -86,39 +88,51 @@ namespace FormApp
         private void BotonComprar_Click(object sender, EventArgs e)
         {
             int totalPagar;
+            bool existe = false;
+            List<Carniceria> carne = ListaCarne.Obtener();
 
             if (int.TryParse(TotalPagar.Text, out totalPagar))
             {
-                if (monto > 0)
+
+                if (DatosCarne.SelectedIndex > -1)
                 {
-                    if (this.monto >= Convert.ToInt32(totalPagar) && CantidadComprar.Value > 0)
+                    if (monto > 0)
                     {
-                        ListaCompras lista = new ListaCompras(carne[DatosCarne.SelectedIndex].CortesCarne, totalPagar, Convert.ToInt32(CantidadComprar.Value));
+                        if (this.monto >= Convert.ToInt32(totalPagar) && CantidadComprar.Value > 0)
+                        {
+                            ListaCompras lista = new ListaCompras(carne[DatosCarne.SelectedIndex].CortesCarne, totalPagar, Convert.ToInt32(CantidadComprar.Value));
 
-                        cliente.ListaCompras.Add(lista);
-                        monto = monto - totalPagar;
-                        TextoMonto.Text = $"Monto disponible: {monto.ToString()}";
-                        MessageBox.Show($"Monto disponible: {monto}");
-                        TotalComprar.Text = (Convert.ToInt32(TotalPagar.Text) + Convert.ToInt32(TotalComprar.Text)).ToString();
+                            //cliente.ListaCompras.Add(lista);
+                           // cliente.AgregarCarro(lista);
+                            existe = cliente.AgregarCarro(lista);
 
+                            monto = monto - totalPagar;
+                            TextoMonto.Text = $"Monto disponible: {monto.ToString()}";
+                            MessageBox.Show($"Monto disponible: {monto}");
+                            TotalComprar.Text = (Convert.ToInt32(TotalPagar.Text) + Convert.ToInt32(TotalComprar.Text)).ToString();
+
+                        }
+                        else
+                        {
+                            MessageBox.Show($"No puede agregar mas, no le alcanza el dinero");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show($"No puede agregar mas, no le alcanza el dinero");
+                        MessageBox.Show($"No agrego el monto maximo a pagar");
+
                     }
                 }
                 else
                 {
-                    MessageBox.Show($"No agrego el monto maximo a pagar");
+                    MessageBox.Show($"No selecciono el corte de carne \n");
 
                 }
             }
 
 
+
         }
-
-
-
 
         /// <summary>
         /// Evento que se desencadena al seleccionar un elemento en el control ListBox "DatosCarne"
@@ -126,6 +140,8 @@ namespace FormApp
         /// </summary>
         private void DatosCarne_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+            List<Carniceria> carne = ListaCarne.Obtener();
 
             if (DatosCarne.Items.Count > 0 && DatosCarne.SelectedIndex > -1 && DatosCarne.SelectedIndex < carne.Count)
             {
@@ -147,9 +163,12 @@ namespace FormApp
         private void Buscar_Click(object sender, EventArgs e)
         {
             string buscar = TextBoxBuscar.Text.ToLower();
-            buscarIndiceCarne(0, carne.Count, buscar);
+            buscarIndiceCarne(0, ListaCarne.Obtener().Count, buscar);
 
         }
+
+
+
 
         /// <summary>
         /// Evento que se desencadena al hacer clic en el botón "BotonSiguiente"
@@ -158,7 +177,7 @@ namespace FormApp
         private void BotonSiguiente_Click(object sender, EventArgs e)
         {
             string buscar = TextBoxBuscar.Text.ToLower();
-            buscarIndiceCarne(DatosCarne.SelectedIndex + 1, carne.Count, buscar);
+            buscarIndiceCarne(DatosCarne.SelectedIndex + 1, ListaCarne.Obtener().Count, buscar);
 
         }
 
@@ -180,13 +199,13 @@ namespace FormApp
 
         }
 
-
         /// <summary>
         /// Evento que se desencadena al cambiar el valor en el control NumericUpDown "CantidadComprar"
         /// Calcula y muestra el total a pagar en función de la cantidad seleccionada y el precio de la carne
         /// </summary>
         private void CantidadComprar_ValueChanged(object sender, EventArgs e)
         {
+            List<Carniceria> carne = ListaCarne.Obtener();
             if (DatosCarne.SelectedIndex > -1)
             {
                 TotalPagar.Text = (Convert.ToInt32(CantidadComprar.Value) * carne[DatosCarne.SelectedIndex].PreciosCarne).ToString();
@@ -199,13 +218,13 @@ namespace FormApp
         /// </summary>
         private void BotonCarro_Click(object sender, EventArgs e)
         {
-            if (monto > 0)
-            {
-                FormCarro formCarro = new FormCarro(cliente);
+            
+                Factura formCarro = new Factura(cliente);
                 formCarro.Show();
-            }
-
+            
         }
+
+
         /// <summary>
         /// Evento que se desencadena al hacer clic en el botón "BotonCancelarCompra"
         /// Vacía el carrito de compras del cliente
@@ -215,10 +234,11 @@ namespace FormApp
             if (cliente.ListaCompras.Count > 0)
             {
 
-                cliente.vaciarCarro();
+                cliente.VaciarCarro();
                 TotalPagar.Text = "0";
                 TotalComprar.Text = "0";
                 DatosCarne.SelectedIndex = -1;
+
 
             }
             else
@@ -239,6 +259,9 @@ namespace FormApp
             }
         }
 
+        ////////////////////////////////////
+        ///
+
         /// <summary>
         /// Evento que se desencadena al hacer clic en el botón "BotonIngresarMonto"
         /// Verifica y asigna el monto máximo de pago ingresado por el cliente
@@ -247,19 +270,34 @@ namespace FormApp
         {
 
             float monto;
+
             if (float.TryParse(TextMontoMaximo.Text, out monto) && monto > 100)
             {
-                this.monto = monto;
-                TextoMonto.Text = $"Monto disponible: {monto.ToString()}";
-                TextoMonto.ForeColor = Color.Red;
-                Activar();
+                if (monto > 100 && monto < 100000)
+                {
+                    this.monto = monto;
+                    cliente.Dinero = monto;
+                    TextoMonto.Text = $"Monto disponible: {monto.ToString()}";
+                    TextoMonto.ForeColor = Color.Red;
+                    Activar();
+                }
+                else
+                {
+                    MessageBox.Show("Debe ingresar una cantidad valida de dinero, SOLO aceptamos entre 100 a 100.000");
+
+
+                }
             }
             else
             {
-                MessageBox.Show("No es un valida esa cantidad ingresada!!!");
+                MessageBox.Show("No PUEDE ingrese letras o simbolos!!!");
 
             }
+
         }
+
+
+
 
         /// <summary>
         /// Activa los controles y funcionalidades una vez que se ingresa el monto máximo de pago
@@ -289,14 +327,21 @@ namespace FormApp
         public void crearFacturasCompra(float total)
         {
 
+
+            Clases.Factura facturaAgregar;
+
             if (Recargo.Checked != true)
             {
-                Factura factura = vendedorCarniceria.crearFacturas(total, cliente.Nombre, false);
+                facturaAgregar = new Clases.Factura(1, Convert.ToSingle(total * 0.05), cliente.Nombre);
+
+                ListaFacturas.Agregar(facturaAgregar);
             }
             else
             {
 
-                Factura factura = vendedorCarniceria.crearFacturas(total, cliente.Nombre, true);
+                facturaAgregar = new Clases.Factura(1, total, cliente.Nombre);
+
+                ListaFacturas.Agregar(facturaAgregar);
 
             }
         }
@@ -306,40 +351,37 @@ namespace FormApp
         /// Realiza la compra de los productos en el carrito del cliente
         /// Actualiza la cantidad de carne disponible y crea una factura de compra
         /// </summary>
-        private void BotonComprar_Click_1(object sender, EventArgs e)
+        private void BotonComprar_Click_1(object sender, EventArgs e)//modificar
         {
+
+            List<Carniceria> carne = ListaCarne.Obtener();
+            List<Clases.Factura> facturas = ListaFacturas.Obtener();
+            string noSeCompro;
 
             float total = 0;
             if (cliente.ListaCompras.Count > 0)
             {
-                for (int i = 0; i < cliente.ListaCompras.Count; i++)
-                {
-                    total = cliente.ObtenerPrecioTotal();
 
-                    for (int j = 0; j < carne.Count; j++)
-                    {
-                        if (cliente.ListaCompras[i].Producto == carne[j].CortesCarne)
-                        {
-                            if (carne[j].CantidadCarne >= cliente.ListaCompras[i].CantidadComprada)
-                            {
-                                carne[j].CantidadCarne = carne[j].CantidadCarne - cliente.ListaCompras[i].CantidadComprada;
-                                cliente.ListaCompras[i].Comprado = true;
-                            }
-                            else
-                            {
-                                MessageBox.Show($"La bolsa con {carne[j].CortesCarne} no se pudo comprar debido a que no hay stock ");
-                            }
-                        }
-                    }
+
+                noSeCompro = ListaCarne.Comprar(cliente);
+
+                if (noSeCompro.Length != 21)
+                {
+                    MessageBox.Show($"{noSeCompro}");
+                }
+                else
+                {
+                    MessageBox.Show($"La compra se realizo con exito!!!");
+
                 }
 
-                crearFacturasCompra(total);
+                /*crearFacturasCompra(total);
                 DatosCarne.SelectedIndex = -1;
-                FormCarro formCarro = new FormCarro(vendedorCarniceria.ListaFacturas[vendedorCarniceria.ListaFacturas.Count - 1]);
+                Factura formCarro = new Factura(facturas[facturas.Count - 1]);
                 formCarro.Show();
                 cliente.ListaCompras.Clear();
                 TotalPagar.Text = "0";
-                TotalComprar.Text = "0";    
+                TotalComprar.Text = "0";*/
             }
             else
             {
@@ -357,3 +399,6 @@ namespace FormApp
         }
     }
 }
+
+
+

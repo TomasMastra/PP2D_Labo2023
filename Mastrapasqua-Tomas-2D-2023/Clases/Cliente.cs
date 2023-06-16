@@ -81,21 +81,7 @@ namespace Clases
         /// <summary>
         /// Mediante el cliente pasado por parametro se calcula el total de dinero que gasto sumando el costo de los productos de su carro
         /// </summary>
-        public float ObtenerPrecioTotal()
-        {
-            float total = 0;
-
-            for (int i = 0; i < ListaCompras.Count;i++)
-            {
-                if (ListaCompras[i].Comprado == true)
-                {
-                    total = total + ListaCompras[i].PrecioTotal;
-                }
-                    
-                
-            }
-            return total;
-        }
+       
 
         
 
@@ -103,9 +89,43 @@ namespace Clases
         /// <summary>
         /// Vacía el carro del cliente luego de haber comprado o cancelado la compra
         /// </summary>
-        public void vaciarCarro()
+        public void VaciarCarro()
         {
             ListaCompras.Clear();
+        }
+
+
+        public bool AgregarCarro(ListaCompras productoComprado)
+        {
+            bool existe = false;
+           // List<ListaCompras> listaTemporal = new List<ListaCompras>();
+
+            if (ListaCompras.Count > 0)
+            {
+                
+                foreach (ListaCompras listaCompras in ListaCompras)
+                {
+                    if (listaCompras.Producto == productoComprado.Producto)
+                    {
+                        listaCompras.Modificar(productoComprado.CantidadComprada, productoComprado.PrecioTotal);
+                        existe = true;
+                        break;
+                    }
+
+                }
+
+                if (!existe)
+                {
+                    ListaCompras.Add(productoComprado);
+                }
+            }
+            else
+            {
+                ListaCompras.Add(productoComprado);
+
+            }
+
+            return existe;
         }
     }
 }

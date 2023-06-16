@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Clases
@@ -10,8 +11,8 @@ namespace Clases
     {
         int horasTrabajadas;
         int sueldo;
-        List<Carniceria> carne;
-        List<Factura> facturas;
+
+        List<Vendedor> vendedor;
 
         /// <summary>
         /// Constructor del vendedor
@@ -26,16 +27,15 @@ namespace Clases
         /// <summary>
         /// Constructor del vendedor, se le pasan los atributos y llama a this()
         /// </summary>
-        public Vendedor(Usuario usuario,List<Carniceria> carniceria, int horasTrabajadas, int sueldo, List<Factura>facturas) : this(usuario)
+        public Vendedor(Usuario usuario, int horasTrabajadas, int sueldo) : this(usuario)
         {
-            this.carne = carniceria;
             this.sueldo = sueldo;
             this.horasTrabajadas = horasTrabajadas;
-            this.facturas = facturas;
-            this.carne = carne;
             
 
         }
+
+        
 
         /// <summary>
         /// Propiedad HorasTrabajadas con getter y setter que permite devolver o asignarle un valor 
@@ -55,19 +55,21 @@ namespace Clases
             set { sueldo = value; }
         }
 
-        /// <summary>
-        /// Propiedad Carniceria con getter y setter que permite devolver o asignarle un valor 
-        /// </summary>
-        public List<Carniceria> Carne
-        {
-            get { return carne; }
-            set { carne = value; }
-        }
+        
 
-        public List<Factura> ListaFacturas
+        public List<Vendedor> listaVendedores
         {
-            get { return facturas; }
-            set { facturas = value; }
+            get { return vendedor; }
+            set { vendedor = value; }
+        }
+        
+
+        public void MostrarVendedores()
+        {
+            foreach (Vendedor v in listaVendedores)
+            {
+                Console.WriteLine(v.ToString());
+            }
         }
 
         /// <summary>
@@ -89,7 +91,7 @@ namespace Clases
         /// <summary>
         /// Crea una factura dependiendo de si el cliente pago con recargo o no
         /// </summary>
-        public Factura crearFacturas(float total, string nombre,bool recargo)
+      /*  public Factura crearFacturas(float total, string nombre,bool recargo)
         {
 
 
@@ -109,9 +111,36 @@ namespace Clases
 
             }
 
+        }*/
+
+        /// <summary>
+        /// Modifica los datos del vendedor
+        /// </summary>
+        /// <param name="nuevoNombre"></param>
+        /// <param name="nuevaEdad"></param>
+        public void ModificarVendedor(string nuevoNombre, int nuevaEdad)
+        {
+            Nombre = nuevoNombre;
+            Edad = nuevaEdad;
         }
 
-        
+        /// <summary>
+        /// Agrega un corte de carne a la lista del vendedor
+        /// </summary>
+        /// <param name="carne"></param>
+        /// <returns></returns>
+      /*  public bool AgregarCarneListado(Carniceria carne)
+        {
+            bool ret = false;
+            if (carne != null)
+            {
+                Carne.Add(carne);
+                ret = true;
+            }
+            return ret;
+        }*/
+
+
 
 
 

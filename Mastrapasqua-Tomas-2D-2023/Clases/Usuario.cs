@@ -107,7 +107,7 @@ namespace Clases
         /// <summary>
         /// Compara 2 usuarios por su mail, si son iguales retorna true
         /// </summary>
-        public static bool operator ==(Usuario user1, Usuario user2)
+       /* public static bool operator ==(Usuario user1, Usuario user2)
         {
 
             if (user1.Mail.Equals(user2.Mail))
@@ -118,15 +118,15 @@ namespace Clases
             {
                 return false;
             }
-        }
+        }*/
 
         /// <summary>
         /// Compara 2 usuarios por su mail y si son diferentes retorna false
         /// </summary>
-        public static bool operator !=(Usuario user1, Usuario user2)
+       /* public static bool operator !=(Usuario user1, Usuario user2)
         {
 
             return !(user1 == user2);
-        }
+        }*/
     }
 }

@@ -53,6 +53,12 @@ namespace Clases
             set { mailCompra = value; }
         }
 
+
+        public void crearFactura()
+        {
+
+        }
+
         
 
 

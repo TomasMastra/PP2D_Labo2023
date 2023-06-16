@@ -12,41 +12,53 @@ using System.Windows.Forms;
 
 namespace FormApp
 {
-    public partial class FormCarro : Form
+    public partial class Factura : Form
     {
         Cliente cliente;
-        Vendedor vendedor;
-        List<Factura> facturas;
+        //Vendedor vendedor;
+        List<Clases.Factura> facturas;
         //List<Cliente> listaFacturas;
-        public FormCarro(Factura factura)
+        public Factura(Clases.Factura factura)
         {
             InitializeComponent();
             //this.vendedor = vendedor;
             //this.facturas = facturas;
-            this.Name = "FormFacturas";
 
             inicializarFacturas(factura);
+
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
-        public FormCarro(Cliente cliente)
+        public Factura(Cliente cliente)
         {
             InitializeComponent();
 
             this.cliente = cliente;
+            dataGridView1.Columns[0].HeaderText = "Corte";
+            dataGridView1.Columns[1].HeaderText = "Cantidad";
+            dataGridView1.Columns[2].HeaderText = "Precio Total";
+            this.Name = $"Carro de {cliente.Nombre}";//ver
+
+
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
             inicializarCarro();
 
         }
 
-        public FormCarro(List<Factura> facturas, bool esListado)
+        public Factura(List<Clases.Factura> facturas, bool esListado)
         {
             InitializeComponent();
 
             //this.listaFacturas = listaClientes;
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
             if (facturas.Count > 0 && facturas != null)
             {
-                foreach (Factura factura in facturas)
+                foreach (Clases.Factura factura in facturas)
                 {
                     inicializarFacturas(factura);
                 }
@@ -63,36 +75,32 @@ namespace FormApp
         /// Carga una dataGriedView con las facturas del cliente, si se usa un form para llamar esta funcion
         /// se puede mostrar las facturas de todos los clientes, esto lo usa el vendedor para ver todas las facturas
         /// </summary>
-        public void inicializarFacturas(Factura factura)
+        public void inicializarFacturas(Clases.Factura factura)
         {
 
 
+            // Nueva fila para poder cargar datos del vendedor
+            DataGridViewRow row = new DataGridViewRow();
 
 
-            //for (int i = 0; i < factura.Count; i++)
-            {
-                // Nueva fila para poder cargar datos del vendedor
-                DataGridViewRow row = new DataGridViewRow();
+            // Celda 1 creada
+            DataGridViewCell cellNumero = new DataGridViewTextBoxCell();
+            cellNumero.Value = dataGridView1.RowCount + 1;
+            row.Cells.Add(cellNumero);
+
+            // Celda 2 creada
+            DataGridViewCell cellTotal = new DataGridViewTextBoxCell();
+            cellTotal.Value = factura.Total.ToString();
+            row.Cells.Add(cellTotal);
+
+            // Celda 3 creada
+            DataGridViewCell cellMail = new DataGridViewTextBoxCell();
+            cellMail.Value = factura.Mail;
+            row.Cells.Add(cellMail);
 
 
-                // Celda 1 creada
-                DataGridViewCell cellNumero = new DataGridViewTextBoxCell();
-                cellNumero.Value = dataGridView1.RowCount + 1;
-                row.Cells.Add(cellNumero);
+            dataGridView1.Rows.Add(row);
 
-                // Celda 2 creada
-                DataGridViewCell cellTotal = new DataGridViewTextBoxCell();
-                cellTotal.Value = factura.Total.ToString();
-                row.Cells.Add(cellTotal);
-
-                // Celda 3 creada
-                DataGridViewCell cellMail = new DataGridViewTextBoxCell();
-                cellMail.Value = factura.Mail;
-                row.Cells.Add(cellMail);
-
-
-                dataGridView1.Rows.Add(row);
-            }
 
         }
 

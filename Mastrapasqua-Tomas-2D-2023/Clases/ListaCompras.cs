@@ -62,5 +62,13 @@ namespace Clases
             set { comprado = value; }
         }
 
+
+        public void Modificar(int cantidad, int precio)
+        {
+            CantidadComprada += cantidad;
+            PrecioTotal += precio;
+
+        }
+
     }
 }

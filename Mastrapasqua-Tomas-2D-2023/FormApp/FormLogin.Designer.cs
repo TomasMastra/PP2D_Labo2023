@@ -143,7 +143,7 @@
             Controls.Add(BotonLogin);
             Name = "FormLogin";
             RightToLeft = RightToLeft.No;
-            Text = "Login";
+            Text = "Ingrese su usuario";
             Load += FormLogin_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();

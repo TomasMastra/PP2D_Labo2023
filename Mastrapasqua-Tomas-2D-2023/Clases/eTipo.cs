@@ -3,9 +3,9 @@
 /// </summary>
 public enum Tipo
 {
-    Vaca,
+    Res,
     Cerdo,
-    Gallina,
+    Pollo,
     Achuras,
     Condimento,
     Pavo

@@ -1,6 +1,6 @@
 ﻿namespace FormApp
 {
-    partial class FormCarro
+    partial class Factura
     {
         /// <summary>
         /// Required designer variable.
@@ -60,14 +60,14 @@
             Column3.HeaderText = "Comprador";
             Column3.Name = "Column3";
             // 
-            // FormCarro
+            // Factura
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(400, 395);
             Controls.Add(dataGridView1);
-            Name = "FormCarro";
-            Text = "FormCarro";
+            Name = "Factura";
+            Text = "Factura";
             Load += FormCarro_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);

@@ -394,7 +394,7 @@
             Controls.Add(botonRegresar);
             Controls.Add(DatosCorteCarne);
             Name = "FormVenta";
-            Text = "FormCliente";
+            Text = "Compre aqui!";
             Load += FormCliente_Load;
             GrupoCarne.ResumeLayout(false);
             GrupoCarne.PerformLayout();
