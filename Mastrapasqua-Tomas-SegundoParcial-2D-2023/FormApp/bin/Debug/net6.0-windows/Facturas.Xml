@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ArrayOfFactura xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Factura>
+    <Numero>1</Numero>
+    <Total>7000</Total>
+    <Mail>Juan Pérez</Mail>
+  </Factura>
+  <Factura>
+    <Numero>2</Numero>
+    <Total>9000</Total>
+    <Mail>María González</Mail>
+  </Factura>
+</ArrayOfFactura>
