@@ -117,7 +117,6 @@ namespace FormApp
             Precio.Value = Convert.ToInt32(carne.PreciosCarne);
             Cantidad.Value = Convert.ToInt32(carne.CantidadCarne);
             ListaTipos.SelectedIndex = ListaTipos.FindStringExact(ListaCortesCarne.SelectedItem.ToString());
-            MessageBox.Show($"{carne.Estado}");
 
         }
 

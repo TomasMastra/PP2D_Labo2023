@@ -31,7 +31,6 @@ namespace FormApp
             
 
             string currentDirectory = Environment.CurrentDirectory;
-            MessageBox.Show($"{Tienda.ObtenerUltimoIdFactura}");
 
 
         }

@@ -13,7 +13,7 @@ namespace Clases
         int idProducto;
         int cantidadComprada;
         bool comprado;
-        int precioTotal;//borrar
+        int precioTotal;
 
         public ListaCompras()
         {

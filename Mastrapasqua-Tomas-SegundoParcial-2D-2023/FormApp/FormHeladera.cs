@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using System.Timers;
-using ClasesEvento.cs;
 
 namespace FormApp
 {
@@ -14,8 +13,6 @@ namespace FormApp
     {
         Form FormLogin;
         Vendedor vendedorCarniceria;
-        Task tarea;
-        private Reloj reloj;
 
 
 
@@ -39,15 +36,10 @@ namespace FormApp
             saludo.Text = $"Bienvenido {vendedorCarniceria.Nombre}";
             Cantidad.Maximum = 0;
 
-            reloj = new Reloj();
-            reloj.SegundoCambiado += MostrarCambioTiempo;
-            reloj.Reiniciar();
+            Task tarea = Task.Run(() => RealizarTareas());
 
-            Thread relojHilo = new Thread(reloj.Ejecutar);//hilo del reloj
-            relojHilo.Start();
-
-            Task tarea = new Task(RealizarTareas);
-            tarea.Start();
+           /* Task tarea = new Task(RealizarTareas);
+            tarea.Start();*/
 
 
         }
@@ -133,7 +125,6 @@ namespace FormApp
             int topIndex = -1;
             string corteSeleccionadoActual = string.Empty;
             string corteSeleccionadoAnterior = string.Empty;
-            int cantidadAnterior = 0;
 
             if (ListCarro.InvokeRequired)
             {
@@ -279,7 +270,6 @@ namespace FormApp
             {
                 Cantidad.Value = cantidadActual;
             }
-            ReiniciarReloj();
 
         }
 
@@ -301,14 +291,13 @@ namespace FormApp
                 int firstDisplayedRow;
                 int firstDisplayedColumn;
 
-                // Guardar la posición de desplazamiento actual
+                
                 firstDisplayedRow = dataGridViewCarne.FirstDisplayedScrollingRowIndex;
                 firstDisplayedColumn = dataGridViewCarne.FirstDisplayedScrollingColumnIndex;
 
-                // Realizar la actualización del DataGridView
+               
                 cargarDataGridViewCortesCarne();
 
-                // Restaurar la posición de desplazamiento después de la actualización
                 if (firstDisplayedRow >= 0 && firstDisplayedRow < dataGridViewCarne.RowCount)
                 {
                     dataGridViewCarne.FirstDisplayedScrollingRowIndex = firstDisplayedRow;
@@ -325,67 +314,29 @@ namespace FormApp
         {
             try
             {
-                MantenerPosicionDgv();
-                CargarListBoxCarne();
+                while (true) 
+                {
+                    MantenerPosicionDgv();
+                    CargarListBoxCarne();
 
-                Thread.Sleep(2000);
+                    Thread.Sleep(2000);
+
+                   
+                }
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error al cargar el listbox, tardo mucho tiempo: " + ex.Message);
 
-                if (reloj.segundo == 5)
-                {
-                    throw new ExcepcionServidor("Hubo un error al cargar una de las listas...");
-                }
+                
             }
 
         }
-        //********************************
-        private void ReiniciarReloj()
-        {
-            reloj.segundo = 0;
-        }
+    
 
-        
+  
 
-
-        private void MostrarCambioTiempo(object reloj, InfoTiempoEventArgs infoTiempo)
-        {
-            lblTiempo.Invoke((MethodInvoker)delegate {
-                lblTiempo.Text = $"{infoTiempo.Segundo}";
-            });
-        }
-        //***********************************
-
-        public async Task ActualizarDataGridViewConPosicion()
-        {
-            int firstDisplayedRow;
-            int firstDisplayedColumn;
-
-            // Guardar la posición de desplazamiento actual
-            firstDisplayedRow = dataGridViewCarne.FirstDisplayedScrollingRowIndex;
-            firstDisplayedColumn = dataGridViewCarne.FirstDisplayedScrollingColumnIndex;
-
-            // Realizar la actualización del DataGridView
-            await Task.Run(() => cargarDataGridViewCortesCarne());
-
-            // Restaurar la posición de desplazamiento después de la actualización
-            if (firstDisplayedRow >= 0 && firstDisplayedRow < dataGridViewCarne.RowCount)
-            {
-                dataGridViewCarne.FirstDisplayedScrollingRowIndex = firstDisplayedRow;
-            }
-
-            if (firstDisplayedColumn >= 0 && firstDisplayedColumn < dataGridViewCarne.ColumnCount)
-            {
-                dataGridViewCarne.FirstDisplayedScrollingColumnIndex = firstDisplayedColumn;
-            }
-        }
-
-        public async Task ActualizarListBox()
-        {
-
-        }
+      
 
         /// <summary>
         /// Método que se ejecuta cuando se hace clic en el botón "Regresar"
@@ -455,8 +406,7 @@ namespace FormApp
         {
             List<Cliente> clientes = Tienda.ObtenerClientes();
 
-            MessageBox.Show($"{clientes[0].Nombre}{clientes[1].Nombre}");
-            MessageBox.Show($"{ListClientes.SelectedIndex}");
+           
             if (ListClientes.SelectedIndex > -1)
             {
                 Cliente cliente = clientes[ListClientes.SelectedIndex];//error
@@ -464,7 +414,6 @@ namespace FormApp
                 if (ListClientes.SelectedIndex > -1 && cliente.ListaCompras.Count == 0)
                 {
 
-                    //Cliente cliente = listaClientes[ListClientes.SelectedIndex];
                     BotonVerCarro.Text = $"Ver carro de {cliente.Nombre}";
                     ListClientes.Enabled = false;
 
@@ -483,37 +432,49 @@ namespace FormApp
             string noSeCompro;
             string mensaje = null;
 
-            if (ListClientes.SelectedIndex > -1 && ListClientes.Items.Count > 0)
+            try
             {
-                Cliente clienteComprar = clientes[ListClientes.SelectedIndex];
-
-
-                if (clienteComprar.ListaCompras.Count > 0)//ver
+                if (ListClientes.SelectedIndex > -1 && ListClientes.Items.Count > 0)
                 {
+                    Cliente clienteComprar = clientes[ListClientes.SelectedIndex];
 
-                    noSeCompro = Tienda.Comprar(clienteComprar, esRecargo.Checked);
 
-                    Restablecer();
-                    if (noSeCompro.Length != 0)
+                    if (clienteComprar.ListaCompras.Count > 0)//ver
                     {
-                        MessageBox.Show($"No se pudo comprar: \n{noSeCompro}");
+
+                        noSeCompro = Tienda.Comprar(clienteComprar, esRecargo.Checked);
+
+                        Restablecer();
+                        if (noSeCompro.Length != 0)
+                        {
+                            MessageBox.Show($"No se pudo comprar: \n{noSeCompro}");
+                        }
+                        else
+                        {
+                            MessageBox.Show(StringExtension.CompraExitosa(mensaje));
+
+                        }
+
+                        if (noSeCompro.Length > 1000)
+                        {
+                            throw new ExcepcionServidor("Ocurrio un error con los servidores");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show(StringExtension.CompraExitosa(mensaje));
+                        MessageBox.Show(StringExtension.NohayProductos(mensaje));
 
                     }
                 }
                 else
                 {
-                    MessageBox.Show(StringExtension.NohayProductos(mensaje));
+                    MessageBox.Show(StringExtension.NoSeleccionoCliente(mensaje));
 
                 }
             }
-            else
+            catch(ExcepcionServidor ex)
             {
-                MessageBox.Show(StringExtension.NoSeleccionoCliente(mensaje));
-
+                MessageBox.Show(ex.ToString());
             }
 
         }
@@ -528,34 +489,8 @@ namespace FormApp
             ListCarro.SelectedIndex = -1;
             Cantidad.Value = 0;
         }
-        ///////////////////////////////////
 
 
-
-
-        /// <summary>
-        /// Crea la factura al cliente
-        /// </summary>
-      /*  public void crearFacturas(Cliente cliente, float total)
-        {
-            Clases.Factura factura = new Clases.Factura(cliente.ListaCompras.Count, total, cliente.Mail);
-
-
-            if (esRecargo.Checked != true)
-            {
-
-                Tienda.AgregarFactura(factura);
-            }
-            else
-            {
-                Clases.Factura facturaCredito = new Clases.Factura(1, Convert.ToSingle(total * 0.05), cliente.Mail);
-
-                Tienda.AgregarFactura(facturaCredito);
-            }
-        }*/
-
-
-        ///////////////////////////////////////////////////
 
         /// <summary>
         /// Muestra los datos del vendedor que inicio sesion
@@ -612,9 +547,9 @@ namespace FormApp
                         ListaCompras carro = new ListaCompras(idCarro, clientes[ListClientes.SelectedIndex].Id, carne[ListCarro.SelectedIndex].IdCarne, cantidad);
                         carro.PrecioTotal = cantidad * carne[ListCarro.SelectedIndex].PreciosCarne;
 
-                        existe = clientes[ListClientes.SelectedIndex].AgregarCarro(carro);//ver lo que se le pasa por parametro(carro)
+                        existe = clientes[ListClientes.SelectedIndex].AgregarCarro(carro);
                         PrecioTotal.Text = "";
-                        //listaClientes[ListClientes.SelectedIndex].ListaCompras.Add(carro);//MODIFICAR Y HACER DENTRO DE LA CLASE DE CLIENTE
+                        
 
                     }
                     else
@@ -721,9 +656,13 @@ namespace FormApp
             eliminar.Show();
         }
 
+        
+
         private void button3_Click(object sender, EventArgs e)
         {
         }
+
+
     }
 
 
