@@ -1,0 +1,56 @@
+FACTURA
+-------
+Nombre del comprador: María González
+Total: 189550
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Nombre modificado
+Cantidad: 45
+Precio unitario: 5000
+Subtotal: 25000
+------------------------
+------------------------
+Producto: Barbacoa
+Cantidad: 0
+Precio unitario: 4500
+Subtotal: 76500
+------------------------
+------------------------
+Producto: Morron
+Cantidad: 23
+Precio unitario: 600
+Subtotal: 6000
+------------------------
+------------------------
+Producto: Bondiola
+Cantidad: 18
+Precio unitario: 2400
+Subtotal: 4800
+------------------------
+------------------------
+Producto: Salchicha
+Cantidad: 8
+Precio unitario: 1400
+Subtotal: 9800
+------------------------
+------------------------
+Producto: Nombre modificado
+Cantidad: 25
+Precio unitario: 12050
+Subtotal: 60250
+------------------------
+------------------------
+Producto: Bondiola
+Cantidad: 21
+Precio unitario: 1200
+Subtotal: 2400
+------------------------
+------------------------
+Producto: Nombre 222222modifwewewewewewicado
+Cantidad: 26
+Precio unitario: 1200
+Subtotal: 4800
+------------------------
+Total a pagar: 189550

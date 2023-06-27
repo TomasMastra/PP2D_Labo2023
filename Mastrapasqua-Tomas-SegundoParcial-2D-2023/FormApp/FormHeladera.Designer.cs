@@ -62,6 +62,8 @@
             PrecioTotal = new Label();
             BotonCancelarCliente = new Button();
             button2 = new Button();
+            button3 = new Button();
+            lblTiempo = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCarne).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Cantidad).BeginInit();
@@ -232,12 +234,13 @@
             Actualizar.BackColor = Color.Black;
             Actualizar.FlatStyle = FlatStyle.Flat;
             Actualizar.ForeColor = Color.LightGray;
-            Actualizar.Location = new Point(1145, 5);
+            Actualizar.Location = new Point(1280, 435);
             Actualizar.Name = "Actualizar";
             Actualizar.Size = new Size(100, 31);
             Actualizar.TabIndex = 92;
             Actualizar.Text = "Actualizar lista";
             Actualizar.UseVisualStyleBackColor = false;
+            Actualizar.Visible = false;
             Actualizar.Click += Actualizar_Click;
             // 
             // ListClientes
@@ -417,12 +420,38 @@
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
+            // button3
+            // 
+            button3.BackColor = Color.Black;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.ForeColor = Color.LightGray;
+            button3.Location = new Point(1174, 421);
+            button3.Name = "button3";
+            button3.Size = new Size(100, 58);
+            button3.TabIndex = 110;
+            button3.Text = "Guardar facturas";
+            button3.UseVisualStyleBackColor = false;
+            button3.Visible = false;
+            button3.Click += button3_Click;
+            // 
+            // lblTiempo
+            // 
+            lblTiempo.AutoSize = true;
+            lblTiempo.ForeColor = SystemColors.ButtonHighlight;
+            lblTiempo.Location = new Point(1324, 14);
+            lblTiempo.Name = "lblTiempo";
+            lblTiempo.Size = new Size(13, 15);
+            lblTiempo.TabIndex = 111;
+            lblTiempo.Text = "0";
+            // 
             // Heladera
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(30, 30, 30);
             ClientSize = new Size(1390, 651);
+            Controls.Add(lblTiempo);
+            Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(BotonCancelarCliente);
             Controls.Add(PrecioTotal);
@@ -499,6 +528,8 @@
         private Label PrecioTotal;
         private Button BotonCancelarCliente;
         private Button button2;
+        private Button button3;
+        private Label lblTiempo;
         //private ListBox CarroCliente;
     }
 }

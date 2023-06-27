@@ -1,0 +1,14 @@
+FACTURA
+-------
+Nombre del comprador: Carlos Rodríguez
+Total: 40500
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Barbacoa
+Cantidad: 8
+Precio unitario: 4500
+Subtotal: 40500
+------------------------
+Total a pagar: 40500

@@ -4,6 +4,8 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace FormApp
 {
+    public delegate void MiDelegado(string mensaje);
+
     public partial class FormVenta : Form
     {
         //Cosas a mejorar /o cambiar
@@ -17,6 +19,8 @@ namespace FormApp
         Form formLogin;
         float monto;
         float precioCarro;
+        public delegate void MiDelegado(string mensaje);
+
 
         public FormVenta()
         {
@@ -33,10 +37,8 @@ namespace FormApp
         public FormVenta(Cliente cliente, Form formLogin) : this()
         {
 
-
             this.cliente = cliente;
             this.formLogin = formLogin;
-
 
         }
 
@@ -56,7 +58,7 @@ namespace FormApp
         {
             List<Carniceria> carne = Tienda.ObtenerCarne();
 
-            foreach(Carniceria corte in carne) 
+            foreach (Carniceria corte in carne)
             {
                 DatosCarne.Items.Add(corte.CortesCarne);
             }
@@ -88,7 +90,7 @@ namespace FormApp
             int totalPagar;
             bool existe = false;
 
-           int idCarro = Tienda.ObtenerUltimoIdCarro() + 1;
+            int idCarro = Tienda.ObtenerUltimoIdCarro() + 1;
             int idCliente = cliente.Id;
             int idProducto;
             int cantidad;
@@ -320,32 +322,7 @@ namespace FormApp
 
         }
 
-        /// <summary>
-        /// Crea una factura de compra para las compras realizadas por el cliente
-        /// Si se selecciona el recargo, crea una factura con recargo
-        /// </summary>
-        /// <param name="total">El total a pagar</param>
-        /*public void crearFacturasCompra(float total)
-        {
 
-
-            Clases.Factura facturaAgregar;
-
-            if (Recargo.Checked != true)
-            {
-                facturaAgregar = new Clases.Factura(1, Convert.ToSingle(total * 0.05), cliente.Nombre);
-
-                Tienda.AgregarFactura(facturaAgregar);
-            }
-            else
-            {
-
-                facturaAgregar = new Clases.Factura(1, total, cliente.Nombre);
-
-                Tienda.AgregarFactura(facturaAgregar);
-
-            }
-        }*/
 
         /// <summary>
         /// Evento que se desencadena al hacer clic en el botón "BotónComprar"
@@ -358,40 +335,46 @@ namespace FormApp
             List<Carniceria> carne = Tienda.ObtenerCarne();
             List<Clases.Factura> facturas = Tienda.ObtenerFacturas();
             string noSeCompro;
+            MiDelegado delegado = InvocarDelegado;
+
 
             float total = 0;
             if (cliente.ListaCompras.Count > 0)
             {
 
 
-                noSeCompro = Tienda.Comprar(cliente);
+                noSeCompro = Tienda.Comprar(cliente, Recargo.Checked);
 
                 if (noSeCompro.Length != 21)
                 {
-                    MessageBox.Show($"{noSeCompro}");
+                    delegado($"No se pudo comprar:\n{noSeCompro}");
                 }
                 else
                 {
                     MessageBox.Show($"La compra se realizo con exito!!!");
+                    delegado("La compra se realizo con exito");
 
                 }
 
-                /*crearFacturasCompra(total);
-                DatosCarne.SelectedIndex = -1;
-                Factura formCarro = new Factura(facturas[facturas.Count - 1]);
-                formCarro.Show();
-                cliente.ListaCompras.Clear();
-                TotalPagar.Text = "0";
-                TotalComprar.Text = "0";*/
             }
             else
             {
-                MessageBox.Show("No hay nada en el carro para poder comprar");
+                delegado("No hay nada en el carro para poder comprar");
             }
 
 
 
 
+        }
+
+        private void InvocarDelegado(string mensaje)
+        {
+            // Verificar si el delegado tiene asignado algún método
+            if (mensaje != null)
+            {
+                // Invocar el delegado pasando el mensaje como argumento
+                MessageBox.Show(mensaje);
+            }
         }
 
         private void TotalPagar_Click(object sender, EventArgs e)

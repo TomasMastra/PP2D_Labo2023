@@ -85,7 +85,7 @@ namespace FormApp
 
             // Celda 1 creada
             DataGridViewCell cellNumero = new DataGridViewTextBoxCell();
-            cellNumero.Value = dataGridView1.RowCount + 1;
+            cellNumero.Value = factura.Numero;
             row.Cells.Add(cellNumero);
 
             // Celda 2 creada

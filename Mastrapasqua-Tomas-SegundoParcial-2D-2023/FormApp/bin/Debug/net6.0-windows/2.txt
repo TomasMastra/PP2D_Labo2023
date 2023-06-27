@@ -1,0 +1,14 @@
+FACTURA
+-------
+Nombre del comprador: Carlos Rodríguez
+Total: 60250
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Nombre modificado
+Cantidad: 25
+Precio unitario: 12050
+Subtotal: 60250
+------------------------
+Total a pagar: 60250

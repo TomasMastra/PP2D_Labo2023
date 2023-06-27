@@ -6,10 +6,11 @@ using System.Net.Http.Headers;
 using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace Clases
 {
-    public static class Tienda
+    public static class Tienda 
     {
         public static string Direccion { get; set; } = "Mitre 1289";
         public static string Mail { get; set; } = "CarniceriaMastra@gmail.com";
@@ -21,30 +22,9 @@ namespace Clases
         public static List<Cliente> clientes = new List<Cliente>();
         public static List<Factura> facturas = new List<Factura>();
 
-        /*
-         * 
-         * static Hospital()
-        {
-            try
-            {
-                pacientes = new List<Paciente>();
-                cirujanos = new List<Cirujano>();
-                cirugias = new List<Cirugia>();
-                estadistica = new Estadistica();
-
-                string ruta = SerializacionAJason.GenerarRuta("Pacientes.json");
-                pacientes = SerializacionAJason.DeserealizarDesdeJson<List<Paciente>>(ruta);
-                ruta = SerializacionAJason.GenerarRuta("Cirujanos.json");
-                cirujanos = SerializacionAJason.DeserealizarDesdeJson<List<Cirujano>>(ruta);
-                ruta = SerializacionAJason.GenerarRuta("Cirugias.json");
-                cirugias = SerializacionAJason.DeserealizarDesdeJson<List<Cirugia>>(ruta);
-                Hospital.ActualizarEstadistica(cirugias);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("No se pudo cargar Hospital", ex);
-            }
-        }*/
+        
+         
+        
         public static List<Carniceria> listaCarne
         {
             get { return carne; }
@@ -64,38 +44,25 @@ namespace Clases
             {
                 CargarLista(CarniceriaDAO.ObtenerListaCarne());
 
-                // Obtener vendedores
                 vendedores = VendedorDAO.ObtenerVendedores();
                 usuarios.AddRange(vendedores);
 
-                // Obtener clientes
                 clientes = ClienteDAO.ObtenerClientes();
                 usuarios.AddRange(clientes);
 
                 CargarFacturas(Archivos<List<Factura>>.CargarDesdeArchivoXml("Facturas.Xml"));
-                // Cargar facturas desde archivo JSON
-              //  facturas = Archivos<List<Factura>>.CargarDesdeArchivoJson("Facturas.Json");
-
-
-                //facturas = new List<Factura>();
-
+               
     }
             catch (Exception ex)
             {
-                // Manejo de excepciones
                 Console.WriteLine("Error al cargar la tienda: " + ex.Message);
-                // Puedes realizar acciones adicionales, como registrar el error en un archivo de registro o notificar al administrador del sistema.
             }
 
 
         }
 
 
-         public static void Inicializar()
-        {
-            // llamar a todos los metodos que cargan la lista
-
-        }
+         
         public static void CargarLista(List<Carniceria> cortes)
         {
             if (cortes != null)
@@ -123,7 +90,7 @@ namespace Clases
                     }
                 }
                 carne.Add(corte);
-               // SerializarCprte();
+               // SerializarCorte();
                 return true;
             }
             return false;
@@ -169,80 +136,17 @@ namespace Clases
             return vendedores;
         }
 
-        public static void MostrarCortes()
-        {
-            foreach (Carniceria c in carne)
-            {
-                Console.WriteLine(c.CortesCarne.ToString());
-            }
-        }
+     
 
-        public static void AgregarUsuario(Usuario usuario)
-        {
-
-            usuarios.Add(usuario);
-        }
-        public static void AgregarVendedor(Vendedor vendedor)
-        {
-            vendedores.Add(vendedor);
-        }
-
-        public static void AgregarCliente(Cliente cliente)
-        {
-            clientes.Add(cliente);
-        }
-
-
-
-      
-
-
-
-
-
-
-        /// <summary>
-        /// Modifica la cantidad de carne de todos los cortes comprados por un cliente dependiendo la cantidad comprada
-        /// </summary>
-        /// <param name="clienteCompra"></param>
-        /// <returns></returns>
-        public static string RestarCantidadCompra(Cliente clienteCompra)//refactorizar
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append("No se puduo comprar: ");
-            foreach (Carniceria c in carne)
-            {
-                for (int i = 0; i < clienteCompra.ListaCompras.Count; i++)
-                {
-                    if (c.IdCarne == clienteCompra.ListaCompras[i].IdProducto)
-                    {
-                        if (c.CantidadCarne >= clienteCompra.ListaCompras[i].CantidadComprada)
-                        {
-                            c.CantidadCarne -= clienteCompra.ListaCompras[i].CantidadComprada;
-                            clienteCompra.ListaCompras[i].Comprado = true;
-                        }
-                        else
-                        {
-                            sb.Append($"{clienteCompra.ListaCompras[i].CantidadComprada}KG {c.CortesCarne}\n");
-                        }
-                    }
-                }
-            }
-
-            return sb.ToString();
-        }
-
-
-        public static string Comprar(Cliente cliente) // Compra todo el carro
+        public static string Comprar(Cliente cliente, bool esRecargo) // Compra todo el carro
         {
             float totalCompra = 0;
             StringBuilder sb = new StringBuilder();
-            sb.Append("No se pudo comprar: ");
 
-            foreach (Carniceria carne in Tienda.ObtenerCarne())
-            {
+            
                 foreach(ListaCompras carro in cliente.ListaCompras)
                 {
+                    Carniceria carne = BuscarCarne(carro.IdProducto);
                     if (carro.IdProducto == carne.IdCarne)// Compara si es el mismo producto
                     {
                         if (carne.CantidadCarne >= carro.CantidadComprada)// Compara si hay stock para vender
@@ -250,8 +154,10 @@ namespace Clases
                             totalCompra += (carro.CantidadComprada * carne.PreciosCarne);
 
                             carne.CantidadCarne -= carro.CantidadComprada;
-                        }
-                        else
+                            carne.modificar(carne);
+
+                    }
+                    else
                         {
                             sb.Append($"{carro.CantidadComprada}KG {carne.CortesCarne}\n"); // Caso de que no se pudo comprar se agrega al stringbuilder que muestra todo lo que no se pudo comprar
                             cliente.ListaCompras.Remove(carro);
@@ -261,27 +167,46 @@ namespace Clases
 
 
                 }
-            }
 
-            CrearFactura(cliente, totalCompra);
+            totalCompra = CalcularTotal(totalCompra, esRecargo);
+            CrearFactura(cliente, totalCompra, esRecargo);
             return sb.ToString();
         }
 
-        public static void CrearFactura(Cliente cliente, float totalCompra)
+        public static void CrearFactura(Cliente cliente, float totalCompra, bool esRecargo)
         {
             
 
             if (cliente.ListaCompras.Count > 0)
             {
-                Factura factura = new Factura(1, totalCompra, cliente.Nombre, (DateTime.Now).ToString());
+                Factura factura = new Factura(ObtenerUltimoIdFactura() + 1, totalCompra, cliente.Nombre, (DateTime.Now).ToString());
                 AgregarFactura(factura);
                 string facturaArchivo = factura.crearFactura(cliente.ListaCompras, factura.Archivo);
-                string path = $"ruta/{factura.Archivo}.txt";
 
-                Archivos<String>.GuardarEnArchivoTxt(path, facturaArchivo);
+                //string currentDirectory = Environment.CurrentDirectory;
+                string archivo = $"{factura.Numero}.txt";
+                
+                Archivos<String>.GuardarEnArchivoTxt(archivo, facturaArchivo);
+                Archivos<List<Factura>>.GuardarEnArchivoXml("Facturas.Xml", Tienda.ObtenerFacturas());
+
+
             }
             cliente.ListaCompras.Clear();
             ListaComprasDAO.VaciarCarro(cliente.Id);
+        }
+
+
+        public static float CalcularTotal(float totalCompra, bool esRecargo)
+        {
+
+
+            if (esRecargo)
+            {
+                return Convert.ToSingle(totalCompra + (totalCompra * 0.05));
+
+            }
+
+            return totalCompra;
         }
         public static Carniceria BuscarCarne(int id)
         {
@@ -310,27 +235,18 @@ namespace Clases
             return id;
         }
 
-
-        public static bool GuardarFacturasArchivo()
+        public static int ObtenerUltimoIdFactura()
         {
-            bool ret = false;
-            if (facturas.Count > 0)
-            {
-                foreach (Factura factura in facturas)
-                {
 
-                }
-                ret = true;
-            }
-            return false;
+            int id;
+
+            Factura ultimaFactura = facturas.LastOrDefault();
+            id = ultimaFactura.Numero;
+
+            return id;
         }
 
-        public static void EliminarCarneId(Carniceria corte)
-        {
-            EliminarCarne(corte);
-            CarniceriaDAO.EliminarCarne(corte.IdCarne);
 
-        }
 
         public static int ObtenerUltimoIdCarro()
         {

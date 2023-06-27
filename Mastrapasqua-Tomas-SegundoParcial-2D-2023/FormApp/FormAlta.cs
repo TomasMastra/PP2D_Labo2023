@@ -121,6 +121,16 @@ namespace FormApp
 
         }
 
+        /// <summary>
+        /// Pregunta si deasea realizar los cambios y guardar
+        /// </summary>
+        /// <returns></returns>
+        public bool ConfirmarGuardar()
+        {
+            DialogResult resultado = MessageBox.Show("¿Desea guardar los cambios?", "Guardar cambios", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            return resultado == DialogResult.Yes;
+        }
+
 
         /// <summary>
         /// Dependiendo el valor de esModificar realiza acciones diferentes como agregar o modificar
@@ -128,19 +138,20 @@ namespace FormApp
         private void BotonAgregar_Click(object sender, EventArgs e)
         {
 
-           
-                
 
-                if (estado == 1 )
+
+            if (GroupBoxDatos.Enabled == true)
+            {
+                if (Cantidad.Value > 0 && TextBoxCorte.Text != string.Empty && Precio.Value > 0 && ListaTipos.SelectedIndex > -1)
                 {
-                string corteCarne = TextBoxCorte.Text;
-                int cantidad = Convert.ToInt32(Cantidad.Value);
-                int precio = Convert.ToInt32(Precio.Value);
-                Tipo tipo = ((Tipo)Enum.Parse(typeof(Tipo), ListaTipos.Items[ListaTipos.SelectedIndex].ToString()));
+                    string corteCarne = TextBoxCorte.Text;
+                    int cantidad = Convert.ToInt32(Cantidad.Value);
+                    int precio = Convert.ToInt32(Precio.Value);
+                    Tipo tipo = ((Tipo)Enum.Parse(typeof(Tipo), ListaTipos.Items[ListaTipos.SelectedIndex].ToString()));
 
-                
-                if (corteCarne != string.Empty && precio > 0 && cantidad > 0 && ListaTipos.SelectedIndex > -1)
+                    if (estado == 1 && ConfirmarGuardar() == true)
                     {
+
                         int id = Tienda.ObtenerId() + 1;
 
                         Carniceria carne = new Carniceria(id, corteCarne, precio, cantidad, tipo);
@@ -148,46 +159,58 @@ namespace FormApp
                         CarniceriaDAO.AgregarCarne(carne);
 
                         this.Hide();
+
                     }
                     else
+                    if (ConfirmarGuardar() == true)
                     {
-                        TextError.ForeColor = Color.Red;
-                    }
-                }
-                else
-                if (estado == 2)
-                {
-                    if (ListaCortesCarne.SelectedIndex > -1 && TextBoxCorte.Text != string.Empty && Precio.Value > 0 && ListaTipos.SelectedIndex > -1)
-                    {
-                    string corteCarne = TextBoxCorte.Text;
-                    int cantidad = Convert.ToInt32(Cantidad.Value);
-                    int precio = Convert.ToInt32(Precio.Value);
-                    Tipo tipo = ((Tipo)Enum.Parse(typeof(Tipo), ListaTipos.Items[ListaTipos.SelectedIndex].ToString()));
-                    List<Carniceria> carne = Tienda.ObtenerCarne();
-                        Carniceria carneModificar = carne[ListaCortesCarne.SelectedIndex];
+                        if (ListaCortesCarne.SelectedIndex > -1)
+                        {
+                            List<Carniceria> carne = Tienda.ObtenerCarne();
+                            Carniceria carneModificar = carne[ListaCortesCarne.SelectedIndex];
 
-                        carneModificar.modificar(corteCarne, tipo, cantidad, precio);
-                        CarniceriaDAO.ModificarCarne(carneModificar);
+                            carneModificar.CantidadCarne = cantidad;
+                            carneModificar.CortesCarne = corteCarne;
+                            carneModificar.PreciosCarne = precio;
+                            carneModificar.TipoCarne = tipo;
 
-                        this.Hide();
-                    }
-                    else
-                    {
-                        TextError.ForeColor = Color.Red;
+                            carneModificar.modificar(carneModificar);
+                            CarniceriaDAO.ModificarCarne(carneModificar);
+
+                            this.Hide();
+                        }
+
                     }
                 }
                 else
                 {
-                    if (ListaCortesCarne.SelectedIndex > -1)
+                    TextError.ForeColor = Color.Red;
+                }
+
+
+            }
+            else
+            {
+                if (ListaCortesCarne.SelectedIndex > -1)
+                {
+                    if (ConfirmarGuardar() == true)
                     {
                         List<Carniceria> carne = Tienda.ObtenerCarne();
                         Carniceria carneEliminar = carne[ListaCortesCarne.SelectedIndex];
                         CarniceriaDAO.EliminarCarne(carneEliminar.IdCarne);
 
+                        MessageBox.Show(carneEliminar.CortesCarne);
+
                         this.Hide();
                     }
                 }
-            
+                else
+                {
+                    TextError.Text = "No selecciono el corte a eliminar";
+                    TextError.ForeColor = Color.Red;
+                }
+            }
+
         }
 
         /// <summary>
@@ -201,32 +224,11 @@ namespace FormApp
 
         }
 
-        public void Eliminar()
-        {
+       
 
-        }
 
-        public void GuardarCambios()
-        {
-            DialogResult resultado = MessageBox.Show("¿Desea guardar los cambios?", "Guardar cambios", MessageBoxButtons.YesNoCancel);
 
-            if (resultado == DialogResult.Yes)
-            {
-                // Lógica para guardar los cambios
-                // ...
-            }
-            else if (resultado == DialogResult.No)
-            {
-                // Lógica para descartar los cambios
-                // ...
-            }
-            else if (resultado == DialogResult.Cancel)
-            {
-                // Lógica para cancelar la operación
-                // ...
-            }
-
-        }
+        
     }
 }
 

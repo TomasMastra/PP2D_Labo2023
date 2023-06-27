@@ -110,9 +110,9 @@
             TextError.ForeColor = Color.FromArgb(30, 30, 30);
             TextError.Location = new Point(1, 246);
             TextError.Name = "TextError";
-            TextError.Size = new Size(259, 15);
+            TextError.Size = new Size(200, 15);
             TextError.TabIndex = 5;
-            TextError.Text = "Hay campos vacios, revise el tipo, corte y precio";
+            TextError.Text = "Ocurrio un error, Hay campos vacios";
             // 
             // TextCorte
             // 

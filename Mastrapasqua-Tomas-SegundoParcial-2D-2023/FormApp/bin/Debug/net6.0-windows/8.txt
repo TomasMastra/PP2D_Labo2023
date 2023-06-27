@@ -1,0 +1,20 @@
+FACTURA
+-------
+Nombre del comprador: Carlos Rodríguez
+Total: 14401
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: 2333223
+Cantidad: 0
+Precio unitario: 1
+Subtotal: 1
+------------------------
+------------------------
+Producto: Cebolla
+Cantidad: 0
+Precio unitario: 900
+Subtotal: 14400
+------------------------
+Total a pagar: 14401

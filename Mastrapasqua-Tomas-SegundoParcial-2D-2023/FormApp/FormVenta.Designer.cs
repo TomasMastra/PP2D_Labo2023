@@ -306,9 +306,9 @@
             MontoText.ForeColor = SystemColors.ButtonHighlight;
             MontoText.Location = new Point(441, 403);
             MontoText.Name = "MontoText";
-            MontoText.Size = new Size(194, 15);
+            MontoText.Size = new Size(191, 15);
             MontoText.TabIndex = 20;
-            MontoText.Text = "Ingrese el monto antes de comprar:";
+            MontoText.Text = "Ingrese el monto antes de comprar";
             // 
             // BotonIngresarMonto
             // 

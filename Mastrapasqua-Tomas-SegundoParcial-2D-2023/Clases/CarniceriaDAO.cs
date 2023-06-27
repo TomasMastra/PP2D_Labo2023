@@ -45,8 +45,11 @@ namespace Clases
                         int cantidad = Convert.ToInt32(reader["CANTIDAD_DISPONIBLE"]);
                         string tipoCarneTexto = reader["TIPO"].ToString();
 
-                        Tipo tipoCarne = Tipo.Res;
-
+                        if (!Enum.TryParse(tipoCarneTexto, out  Tipo tipoCarne))
+                        {
+                            tipoCarne = Tipo.Otro;
+                        }
+                        
                         Carniceria carne = new Carniceria(id, corte, precio, cantidad, tipoCarne);
                         listaCarne.Add(carne);
                         Tienda.AgregarCarne(carne);
@@ -94,7 +97,14 @@ namespace Clases
                         string corte = reader["CORTE"].ToString();
                         int precio = Convert.ToInt32(reader["PRECIO"]);
                         int cantidad = Convert.ToInt32(reader["CANTIDAD_DISPONIBLE"]);
-                        Tipo tipoCarne = (Tipo)Convert.ToInt32(reader["TIPO"]);
+                        string tipoCarneTexto = reader["TIPO"].ToString();
+
+                        if (!Enum.TryParse(tipoCarneTexto, out Tipo tipoCarne))
+                        {
+                            tipoCarne = Tipo.Otro;
+                        }
+
+
 
                         if (id == idCarne)
                         {
@@ -131,7 +141,7 @@ namespace Clases
                 command.Parameters.AddWithValue("@Corte", carne.CortesCarne);
                 command.Parameters.AddWithValue("@Precio", carne.PreciosCarne);
                 command.Parameters.AddWithValue("@Cantidad", carne.CantidadCarne);
-                command.Parameters.AddWithValue("@Tipo", carne.TipoCarne);
+                command.Parameters.AddWithValue("@Tipo", carne.TipoCarne.ToString());
 
                 connection.Open();
                 command.ExecuteNonQuery();

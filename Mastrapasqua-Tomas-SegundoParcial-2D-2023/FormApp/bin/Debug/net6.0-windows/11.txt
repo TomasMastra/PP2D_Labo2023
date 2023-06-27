@@ -1,0 +1,14 @@
+FACTURA
+-------
+Nombre del comprador: Carlos Rodríguez
+Total: 7000
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Salchicha de cerdo
+Cantidad: 10
+Precio unitario: 1400
+Subtotal: 7000
+------------------------
+Total a pagar: 7000

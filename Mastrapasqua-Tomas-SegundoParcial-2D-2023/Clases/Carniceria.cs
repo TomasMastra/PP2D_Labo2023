@@ -108,12 +108,12 @@ namespace Clases
         /// <param name="tipo">El nuevo tipo de carne</param>
         /// <param name="cantidad">La nueva cantidad disponible del corte de carne</param>
         /// <param name="precio">El nuevo precio del corte de carne</param>
-        public void modificar(string corte, Tipo tipo, int cantidad, int precio)
+        public void modificar(Carniceria carne)
         {
-            CortesCarne = corte;
-            TipoCarne = tipo;
-            CantidadCarne = cantidad;
-            PreciosCarne = precio;
+            CortesCarne = carne.CortesCarne;
+            TipoCarne = carne.TipoCarne;
+            CantidadCarne = carne.CantidadCarne;
+            PreciosCarne = carne.PreciosCarne;
 
         }
 

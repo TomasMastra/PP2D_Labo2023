@@ -1,0 +1,38 @@
+FACTURA
+-------
+Nombre del comprador: Carlos Rodríguez
+Total: 40600
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Bondiola
+Cantidad: 14
+Precio unitario: 2400
+Subtotal: 14400
+------------------------
+------------------------
+Producto: Nombre modificado
+Cantidad: 47
+Precio unitario: 5000
+Subtotal: 15000
+------------------------
+------------------------
+Producto: Bondiola
+Cantidad: 22
+Precio unitario: 1200
+Subtotal: 1200
+------------------------
+------------------------
+Producto: Barbacoa
+Cantidad: 15
+Precio unitario: 4500
+Subtotal: 9000
+------------------------
+------------------------
+Producto: Pata Muslo
+Cantidad: 99999
+Precio unitario: 1000
+Subtotal: 1000
+------------------------
+Total a pagar: 40600

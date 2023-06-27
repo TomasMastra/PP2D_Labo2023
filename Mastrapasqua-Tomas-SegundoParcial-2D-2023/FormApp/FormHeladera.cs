@@ -1,7 +1,12 @@
 ﻿using Clases;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Threading;
+using System.Windows.Forms;
+using System.Timers;
+using ClasesEvento.cs;
 
 namespace FormApp
 {
@@ -9,8 +14,10 @@ namespace FormApp
     {
         Form FormLogin;
         Vendedor vendedorCarniceria;
-        //List<Task> tareas = new List<Task>();
         Task tarea;
+        private Reloj reloj;
+
+
 
 
         public Heladera()
@@ -21,12 +28,9 @@ namespace FormApp
 
         public Heladera(Vendedor vendedor, Form formLogin) : this()
         {
-            this.vendedorCarniceria = vendedor; // Usuario (Vendedor) que se logeo
+            this.vendedorCarniceria = vendedor; 
             this.FormLogin = formLogin;
-            tarea = new Task(RealizarTareas);
-            tarea.Start();
 
-            //dataGridViewCarne.CurrentCell = null;//ver
         }
 
         private void FormVendedor_Load(object sender, EventArgs e)
@@ -34,6 +38,16 @@ namespace FormApp
             inicializar();
             saludo.Text = $"Bienvenido {vendedorCarniceria.Nombre}";
             Cantidad.Maximum = 0;
+
+            reloj = new Reloj();
+            reloj.SegundoCambiado += MostrarCambioTiempo;
+            reloj.Reiniciar();
+
+            Thread relojHilo = new Thread(reloj.Ejecutar);//hilo del reloj
+            relojHilo.Start();
+
+            Task tarea = new Task(RealizarTareas);
+            tarea.Start();
 
 
         }
@@ -46,10 +60,12 @@ namespace FormApp
         {
 
             cargarListBoxClientes();
-            cargarDataGridViewCortesCarne();
-            cargarListBoxCarne();
+            //cargarDataGridViewCortesCarne();
+            // CargarListBoxCarne();
 
         }
+
+       
         /// <summary>
         /// Método que inicializa el listBox de clientes, cargando el nombre
         /// </summary>
@@ -111,42 +127,265 @@ namespace FormApp
         /// <summary>
         /// Carga los datos de la lista de cortes de carne en el ListBox
         /// </summary>
-        public void cargarListBoxCarne()
+        public void CargarListBoxCarne()
         {
+            // Obtener la posición de desplazamiento actual
+            int topIndex = -1;
+            string corteSeleccionadoActual = string.Empty;
+            string corteSeleccionadoAnterior = string.Empty;
+            int cantidadAnterior = 0;
+
+            if (ListCarro.InvokeRequired)
+            {
+                ListCarro.Invoke(new Action(() =>
+                {
+                    topIndex = ListCarro.TopIndex;
+                }));
+            }
+            else
+            {
+                topIndex = ListCarro.TopIndex;
+            }
+
+            // Obtener el índice seleccionado antes de cargar los elementos
+            int selectedIndex = -1;
+
+            if (ListCarro.InvokeRequired)
+            {
+                ListCarro.Invoke(new Action(() =>
+                {
+                    selectedIndex = ListCarro.SelectedIndex;
+                }));
+            }
+            else
+            {
+                selectedIndex = ListCarro.SelectedIndex;
+            }
+
+            // Obtener el valor actual de Cantidad.Value
+            int cantidadActual = 0;
+            if (Cantidad.InvokeRequired)
+            {
+                Cantidad.Invoke(new Action(() =>
+                {
+                    cantidadActual = Convert.ToInt32(Cantidad.Value);
+                }));
+            }
+            else
+            {
+                cantidadActual = Convert.ToInt32(Cantidad.Value);
+            }
+
+            // Limpiar el ListBox
+            if (ListCarro.InvokeRequired)
+            {
+                ListCarro.Invoke(new Action(() =>
+                {
+                    ListCarro.Items.Clear();
+                }));
+            }
+            else
+            {
+                ListCarro.Items.Clear();
+            }
+
+            // Cargar los elementos en el ListBox
             foreach (Carniceria carne in Tienda.ObtenerCarne())
             {
-                ListCarro.Items.Add(carne.CortesCarne);
+                if (ListCarro.InvokeRequired)
+                {
+                    ListCarro.Invoke(new Action(() =>
+                    {
+                        ListCarro.Items.Add(carne.CortesCarne);
+                    }));
+                }
+                else
+                {
+                    ListCarro.Items.Add(carne.CortesCarne);
+                }
+            }
+
+            // Restaurar la posición de desplazamiento y el índice seleccionado
+            if (topIndex >= 0 && ListCarro.InvokeRequired)
+            {
+                ListCarro.Invoke(new Action(() =>
+                {
+                    if (topIndex < ListCarro.Items.Count)
+                    {
+                        ListCarro.TopIndex = topIndex;
+                    }
+                }));
+            }
+
+            // Establecer el índice
+            if (selectedIndex >= 0 && ListCarro.InvokeRequired)
+            {
+                ListCarro.Invoke(new Action(() =>
+                {
+                    if (selectedIndex < ListCarro.Items.Count)
+                    {
+                        ListCarro.SelectedIndex = selectedIndex;
+                    }
+                }));
+            }
+
+            if (ListCarro.InvokeRequired)
+            {
+                ListCarro.Invoke(new Action(() =>
+                {
+                    if (ListCarro.SelectedItem != null)
+                    {
+                        corteSeleccionadoActual = ListCarro.SelectedItem.ToString();
+                    }
+                }));
+            }
+            else
+            {
+                if (ListCarro.SelectedItem != null)
+                {
+                    corteSeleccionadoActual = ListCarro.SelectedItem.ToString();
+                }
+            }
+
+            // Verificar si se ha cambiado el corte seleccionado
+            if (corteSeleccionadoAnterior != corteSeleccionadoActual)
+            {
+                // Restablecer el valor del NumericUpDown a cero
+                if (Cantidad.InvokeRequired)
+                {
+                    Cantidad.Invoke(new Action(() =>
+                    {
+                        Cantidad.Value = 0;
+                    }));
+                }
+                else
+                {
+                    Cantidad.Value = 0;
+                }
+
+                // Actualizar el corte seleccionado anteriormente
+                corteSeleccionadoAnterior = corteSeleccionadoActual;
+            }
+
+            // Asignar el valor guardado previamente a Cantidad.Value
+            if (Cantidad.InvokeRequired)
+            {
+                Cantidad.Invoke(new Action(() =>
+                {
+                    Cantidad.Value = cantidadActual;
+                }));
+            }
+            else
+            {
+                Cantidad.Value = cantidadActual;
+            }
+            ReiniciarReloj();
+
+        }
+
+
+
+
+
+        public void MantenerPosicionDgv()
+        {
+            if (dataGridViewCarne.InvokeRequired)
+            {
+                dataGridViewCarne.Invoke(new MethodInvoker(() =>
+                {
+                    MantenerPosicionDgv();
+                }));
+            }
+            else
+            {
+                int firstDisplayedRow;
+                int firstDisplayedColumn;
+
+                // Guardar la posición de desplazamiento actual
+                firstDisplayedRow = dataGridViewCarne.FirstDisplayedScrollingRowIndex;
+                firstDisplayedColumn = dataGridViewCarne.FirstDisplayedScrollingColumnIndex;
+
+                // Realizar la actualización del DataGridView
+                cargarDataGridViewCortesCarne();
+
+                // Restaurar la posición de desplazamiento después de la actualización
+                if (firstDisplayedRow >= 0 && firstDisplayedRow < dataGridViewCarne.RowCount)
+                {
+                    dataGridViewCarne.FirstDisplayedScrollingRowIndex = firstDisplayedRow;
+                }
+
+                if (firstDisplayedColumn >= 0 && firstDisplayedColumn < dataGridViewCarne.ColumnCount)
+                {
+                    dataGridViewCarne.FirstDisplayedScrollingColumnIndex = firstDisplayedColumn;
+                }
             }
         }
 
-        public void RealizarTareas()
+        private void RealizarTareas()
         {
-            Task.Run(() =>
+            try
             {
-                CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+                MantenerPosicionDgv();
+                CargarListBoxCarne();
 
-                while (!cancellationTokenSource.IsCancellationRequested)
+                Thread.Sleep(2000);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al cargar el listbox, tardo mucho tiempo: " + ex.Message);
+
+                if (reloj.segundo == 5)
                 {
-                    List<Carniceria> cortesCarne = CarniceriaDAO.ObtenerListaCarne();
-                    Tienda.CargarLista(cortesCarne);
-
-                    if (dataGridViewCarne.IsHandleCreated)
-                    {
-                        dataGridViewCarne.Invoke((MethodInvoker)delegate
-                        {
-                            cargarDataGridViewCortesCarne();
-                        });
-                    }
-
-                    // cargarListBoxCarne();
-
-
-                    Thread.Sleep(1000);
+                    throw new ExcepcionServidor("Hubo un error al cargar una de las listas...");
                 }
-            });
+            }
+
+        }
+        //********************************
+        private void ReiniciarReloj()
+        {
+            reloj.segundo = 0;
         }
 
+        
 
+
+        private void MostrarCambioTiempo(object reloj, InfoTiempoEventArgs infoTiempo)
+        {
+            lblTiempo.Invoke((MethodInvoker)delegate {
+                lblTiempo.Text = $"{infoTiempo.Segundo}";
+            });
+        }
+        //***********************************
+
+        public async Task ActualizarDataGridViewConPosicion()
+        {
+            int firstDisplayedRow;
+            int firstDisplayedColumn;
+
+            // Guardar la posición de desplazamiento actual
+            firstDisplayedRow = dataGridViewCarne.FirstDisplayedScrollingRowIndex;
+            firstDisplayedColumn = dataGridViewCarne.FirstDisplayedScrollingColumnIndex;
+
+            // Realizar la actualización del DataGridView
+            await Task.Run(() => cargarDataGridViewCortesCarne());
+
+            // Restaurar la posición de desplazamiento después de la actualización
+            if (firstDisplayedRow >= 0 && firstDisplayedRow < dataGridViewCarne.RowCount)
+            {
+                dataGridViewCarne.FirstDisplayedScrollingRowIndex = firstDisplayedRow;
+            }
+
+            if (firstDisplayedColumn >= 0 && firstDisplayedColumn < dataGridViewCarne.ColumnCount)
+            {
+                dataGridViewCarne.FirstDisplayedScrollingColumnIndex = firstDisplayedColumn;
+            }
+        }
+
+        public async Task ActualizarListBox()
+        {
+
+        }
 
         /// <summary>
         /// Método que se ejecuta cuando se hace clic en el botón "Regresar"
@@ -242,6 +481,8 @@ namespace FormApp
         {
             List<Cliente> clientes = Tienda.ObtenerClientes();
             string noSeCompro;
+            string mensaje = null;
+
             if (ListClientes.SelectedIndex > -1 && ListClientes.Items.Count > 0)
             {
                 Cliente clienteComprar = clientes[ListClientes.SelectedIndex];
@@ -250,30 +491,28 @@ namespace FormApp
                 if (clienteComprar.ListaCompras.Count > 0)//ver
                 {
 
-                    noSeCompro = Tienda.Comprar(clienteComprar);
+                    noSeCompro = Tienda.Comprar(clienteComprar, esRecargo.Checked);
 
                     Restablecer();
-                    if (noSeCompro.Length != 20)
+                    if (noSeCompro.Length != 0)
                     {
-                        MessageBox.Show($"{noSeCompro.Length}");
+                        MessageBox.Show($"No se pudo comprar: \n{noSeCompro}");
                     }
                     else
                     {
-                        MessageBox.Show($"La compra se realizo con exito!!!");
+                        MessageBox.Show(StringExtension.CompraExitosa(mensaje));
 
                     }
-
-
                 }
                 else
                 {
-                    MessageBox.Show("No agrego nada al carro");
-                }
+                    MessageBox.Show(StringExtension.NohayProductos(mensaje));
 
+                }
             }
             else
             {
-                MessageBox.Show($"No selecciono un cliente");
+                MessageBox.Show(StringExtension.NoSeleccionoCliente(mensaje));
 
             }
 
@@ -334,7 +573,6 @@ namespace FormApp
             List<Clases.Factura> facturas = Tienda.ObtenerFacturas();
 
 
-            MessageBox.Show($"Facturars es null: {facturas == null} - Hay {facturas.Count}");
             if (facturas != null && facturas.Count > 0)
             {
 
@@ -374,25 +612,6 @@ namespace FormApp
                         ListaCompras carro = new ListaCompras(idCarro, clientes[ListClientes.SelectedIndex].Id, carne[ListCarro.SelectedIndex].IdCarne, cantidad);
                         carro.PrecioTotal = cantidad * carne[ListCarro.SelectedIndex].PreciosCarne;
 
-
-
-                        string idCarro2 = carro.IdCarro.ToString();
-                        string idCliente = clientes[ListClientes.SelectedIndex].Id.ToString();
-                        string idCarne = carne[ListCarro.SelectedIndex].IdCarne.ToString();
-                        string cantidad2 = cantidad.ToString();
-
-                        string mensaje = $"idCarro: {idCarro2}\n" +
-                                         $"idCliente: {idCliente}\n" +
-                                         $"idCarne: {idCarne}\n" +
-                                         $"cantidad: {cantidad2}";
-
-                        MessageBox.Show(mensaje, "Valores de la lista de compras", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
-
-                        //////////////////////////
-
-                        //
                         existe = clientes[ListClientes.SelectedIndex].AgregarCarro(carro);//ver lo que se le pasa por parametro(carro)
                         PrecioTotal.Text = "";
                         //listaClientes[ListClientes.SelectedIndex].ListaCompras.Add(carro);//MODIFICAR Y HACER DENTRO DE LA CLASE DE CLIENTE
@@ -500,6 +719,10 @@ namespace FormApp
         {
             FormAlta eliminar = new FormAlta(3, this);
             eliminar.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
         }
     }
 

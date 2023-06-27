@@ -1,0 +1,14 @@
+FACTURA
+-------
+Nombre del comprador: Juan Pérez
+Total: 1470
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Salchicha de cerdo
+Cantidad: 14
+Precio unitario: 1400
+Subtotal: 1400
+------------------------
+Total a pagar: 1470

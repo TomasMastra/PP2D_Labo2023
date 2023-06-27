@@ -8,7 +8,8 @@ public enum Tipo
     Pollo,
     Achuras,
     Condimento,
-    Pavo
+    Pavo,
+    Otro
 
 
 }

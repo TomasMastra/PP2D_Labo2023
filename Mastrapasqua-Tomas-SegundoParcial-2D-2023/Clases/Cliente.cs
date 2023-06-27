@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Clases
 {
-    public class Cliente : Usuario
+    public class Cliente : Usuario, IAgregarCarro
     {
         float dinero;
         float totalGastado;
@@ -95,7 +95,6 @@ namespace Clases
         public void VaciarCarro()
         {
             ListaComprasDAO.VaciarCarro(Id);
-
             ListaCompras.Clear();
         }
 
@@ -103,16 +102,16 @@ namespace Clases
         public bool AgregarCarro(ListaCompras productoComprado)
         {
             bool existe = false;
-            // List<ListaCompras> listaTemporal = new List<ListaCompras>();
 
             Carniceria producto = Tienda.ObtenerCorteCarne(productoComprado.IdProducto);
             int precioTotal = producto.PreciosCarne * productoComprado.CantidadComprada;
             if (ListaCompras.Count > 0)
             {
                 
+
                 foreach (ListaCompras listaCompras in ListaCompras)
                 {
-                    if (producto.IdCarne == listaCompras.IdProducto)//ver
+                    if (producto.IdCarne == listaCompras.IdProducto)
                     {
                         listaCompras.Modificar(productoComprado.CantidadComprada, precioTotal);
                         
@@ -146,6 +145,13 @@ namespace Clases
             ListaCompras = carro;
         }
 
-       
+        public string MostrarMensajeBienvenida(string mensaje)
+        {
+            return $"{mensaje} {Nombre}";
+            
+        }
+        delegate string MiDelegado(string mensaje);
+
+
     }
 }
