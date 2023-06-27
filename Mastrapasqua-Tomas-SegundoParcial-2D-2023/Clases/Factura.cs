@@ -38,7 +38,7 @@ namespace Clases
         /// </summary>
         
 
-        public string crearFactura(List<ListaCompras> carro, string archivo)
+        public string crearFactura(List<ListaCompras> carro, string archivo, Cliente cliente)
         {
             StringBuilder sb = new StringBuilder();
 
@@ -59,7 +59,7 @@ namespace Clases
                     int subtotal = producto.CantidadComprada * CorteCarne.PreciosCarne;
                     sb.AppendLine("------------------------");
                     sb.AppendLine($"Producto: {CorteCarne.CortesCarne}");
-                    sb.AppendLine($"Cantidad: {CorteCarne.CantidadCarne}");
+                    sb.AppendLine($"Cantidad: {producto.CantidadComprada}");
                     sb.AppendLine($"Precio unitario: {CorteCarne.PreciosCarne}");
                     sb.AppendLine($"Subtotal: {subtotal}");
                     sb.AppendLine("------------------------");

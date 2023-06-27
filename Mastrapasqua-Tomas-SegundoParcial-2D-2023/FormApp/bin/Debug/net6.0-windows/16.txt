@@ -1,0 +1,20 @@
+FACTURA
+-------
+Nombre del comprador: Juan Pérez
+Total: 9000
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Carne picada
+Cantidad: 45
+Precio unitario: 1600
+Subtotal: 8000
+------------------------
+------------------------
+Producto: Papas fritas
+Cantidad: 2
+Precio unitario: 1000
+Subtotal: 1000
+------------------------
+Total a pagar: 9000

@@ -157,6 +157,8 @@ namespace FormApp
                         Tienda.AgregarCarne(carne);
                         CarniceriaDAO.AgregarCarne(carne);
 
+                        MessageBox.Show($"Se agrego: {carne.CortesCarne}");
+
                         this.Hide();
 
                     }
@@ -175,6 +177,8 @@ namespace FormApp
 
                             carneModificar.modificar(carneModificar);
                             CarniceriaDAO.ModificarCarne(carneModificar);
+                            MessageBox.Show($"Se Modifico: {carneModificar.CortesCarne}");
+
 
                             this.Hide();
                         }
@@ -198,7 +202,7 @@ namespace FormApp
                         Carniceria carneEliminar = carne[ListaCortesCarne.SelectedIndex];
                         CarniceriaDAO.EliminarCarne(carneEliminar.IdCarne);
 
-                        MessageBox.Show(carneEliminar.CortesCarne);
+                        MessageBox.Show($"Se elimino: {carneEliminar.CortesCarne}");
 
                         this.Hide();
                     }

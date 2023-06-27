@@ -181,7 +181,7 @@ namespace Clases
             {
                 Factura factura = new Factura(ObtenerUltimoIdFactura() + 1, totalCompra, cliente.Nombre, (DateTime.Now).ToString());
                 AgregarFactura(factura);
-                string facturaArchivo = factura.crearFactura(cliente.ListaCompras, factura.Archivo);
+                string facturaArchivo = factura.crearFactura(cliente.ListaCompras, factura.Archivo, cliente);
 
                 //string currentDirectory = Environment.CurrentDirectory;
                 string archivo = $"{factura.Numero}.txt";

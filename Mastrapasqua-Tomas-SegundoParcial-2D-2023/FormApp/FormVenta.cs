@@ -337,21 +337,25 @@ namespace FormApp
             string noSeCompro;
             MiDelegado delegado = InvocarDelegado;
 
-
+            
             float total = 0;
             if (cliente.ListaCompras.Count > 0)
             {
 
 
                 noSeCompro = Tienda.Comprar(cliente, Recargo.Checked);
+                string FacturaArchivo = Archivos<String>.CargarDesdeArchivoTxt($"{Tienda.ObtenerUltimoIdFactura()}.txt");
+                int lastIndexOf = facturas.Count - 1; 
+                FormCarro formCarro = new FormCarro(facturas[lastIndexOf]); 
+                formCarro.Show();
 
-                if (noSeCompro.Length != 21)
+
+                if (noSeCompro.Length != 0)
                 {
                     delegado($"No se pudo comprar:\n{noSeCompro}");
                 }
                 else
                 {
-                    MessageBox.Show($"La compra se realizo con exito!!!");
                     delegado("La compra se realizo con exito");
 
                 }
