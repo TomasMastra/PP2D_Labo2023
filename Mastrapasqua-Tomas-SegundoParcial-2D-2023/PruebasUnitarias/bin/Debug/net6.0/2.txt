@@ -1,0 +1,26 @@
+FACTURA
+-------
+Nombre del comprador: Juan Pérez
+Total: 13400
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Nombre 222222modifwewewewewewicado
+Cantidad: 28
+Precio unitario: 1200
+Subtotal: 2400
+------------------------
+------------------------
+Producto: Bondiola
+Cantidad: 16
+Precio unitario: 2400
+Subtotal: 9600
+------------------------
+------------------------
+Producto: Salchicha
+Cantidad: 14
+Precio unitario: 1400
+Subtotal: 1400
+------------------------
+Total a pagar: 13400

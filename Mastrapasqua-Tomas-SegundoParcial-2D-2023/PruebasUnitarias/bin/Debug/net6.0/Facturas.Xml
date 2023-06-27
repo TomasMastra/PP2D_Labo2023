@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ArrayOfFactura xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Factura>
+    <Numero>1</Numero>
+    <Total>13400</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>26/6/2023 21:12:43</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>1</Numero>
+    <Total>13400</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>26/6/2023 21:13:10</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>1</Numero>
+    <Total>13400</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>26/6/2023 21:13:51</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>1</Numero>
+    <Total>13400</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>26/6/2023 21:14:21</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>2</Numero>
+    <Total>13400</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>26/6/2023 22:13:07</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>3</Numero>
+    <Total>13400</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>27/6/2023 18:22:06</Archivo>
+  </Factura>
+</ArrayOfFactura>
