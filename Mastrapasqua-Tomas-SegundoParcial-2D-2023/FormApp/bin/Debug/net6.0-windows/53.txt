@@ -1,0 +1,14 @@
+FACTURA
+-------
+Nombre del comprador: María González
+Total: 4500
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Barbacoa
+Cantidad: 1
+Precio unitario: 4500
+Subtotal: 4500
+------------------------
+Total a pagar: 4500

@@ -16,7 +16,6 @@ namespace Clases
         int precioCarne;
         int cantidadDisponible;
         Tipo tipoCarne;
-        int estado;
         int idCarne;
 
 
@@ -95,11 +94,7 @@ namespace Clases
         /// <summary>
         /// Propiedad Estado con getter y setter que permite devolver o asignarle un valor 
         /// </summary>
-        public int Estado
-        {
-            get { return estado; }
-            set { estado = value; }
-        }
+        
 
         /// <summary>
         /// Modifica los valores del corte de carne

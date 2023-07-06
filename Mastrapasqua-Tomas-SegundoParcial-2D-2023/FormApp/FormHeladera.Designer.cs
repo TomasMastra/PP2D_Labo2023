@@ -63,7 +63,12 @@
             BotonCancelarCliente = new Button();
             button2 = new Button();
             button3 = new Button();
-            lblTiempo = new Label();
+            labelHora = new Label();
+            button4 = new Button();
+            BotonSerializarJson = new Button();
+            button6 = new Button();
+            BotonDeserializarJson = new Button();
+            button5 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCarne).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Cantidad).BeginInit();
@@ -418,7 +423,6 @@
             button2.TabIndex = 109;
             button2.Text = "Guardar";
             button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
             // 
             // button3
             // 
@@ -434,15 +438,77 @@
             button3.Visible = false;
             button3.Click += button3_Click;
             // 
-            // lblTiempo
+            // labelHora
             // 
-            lblTiempo.AutoSize = true;
-            lblTiempo.ForeColor = SystemColors.ButtonHighlight;
-            lblTiempo.Location = new Point(1324, 14);
-            lblTiempo.Name = "lblTiempo";
-            lblTiempo.Size = new Size(13, 15);
-            lblTiempo.TabIndex = 111;
-            lblTiempo.Text = "0";
+            labelHora.AutoSize = true;
+            labelHora.ForeColor = SystemColors.ButtonHighlight;
+            labelHora.Location = new Point(1324, 14);
+            labelHora.Name = "labelHora";
+            labelHora.Size = new Size(13, 15);
+            labelHora.TabIndex = 111;
+            labelHora.Text = "0";
+            // 
+            // button4
+            // 
+            button4.BackColor = Color.Black;
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.ForeColor = Color.FromArgb(255, 128, 0);
+            button4.Location = new Point(613, 157);
+            button4.Name = "button4";
+            button4.Size = new Size(120, 23);
+            button4.TabIndex = 112;
+            button4.Text = "Serializar en Xml";
+            button4.UseVisualStyleBackColor = false;
+            button4.Click += BotonSerializarXml_Click;
+            // 
+            // BotonSerializarJson
+            // 
+            BotonSerializarJson.BackColor = Color.Black;
+            BotonSerializarJson.FlatStyle = FlatStyle.Flat;
+            BotonSerializarJson.ForeColor = Color.FromArgb(128, 128, 255);
+            BotonSerializarJson.Location = new Point(613, 202);
+            BotonSerializarJson.Name = "BotonSerializarJson";
+            BotonSerializarJson.Size = new Size(120, 23);
+            BotonSerializarJson.TabIndex = 113;
+            BotonSerializarJson.Text = "Serializar en Json";
+            BotonSerializarJson.UseVisualStyleBackColor = false;
+            BotonSerializarJson.Click += BotonSerializarJson_Click;
+            // 
+            // button6
+            // 
+            button6.BackColor = Color.Black;
+            button6.FlatStyle = FlatStyle.Flat;
+            button6.ForeColor = Color.FromArgb(255, 128, 0);
+            button6.Location = new Point(739, 157);
+            button6.Name = "button6";
+            button6.Size = new Size(120, 23);
+            button6.TabIndex = 114;
+            button6.Text = "Deserializar en Xml";
+            button6.UseVisualStyleBackColor = false;
+            button6.Click += BotonDeserializarXml_Click;
+            // 
+            // BotonDeserializarJson
+            // 
+            BotonDeserializarJson.BackColor = Color.Black;
+            BotonDeserializarJson.FlatStyle = FlatStyle.Flat;
+            BotonDeserializarJson.ForeColor = Color.FromArgb(128, 128, 255);
+            BotonDeserializarJson.Location = new Point(739, 202);
+            BotonDeserializarJson.Name = "BotonDeserializarJson";
+            BotonDeserializarJson.Size = new Size(120, 23);
+            BotonDeserializarJson.TabIndex = 115;
+            BotonDeserializarJson.Text = "Deserializar en Json";
+            BotonDeserializarJson.UseVisualStyleBackColor = false;
+            BotonDeserializarJson.Click += BotonDeserializarJson_Click;
+            // 
+            // button5
+            // 
+            button5.Location = new Point(621, 431);
+            button5.Name = "button5";
+            button5.Size = new Size(112, 23);
+            button5.TabIndex = 116;
+            button5.Text = "Agregar stock";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
             // Heladera
             // 
@@ -450,7 +516,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(30, 30, 30);
             ClientSize = new Size(1390, 651);
-            Controls.Add(lblTiempo);
+            Controls.Add(button5);
+            Controls.Add(BotonDeserializarJson);
+            Controls.Add(button6);
+            Controls.Add(BotonSerializarJson);
+            Controls.Add(button4);
+            Controls.Add(labelHora);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(BotonCancelarCliente);
@@ -529,7 +600,12 @@
         private Button BotonCancelarCliente;
         private Button button2;
         private Button button3;
-        private Label lblTiempo;
+        private Label labelHora;
+        private Button button4;
+        private Button BotonSerializarJson;
+        private Button button6;
+        private Button BotonDeserializarJson;
+        private Button button5;
         //private ListBox CarroCliente;
     }
 }

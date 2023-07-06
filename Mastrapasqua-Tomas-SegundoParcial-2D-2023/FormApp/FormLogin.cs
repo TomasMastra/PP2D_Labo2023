@@ -23,15 +23,10 @@ namespace FormApp
         private void FormLogin_Load(object sender, EventArgs e)
         {
 
-
-          
             Tienda.CargarTienda();
 
             establecerDatos();
-            
-
-            string currentDirectory = Environment.CurrentDirectory;
-
+   
 
         }
 
@@ -72,10 +67,7 @@ namespace FormApp
 
             if (usuario != null)
             {
-                /*SoundPlayer sonidoLogin = new SoundPlayer();
-                sonidoLogin.SoundLocation = "C:/Users/Tomas Mastra/source/repos/FormApp/Resources";
 
-                sonidoLogin.Play();*/
 
                 if (usuario.Rol == 1)
                 {
@@ -112,9 +104,7 @@ namespace FormApp
             else
             {
                 TextError.ForeColor = Color.Red;
-                /*SoundPlayer sonidoError = new SoundPlayer();
-                sonidoError.SoundLocation = "C:/Users/Tomas Mastra/source/repos/FormApp/Resources/Error.wav";
-                sonidoError.Play();*/
+               
 
 
             }
@@ -128,26 +118,8 @@ namespace FormApp
         /// <param name="mail">Correo electrónico a buscar.</param>
         /// <returns>Índice del usuario si se encuentra, de lo contrario, -1 (No se encontró nada)</returns>
         public Usuario buscarUsuario(List<Usuario> usuario, string mail, string password)
-        {
-            /*  int index = -1;
-              Usuario usuarioNuevo = null;
-
-
-              foreach (Usuario user in usuario)
-              {
-
-                  if (user.Mail == mail && user.Password == password)
-                  {
-                      // index = i;
-                      usuarioNuevo = user;
-                      break;
-
-                  }
-              }*/
-
-            return usuario.Find(u => u.Mail == mail && u.Password == password);
-            
-
+        {          
+            return usuario.Find(u => u.Mail == mail && u.Password == password);           
 
         }
 

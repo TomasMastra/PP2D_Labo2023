@@ -2,52 +2,6 @@
 <ArrayOfFactura xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Factura>
     <Numero>1</Numero>
-    <Total>7000</Total>
-    <Mail>Juan Pérez</Mail>
-  </Factura>
-  <Factura>
-    <Numero>2</Numero>
-    <Total>9000</Total>
-    <Mail>María González</Mail>
-  </Factura>
-  <Factura>
-    <Numero>1</Numero>
-    <Total>102100</Total>
-    <Mail>María González</Mail>
-    <Archivo>26/6/2023 20:10:03</Archivo>
-  </Factura>
-  <Factura>
-    <Numero>1</Numero>
-    <Total>3666</Total>
-    <Mail>Juan Pérez</Mail>
-    <Archivo>26/6/2023 20:19:43</Archivo>
-  </Factura>
-  <Factura>
-    <Numero>1</Numero>
-    <Total>6000</Total>
-    <Mail>Carlos Rodríguez</Mail>
-    <Archivo>26/6/2023 21:54:36</Archivo>
-  </Factura>
-  <Factura>
-    <Numero>1</Numero>
-    <Total>6110</Total>
-    <Mail>Carlos Rodríguez</Mail>
-    <Archivo>26/6/2023 21:56:26</Archivo>
-  </Factura>
-  <Factura>
-    <Numero>1</Numero>
-    <Total>48200</Total>
-    <Mail>Carlos Rodríguez</Mail>
-    <Archivo>26/6/2023 22:03:07</Archivo>
-  </Factura>
-  <Factura>
-    <Numero>1</Numero>
-    <Total>162350</Total>
-    <Mail>María González</Mail>
-    <Archivo>26/6/2023 22:04:50</Archivo>
-  </Factura>
-  <Factura>
-    <Numero>1</Numero>
     <Total>36150</Total>
     <Mail>Juan Pérez</Mail>
     <Archivo>26/6/2023 22:08:02</Archivo>
@@ -189,5 +143,317 @@
     <Total>1700</Total>
     <Mail>Juan Pérez</Mail>
     <Archivo>27/6/2023 18:13:32</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>25</Numero>
+    <Total>1</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>27/6/2023 19:27:56</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>26</Numero>
+    <Total>3</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>27/6/2023 21:16:27</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>27</Numero>
+    <Total>1200</Total>
+    <Mail>Carlos Rodríguez</Mail>
+    <Archivo>27/6/2023 21:19:28</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>28</Numero>
+    <Total>7400</Total>
+    <Mail>Carlos Rodríguez</Mail>
+    <Archivo>27/6/2023 21:19:36</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>29</Numero>
+    <Total>6</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 12:36:48</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>30</Numero>
+    <Total>1050</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 12:40:55</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>31</Numero>
+    <Total>1170</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 12:43:32</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>32</Numero>
+    <Total>8500</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 12:46:26</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>33</Numero>
+    <Total>8000</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 12:49:57</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>34</Numero>
+    <Total>2400</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 12:50:57</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>35</Numero>
+    <Total>800</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 12:51:53</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>36</Numero>
+    <Total>1200</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 12:52:13</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>37</Numero>
+    <Total>4200</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 12:53:43</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>38</Numero>
+    <Total>24100</Total>
+    <Mail>Carlos Rodríguez</Mail>
+    <Archivo>4/7/2023 15:09:39</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>39</Numero>
+    <Total>3800</Total>
+    <Mail>Carlos Rodríguez</Mail>
+    <Archivo>4/7/2023 15:11:14</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>40</Numero>
+    <Total>1200</Total>
+    <Mail>Carlos Rodríguez</Mail>
+    <Archivo>4/7/2023 15:12:56</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>41</Numero>
+    <Total>2000</Total>
+    <Mail>Carlos Rodríguez</Mail>
+    <Archivo>4/7/2023 15:13:03</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>42</Numero>
+    <Total>27300</Total>
+    <Mail>María González</Mail>
+    <Archivo>4/7/2023 15:35:56</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>43</Numero>
+    <Total>1600</Total>
+    <Mail>María González</Mail>
+    <Archivo>4/7/2023 15:36:05</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>44</Numero>
+    <Total>5700</Total>
+    <Mail>María González</Mail>
+    <Archivo>4/7/2023 15:36:10</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>45</Numero>
+    <Total>507280</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 15:36:19</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>46</Numero>
+    <Total>15600</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 15:38:07</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>47</Numero>
+    <Total>3200</Total>
+    <Mail>Carlos Rodríguez</Mail>
+    <Archivo>4/7/2023 15:44:25</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>48</Numero>
+    <Total>6400</Total>
+    <Mail>María González</Mail>
+    <Archivo>4/7/2023 15:46:19</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>49</Numero>
+    <Total>530680</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 15:47:41</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>50</Numero>
+    <Total>5000</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 15:54:57</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>51</Numero>
+    <Total>10100</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 15:57:07</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>52</Numero>
+    <Total>14900</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 15:59:01</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>53</Numero>
+    <Total>4500</Total>
+    <Mail>María González</Mail>
+    <Archivo>4/7/2023 16:02:07</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>54</Numero>
+    <Total>7500</Total>
+    <Mail>María González</Mail>
+    <Archivo>4/7/2023 16:02:19</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>55</Numero>
+    <Total>3800</Total>
+    <Mail>Carlos Rodríguez</Mail>
+    <Archivo>4/7/2023 16:02:24</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>56</Numero>
+    <Total>24900</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 16:06:43</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>57</Numero>
+    <Total>12900</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 16:12:06</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>58</Numero>
+    <Total>18300</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 16:32:45</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>59</Numero>
+    <Total>25400</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 17:07:49</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>60</Numero>
+    <Total>7200</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 17:14:33</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>61</Numero>
+    <Total>3800</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 17:14:54</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>62</Numero>
+    <Total>9400</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 17:17:38</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>63</Numero>
+    <Total>2000</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 17:18:40</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>64</Numero>
+    <Total>4000</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 17:20:39</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>65</Numero>
+    <Total>2000</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 17:22:25</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>66</Numero>
+    <Total>5700</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 17:22:34</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>67</Numero>
+    <Total>6405</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 17:25:34</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>68</Numero>
+    <Total>6.3</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 17:26:31</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>69</Numero>
+    <Total>5670</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 17:27:41</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>70</Numero>
+    <Total>1000</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 17:27:54</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>71</Numero>
+    <Total>2400</Total>
+    <Mail>María González</Mail>
+    <Archivo>4/7/2023 17:28:59</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>72</Numero>
+    <Total>2400</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>4/7/2023 17:48:14</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>73</Numero>
+    <Total>10400</Total>
+    <Mail>Carlos Rodríguez</Mail>
+    <Archivo>5/7/2023 22:14:08</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>74</Numero>
+    <Total>4800</Total>
+    <Mail>María González</Mail>
+    <Archivo>5/7/2023 22:15:10</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>75</Numero>
+    <Total>4800</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>5/7/2023 22:16:24</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>76</Numero>
+    <Total>1.4080655E+09</Total>
+    <Mail>María González</Mail>
+    <Archivo>5/7/2023 22:17:48</Archivo>
   </Factura>
 </ArrayOfFactura>

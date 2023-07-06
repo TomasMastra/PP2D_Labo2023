@@ -1,0 +1,14 @@
+FACTURA
+-------
+Nombre del comprador: Carlos Rodríguez
+Total: 2000
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Morcilla
+Cantidad: 2
+Precio unitario: 1000
+Subtotal: 2000
+------------------------
+Total a pagar: 2000

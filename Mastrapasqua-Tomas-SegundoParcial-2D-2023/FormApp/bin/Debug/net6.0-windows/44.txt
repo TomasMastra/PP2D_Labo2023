@@ -1,0 +1,14 @@
+FACTURA
+-------
+Nombre del comprador: María González
+Total: 5700
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Milanesa de pollo
+Cantidad: 3
+Precio unitario: 1900
+Subtotal: 5700
+------------------------
+Total a pagar: 5700

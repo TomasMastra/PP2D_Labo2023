@@ -1,0 +1,14 @@
+FACTURA
+-------
+Nombre del comprador: Juan Pérez
+Total: 7200
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Bondiola
+Cantidad: 3
+Precio unitario: 2400
+Subtotal: 7200
+------------------------
+Total a pagar: 7200

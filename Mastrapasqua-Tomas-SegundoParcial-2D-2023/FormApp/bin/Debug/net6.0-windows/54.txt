@@ -1,0 +1,20 @@
+FACTURA
+-------
+Nombre del comprador: María González
+Total: 7500
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Carne picada
+Cantidad: 3
+Precio unitario: 1600
+Subtotal: 4800
+------------------------
+------------------------
+Producto: Cebolla
+Cantidad: 3
+Precio unitario: 900
+Subtotal: 2700
+------------------------
+Total a pagar: 7500

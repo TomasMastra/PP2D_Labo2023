@@ -1,0 +1,14 @@
+FACTURA
+-------
+Nombre del comprador: Carlos Rodríguez
+Total: 3800
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Milanesa de pollo
+Cantidad: 2
+Precio unitario: 1900
+Subtotal: 3800
+------------------------
+Total a pagar: 3800

@@ -9,7 +9,7 @@ namespace Clases
     public class ExcepcionServidor : Exception
     {
 
-        public ExcepcionServidor(string mensaje) : base(mensaje)
+        public ExcepcionServidor(string mensaje, List<Exception> e) : base(mensaje)
         {
 
         }

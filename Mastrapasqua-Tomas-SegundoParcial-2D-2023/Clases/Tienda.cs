@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Clases;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +23,12 @@ namespace Clases
         public static List<Cliente> clientes = new List<Cliente>();
         public static List<Factura> facturas = new List<Factura>();
 
-        
-         
-        
+        public delegate void DelegadoStock(InfoCarneEventArgs infoCarne);
+        public static event DelegadoStock StockEnCero;
+
+
+
+
         public static List<Carniceria> listaCarne
         {
             get { return carne; }
@@ -82,16 +86,10 @@ namespace Clases
         {
             if (corte != null)
             {
-                foreach (Carniceria producto in carne)
-                {
-                    if (producto == corte)
-                    {
-                        return false;
-                    }
-                }
+               
                 carne.Add(corte);
-               // SerializarCorte();
                 return true;
+
             }
             return false;
         }
@@ -136,42 +134,43 @@ namespace Clases
             return vendedores;
         }
 
-     
 
-        public static string Comprar(Cliente cliente, bool esRecargo) // Compra todo el carro
+
+        public static string Comprar(Cliente cliente, bool esRecargo)
         {
             float totalCompra = 0;
             StringBuilder sb = new StringBuilder();
+            List<ListaCompras> auxListaCompras = new List<ListaCompras>(cliente.ListaCompras);
 
-            
-                foreach(ListaCompras carro in cliente.ListaCompras)
+            for (int i = auxListaCompras.Count - 1; i >= 0; i--)
+            {
+                ListaCompras carro = auxListaCompras[i];
+                Carniceria carne = BuscarCarne(carro.IdProducto);
+
+                if (carro.IdProducto == carne.IdCarne)
                 {
-                    Carniceria carne = BuscarCarne(carro.IdProducto);
-                    if (carro.IdProducto == carne.IdCarne)// Compara si es el mismo producto
+                    if (carne.CantidadCarne >= carro.CantidadComprada)
                     {
-                        if (carne.CantidadCarne >= carro.CantidadComprada)// Compara si hay stock para vender
-                        {
-                            totalCompra += (carro.CantidadComprada * carne.PreciosCarne);
-
-                            carne.CantidadCarne -= carro.CantidadComprada;
-                            carne.modificar(carne);
-
+                        totalCompra += (carro.CantidadComprada * carne.PreciosCarne);
+                        carne.CantidadCarne -= carro.CantidadComprada;
+                        CarniceriaDAO.ModificarCarne(carne);
+                        //carro.modificar(carro.CantidadComprada, carne.PreciosCarne);
                     }
                     else
-                        {
-                            sb.Append($"{carro.CantidadComprada}KG {carne.CortesCarne}\n"); // Caso de que no se pudo comprar se agrega al stringbuilder que muestra todo lo que no se pudo comprar
-                            cliente.ListaCompras.Remove(carro);
-                        }
-
+                    {
+                        sb.Append($"{carro.CantidadComprada}KG {carne.CortesCarne}\n");
+                        auxListaCompras.Remove(carro);
                     }
-
-
                 }
+            }
 
             totalCompra = CalcularTotal(totalCompra, esRecargo);
             CrearFactura(cliente, totalCompra, esRecargo);
             return sb.ToString();
         }
+
+       
+
 
         public static void CrearFactura(Cliente cliente, float totalCompra, bool esRecargo)
         {
@@ -191,8 +190,9 @@ namespace Clases
 
 
             }
-            cliente.ListaCompras.Clear();
-            ListaComprasDAO.VaciarCarro(cliente.Id);
+          //  ListaComprasDAO.VaciarCarro(cliente.Id);
+            cliente.VaciarCarro();
+         //   cliente.ListaCompras.Clear();
         }
 
 
@@ -282,6 +282,33 @@ namespace Clases
             }
 
             return corteCarne;
+        }
+
+
+        public static void AgregarStock()
+        {
+            foreach (Carniceria carne in carne)
+            {
+                if (carne.CantidadCarne == 0)
+                {
+                    InfoCarneEventArgs infoCarne = new InfoCarneEventArgs(carne);
+
+                    if (StockEnCero is not null)
+                    {
+                        try
+                        {
+                            carne.CantidadCarne += 50;
+                            CarniceriaDAO.ModificarCarne(carne);
+                            StockEnCero.Invoke(infoCarne);// Invoca el evento y se ejecutan los metodos suscritos
+
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception($"Hubo un error al cargar stock: {ex}");
+                        }
+                    }
+                }
+            }
         }
 
     }

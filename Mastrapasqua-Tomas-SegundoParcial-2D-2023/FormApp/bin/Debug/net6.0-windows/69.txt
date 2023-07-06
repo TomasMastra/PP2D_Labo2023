@@ -1,0 +1,14 @@
+FACTURA
+-------
+Nombre del comprador: Juan Pérez
+Total: 5670
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Cebolla
+Cantidad: 6
+Precio unitario: 900
+Subtotal: 5400
+------------------------
+Total a pagar: 5670

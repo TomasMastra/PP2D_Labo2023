@@ -1,0 +1,14 @@
+FACTURA
+-------
+Nombre del comprador: María González
+Total: 1,4080655E+09
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Calamar
+Cantidad: 99984
+Precio unitario: 99996
+Subtotal: 1408065472
+------------------------
+Total a pagar: 1,4080655E+09

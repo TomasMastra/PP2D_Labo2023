@@ -99,44 +99,31 @@ namespace Clases
         }
 
 
-        public bool AgregarCarro(ListaCompras productoComprado)
+        public bool AgregarCarro(ListaCompras productoComprado)//ver porque no modifica
         {
             bool existe = false;
 
             Carniceria producto = Tienda.ObtenerCorteCarne(productoComprado.IdProducto);
             int precioTotal = producto.PreciosCarne * productoComprado.CantidadComprada;
-            if (ListaCompras.Count > 0)
+            Console.WriteLine(producto.IdCarne == productoComprado.IdProducto);
+
+            ListaCompras productoExistente = ListaCompras.Find(p => p.IdProducto == productoComprado.IdProducto);
+            Console.WriteLine($"existe: {productoExistente == null}");
+
+            if (productoExistente != null)
             {
-                
-
-                foreach (ListaCompras listaCompras in ListaCompras)
-                {
-                    if (producto.IdCarne == listaCompras.IdProducto)
-                    {
-                        listaCompras.Modificar(productoComprado.CantidadComprada, precioTotal);
-                        
-                        ListaComprasDAO.ModificarProducto(listaCompras.CantidadComprada,  listaCompras.IdCarro);
-                        existe = true;
-                        break;
-                    }
-
-                }
-
-                if (!existe)
-                {
-                    ListaCompras.Add(productoComprado);
-                    ListaComprasDAO.AgregarCarro(productoComprado);
-                }
+                productoExistente.Modificar(productoComprado.CantidadComprada, precioTotal);
+                ListaComprasDAO.ModificarProducto(productoExistente.CantidadComprada, productoComprado.IdCarro);
+                existe = true;
             }
             else
             {
                 ListaCompras.Add(productoComprado);
                 ListaComprasDAO.AgregarCarro(productoComprado);
-
-
             }
 
             return existe;
+
         }
 
 

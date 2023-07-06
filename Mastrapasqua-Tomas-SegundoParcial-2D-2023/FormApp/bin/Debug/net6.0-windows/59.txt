@@ -1,0 +1,74 @@
+FACTURA
+-------
+Nombre del comprador: Juan Pérez
+Total: 25400
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Pata Muslo
+Cantidad: 5
+Precio unitario: 1000
+Subtotal: 5000
+------------------------
+------------------------
+Producto: Barbacoa
+Cantidad: 12
+Precio unitario: 4500
+Subtotal: 54000
+------------------------
+------------------------
+Producto: Morron
+Cantidad: 2
+Precio unitario: 600
+Subtotal: 1200
+------------------------
+------------------------
+Producto: Salchicha de cerdo
+Cantidad: 3
+Precio unitario: 1400
+Subtotal: 4200
+------------------------
+------------------------
+Producto: Jengibre
+Cantidad: 2
+Precio unitario: 300
+Subtotal: 600
+------------------------
+------------------------
+Producto: Morcilla
+Cantidad: 1
+Precio unitario: 1000
+Subtotal: 1000
+------------------------
+------------------------
+Producto: Huevo de pavo *30
+Cantidad: 1
+Precio unitario: 1200
+Subtotal: 1200
+------------------------
+------------------------
+Producto: Asado
+Cantidad: 1
+Precio unitario: 2000
+Subtotal: 2000
+------------------------
+------------------------
+Producto: Huevos * 30
+Cantidad: 2
+Precio unitario: 1700
+Subtotal: 3400
+------------------------
+------------------------
+Producto: Milanesa de cerdo
+Cantidad: 6
+Precio unitario: 1200
+Subtotal: 7200
+------------------------
+------------------------
+Producto: Milanesa de pollo
+Cantidad: 2
+Precio unitario: 1900
+Subtotal: 3800
+------------------------
+Total a pagar: 25400

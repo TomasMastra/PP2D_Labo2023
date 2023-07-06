@@ -130,7 +130,7 @@ namespace Clases
         {
             string connectionString = @"Data Source=DESKTOP-Q9JTH4D;Database=CARNICERIA;Trusted_Connection=True;";
 
-            string query = "DELETE FROM CARRO WHERE ID_CARRO = @Id";
+            string query = "DELETE FROM CARRO WHERE ID_PRODUCTO = @Id";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -161,6 +161,80 @@ namespace Clases
                 connection.Open();
                 command.ExecuteNonQuery();
             }
+        }
+
+        public static int ObtenerUltimoId()
+        {
+            int id = 0;
+            // Establecer la cadena de conexión
+            string connectionString = @"Data Source=DESKTOP-Q9JTH4D;Database=CARNICERIA;Trusted_Connection=True;";
+
+            // Crear la conexión a la base de datos
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    // Abrir la conexión
+                    connection.Open();
+                    /*
+                     * 
+                     * 
+                     * 
+                     * 
+                    // Crear el comando SQL para obtener los datos de la tabla "VENDEDOR"
+                    string query = "SELECT * FROM VENDEDOR;";
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    // Ejecutar el comando y obtener los datos en un SqlDataReader
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    // Leer los datos y agregarlos a la lista de Vendedores
+                    while (reader.Read())
+                    {
+
+                       // if (usuario.Id == usuarioId)
+                        {
+                            Vendedor vendedor = new Vendedor();
+
+                            // Usuario
+                            vendedor.Id = Convert.ToInt32(reader["ID"]);*/
+                    string query = "SELECT * FROM CARRO;";
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    // Ejecutar el comando y obtener los datos en un SqlDataReader
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    // Leer los datos y agregarlos a la lista de Carne
+                    while (reader.Read())
+                    {
+                        int idCarro = Convert.ToInt32(reader["ID_CARRO"]); // id del cliente que agrego ese producto a su carro
+
+                        // Compara si el producto le pertenece a ese cliente
+                        if (idCarro > id)
+                        {
+                            id = idCarro;
+                        }
+                    }
+
+                    // Cerrar el SqlDataReader
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    // Manejo de excepciones
+                    Console.WriteLine($"Error al obtener el id  {id}: " + ex.Message);
+                }
+                finally
+                {
+                    // Asegurarse de cerrar el SqlDataReader en caso de excepción
+                    /* if (reader != null && !reader.IsClosed)
+                     {
+                         reader.Close();
+                     }*/
+                }
+            }
+
+            return id;
         }
 
     }

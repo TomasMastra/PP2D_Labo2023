@@ -1,0 +1,44 @@
+FACTURA
+-------
+Nombre del comprador: Carlos Rodríguez
+Total: 24100
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Milanesa de pollo
+Cantidad: 4
+Precio unitario: 1900
+Subtotal: 7600
+------------------------
+------------------------
+Producto: Huevo de pavo *30
+Cantidad: 2
+Precio unitario: 1200
+Subtotal: 2400
+------------------------
+------------------------
+Producto: Morcilla
+Cantidad: 8
+Precio unitario: 1000
+Subtotal: 8000
+------------------------
+------------------------
+Producto: Papas fritas
+Cantidad: 3
+Precio unitario: 1000
+Subtotal: 3000
+------------------------
+------------------------
+Producto: Salchicha de cerdo
+Cantidad: 2
+Precio unitario: 1400
+Subtotal: 2800
+------------------------
+------------------------
+Producto: Morron
+Cantidad: 1
+Precio unitario: 300
+Subtotal: 300
+------------------------
+Total a pagar: 24100

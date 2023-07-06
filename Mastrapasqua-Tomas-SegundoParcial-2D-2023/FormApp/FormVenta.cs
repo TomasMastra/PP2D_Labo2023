@@ -57,12 +57,19 @@ namespace FormApp
         public void inicializar()
         {
             List<Carniceria> carne = Tienda.ObtenerCarne();
+            DatosCarne.Items.Clear();   
 
             foreach (Carniceria corte in carne)
             {
                 DatosCarne.Items.Add(corte.CortesCarne);
             }
 
+            Tipo.Text = "";
+            CantidadDisponible.Text = "";
+            Precio.Text = "";
+            CantidadComprar.Text = "";
+            TotalComprar.Text = "0";
+            TotalPagar.Text = "0";
 
         }
 
@@ -91,6 +98,7 @@ namespace FormApp
             bool existe = false;
 
             int idCarro = Tienda.ObtenerUltimoIdCarro() + 1;
+            MessageBox.Show(idCarro.ToString());
             int idCliente = cliente.Id;
             int idProducto;
             int cantidad;
@@ -106,13 +114,26 @@ namespace FormApp
 
                         if (this.monto >= Convert.ToInt32(totalPagar) && CantidadComprar.Value > 0)
                         {
+                           
+                            ListaCompras carro = new ListaCompras(idCarro, cliente.Id, carne[DatosCarne.SelectedIndex].IdCarne, Convert.ToInt32(CantidadComprar.Value));
+                            existe = cliente.AgregarCarro(carro);
+                            Carniceria producto = Tienda.ObtenerCorteCarne(carro.IdProducto);
 
-                            existe = cliente.AgregarCarro(new ListaCompras(idCarro, cliente.Id, carne[DatosCarne.SelectedIndex].IdCarne, Convert.ToInt32(CantidadComprar.Value)));
+                            // Suponiendo que carro es un objeto de la clase ListaCompras
+                            MessageBox.Show($"ID Carro: {carro.IdCarro}\n" +
+                                            $"ID Cliente: {carro.IdCliente}\n" +
+                                            $"ID Carne: {carro.IdProducto} - {producto.IdCarne}\n" +
+                                            $"Cantidad Comprar: {carro.CantidadComprada}");
 
                             monto = monto - totalPagar;
                             TextoMonto.Text = $"Monto disponible: {monto.ToString()}";
-                            MessageBox.Show($"Monto disponible: {monto}");
+                            MessageBox.Show($"Monto disponible: {monto}, Lista: {cliente.ListaCompras.Count}");
                             TotalComprar.Text = (Convert.ToInt32(TotalPagar.Text) + Convert.ToInt32(TotalComprar.Text)).ToString();
+                            DatosCarne.SelectedIndex = -1;
+                            Tipo.Text = "";
+                            CantidadDisponible.Text = "";
+                            Precio.Text = "";
+                            CantidadComprar.Text = "";
 
                         }
                         else
@@ -357,6 +378,7 @@ namespace FormApp
                 else
                 {
                     delegado("La compra se realizo con exito");
+                    inicializar();
 
                 }
 
@@ -373,10 +395,8 @@ namespace FormApp
 
         private void InvocarDelegado(string mensaje)
         {
-            // Verificar si el delegado tiene asignado algún método
             if (mensaje != null)
             {
-                // Invocar el delegado pasando el mensaje como argumento
                 MessageBox.Show(mensaje);
             }
         }

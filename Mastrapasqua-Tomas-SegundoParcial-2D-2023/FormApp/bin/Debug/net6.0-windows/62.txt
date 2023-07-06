@@ -1,0 +1,26 @@
+FACTURA
+-------
+Nombre del comprador: Juan Pérez
+Total: 9400
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Asado
+Cantidad: 3
+Precio unitario: 2000
+Subtotal: 6000
+------------------------
+------------------------
+Producto: Alitas de polo
+Cantidad: 1
+Precio unitario: 400
+Subtotal: 400
+------------------------
+------------------------
+Producto: Morcilla
+Cantidad: 3
+Precio unitario: 1000
+Subtotal: 3000
+------------------------
+Total a pagar: 9400

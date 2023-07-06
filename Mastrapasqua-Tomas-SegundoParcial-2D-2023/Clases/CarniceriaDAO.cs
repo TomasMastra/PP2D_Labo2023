@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 
 namespace Clases
 {
@@ -11,6 +12,7 @@ namespace Clases
     {
 
         private static string connectionString = @"Data Source=DESKTOP-Q9JTH4D;Database=CARNICERIA;Trusted_Connection=True;";
+        private static SqlConnection connection;
 
         // OBTENER LISTA
 
@@ -52,7 +54,7 @@ namespace Clases
                         
                         Carniceria carne = new Carniceria(id, corte, precio, cantidad, tipoCarne);
                         listaCarne.Add(carne);
-                        Tienda.AgregarCarne(carne);
+                        //Tienda.AgregarCarne(carne);
                     }
 
                     // Cerrar el SqlDataReader
@@ -134,17 +136,41 @@ namespace Clases
         {
             string query = "INSERT INTO CARNE (ID_CARNE, CORTE, PRECIO, CANTIDAD_DISPONIBLE, TIPO) VALUES (@Id, @Corte, @Precio, @Cantidad, @Tipo)";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@Id", carne.IdCarne);
-                command.Parameters.AddWithValue("@Corte", carne.CortesCarne);
-                command.Parameters.AddWithValue("@Precio", carne.PreciosCarne);
-                command.Parameters.AddWithValue("@Cantidad", carne.CantidadCarne);
-                command.Parameters.AddWithValue("@Tipo", carne.TipoCarne.ToString());
+                using (connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@Id", carne.IdCarne);
+                    command.Parameters.AddWithValue("@Corte", carne.CortesCarne);
+                    command.Parameters.AddWithValue("@Precio", carne.PreciosCarne);
+                    command.Parameters.AddWithValue("@Cantidad", carne.CantidadCarne);
+                    command.Parameters.AddWithValue("@Tipo", carne.TipoCarne.ToString());
 
-                connection.Open();
-                command.ExecuteNonQuery();
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                List<Exception> innerExceptions = new List<Exception>();
+                if (ex is SqlException ||
+                    ex is InvalidOperationException ||
+                    ex is SqlNullValueException)
+                {
+                    innerExceptions.Add(ex);
+                }
+
+                if (innerExceptions.Count > 0)
+                {
+                    throw new ExcepcionServidor("Hubo un error con la base de datos", innerExceptions);
+                }
+            }
+            finally
+            {
+                connection.Close();
+
+
             }
         }
 
@@ -154,13 +180,35 @@ namespace Clases
         {
             string query = "DELETE FROM CARNE WHERE ID_CARNE = @Id";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@Id", id);
+                using (connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@Id", id);
 
-                connection.Open();
-                command.ExecuteNonQuery();
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                List<Exception> innerExceptions = new List<Exception>();
+                if (ex is SqlException ||
+                    ex is InvalidOperationException ||
+                    ex is SqlNullValueException)
+                {
+                    innerExceptions.Add(ex);
+                }
+
+                if (innerExceptions.Count > 0)
+                {
+                    throw new ExcepcionServidor("Hubo un error con la base de datos", innerExceptions);
+                }
+            }
+            finally
+            {
+                connection.Close();
             }
         }
 
@@ -169,73 +217,49 @@ namespace Clases
 
         public static void ModificarCarne(Carniceria carne)
         {
-            // Actualiza el corte de un id especifico
-            string query = "UPDATE CARNE SET CORTE = @Corte, PRECIO = @Precio, CANTIDAD_DISPONIBLE = @Cantidad, TIPO = @Tipo WHERE ID_CARNE = @Id";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@Id", carne.IdCarne);
-                command.Parameters.AddWithValue("@Corte", carne.CortesCarne);
-                command.Parameters.AddWithValue("@Precio", carne.PreciosCarne);
-                command.Parameters.AddWithValue("@Cantidad", carne.CantidadCarne);
-                command.Parameters.AddWithValue("@Tipo", carne.TipoCarne);
+                // Actualiza el corte de un id especifico
+                string query = "UPDATE CARNE SET CORTE = @Corte, PRECIO = @Precio, CANTIDAD_DISPONIBLE = @Cantidad, TIPO = @Tipo WHERE ID_CARNE = @Id";
 
-                connection.Open();
-                command.ExecuteNonQuery();
-            }
-        }
-
-
-        /// <summary>
-        /// Le pasamos por parametro una lista con los cortes modificados o agregados
-        /// Validamos mediante el id si existe para poder modificar y en el caso contraro lo agrega a la base de datos
-        /// </summary>
-        /// <param name="carne"></param>
-        public static void GuardarCambios(List<Carniceria> carne)
-        {
-            foreach (Carniceria car in Tienda.ObtenerCarne())
-            {
-                Console.WriteLine(car.Estado);
-            }
-
-           
-                try {
-                    
-
-                    foreach (Carniceria c in carne)
-                    {
-                    if (c.Estado > 0 && c.Estado < 4)
-                    {
-                        if (c.Estado == 2)//bien
-                        {
-                            Console.WriteLine($"Se eliminó {c.CortesCarne}");
-                            CarniceriaDAO.EliminarCarne(c.IdCarne);
-                        }
-                        else if (c.Estado == 3)//bien
-                        {
-                             Console.WriteLine($"Se modificó {c.CortesCarne}");
-                             CarniceriaDAO.ModificarCarne(c);
-                            
-                        }
-                        else //mal
-                        {
-                            Console.WriteLine($"Se agregó {c.CortesCarne}");
-                            CarniceriaDAO.AgregarCarne(c);
-                        }
-                    }
-
-
-
-                }
-                }
-                catch(Exception ex) 
+                using (connection = new SqlConnection(connectionString))
                 {
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@Id", carne.IdCarne);
+                    command.Parameters.AddWithValue("@Corte", carne.CortesCarne);
+                    command.Parameters.AddWithValue("@Precio", carne.PreciosCarne);
+                    command.Parameters.AddWithValue("@Cantidad", carne.CantidadCarne);
+                    command.Parameters.AddWithValue("@Tipo", carne.TipoCarne);
 
+                    connection.Open();
+                    command.ExecuteNonQuery();
                 }
-            
+            }
+            catch (Exception ex)
+            {
+                List<Exception> innerExceptions = new List<Exception>();
+                if (ex is SqlException ||
+                    ex is InvalidOperationException ||
+                    ex is SqlNullValueException)
+                {
+                    innerExceptions.Add(ex);
+                }
+
+                if (innerExceptions.Count > 0)
+                {
+                    throw new ExcepcionServidor("Hubo un error con la base de datos", innerExceptions);
+                }
+            }
+            finally
+            {
+                connection.Close();
+
+
+            }
         }
 
+
+       
 
         
     }

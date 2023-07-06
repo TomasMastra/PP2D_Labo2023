@@ -47,7 +47,7 @@ namespace Clases
                         int rol = Convert.ToInt32(reader["ROL"]);
 
                         Usuario usuario = new Usuario(id, edad,nombre, mail, password, rol);
-                        Tienda.AgregarUsuario(usuario);
+                      //  Tienda.AgregarUsuario(usuario);
                         usuarios.Add(usuario);
                     }
 

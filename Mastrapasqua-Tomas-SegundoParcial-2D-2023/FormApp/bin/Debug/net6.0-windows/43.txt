@@ -1,0 +1,14 @@
+FACTURA
+-------
+Nombre del comprador: María González
+Total: 1600
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Carne picada
+Cantidad: 1
+Precio unitario: 1600
+Subtotal: 1600
+------------------------
+Total a pagar: 1600

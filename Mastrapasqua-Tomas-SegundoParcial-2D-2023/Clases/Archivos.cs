@@ -36,10 +36,19 @@ namespace Clases
         public static string SerializarXml<T>(T datos)//VER <T>
         {
             XmlSerializer serializer = new XmlSerializer(typeof(T));
-            using (StringWriter writer = new StringWriter())
+
+            try
             {
-                serializer.Serialize(writer, datos);
-                return writer.ToString();
+                using (StringWriter writer = new StringWriter())
+                {
+                    serializer.Serialize(writer, datos);
+                    return writer.ToString();
+                }
+            }
+            catch(Exception ex)
+            {
+                return default(string);
+
             }
         }
 
@@ -53,17 +62,20 @@ namespace Clases
             }
         }
 
-        public static void GuardarEnArchivoJson(string path, T datos)
+        public static string GuardarEnArchivoJson(string path, T datos)
         {
             try
             {
                 string json = SerializarJson(datos);
                 File.WriteAllText(path, json);
                 Console.WriteLine("Datos guardados en archivo JSON.");
+                return json;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error al guardar en archivo JSON: {ex.Message}");
+                return default(string);
+
             }
         }
 
@@ -83,17 +95,18 @@ namespace Clases
             }
         }
 
-        public static void GuardarEnArchivoXml(string path, T datos)
+        public static string GuardarEnArchivoXml(string path, T datos)
         {
             try
             {
                 string xml = SerializarXml(datos);
                 File.WriteAllText(path, xml);
-
+                return xml;
             }
             catch (Exception ex) 
             {
                 Console.WriteLine($"Error al guardar en archivo XML: {ex.Message}");
+                return default(string);
                     
             }
         }
@@ -103,8 +116,9 @@ namespace Clases
             try
             {
                 string xml = File.ReadAllText(path);
-                return DeserializarXml(xml);
                 Console.WriteLine("Datos guardados en archivo XML.");
+
+                return DeserializarXml(xml);
 
             }
             catch (Exception ex)
@@ -160,7 +174,15 @@ namespace Clases
             return contenido;
         }
 
-
+        public void MostrarLista(List<T> listaDato)
+        {
+            {
+                foreach (T item in listaDato)
+                {
+                    Console.WriteLine(item);
+                }
+            }
+        }
 
     }
 

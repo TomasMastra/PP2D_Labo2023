@@ -22,5 +22,12 @@ namespace FormApp
         {
             return "La compra se realizo con exito";
         }
+
+        public static string ObtenerHora(this DateTime fecha)
+        {
+            fecha = DateTime.Now;
+            string fechaStr = fecha.ToString("HH:mm:ss");
+            return fechaStr;
+        }
     }
 }

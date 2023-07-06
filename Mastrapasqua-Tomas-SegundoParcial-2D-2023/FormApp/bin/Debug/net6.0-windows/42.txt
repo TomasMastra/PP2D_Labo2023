@@ -1,0 +1,44 @@
+FACTURA
+-------
+Nombre del comprador: María González
+Total: 27300
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Carne picada
+Cantidad: 5
+Precio unitario: 1600
+Subtotal: 8000
+------------------------
+------------------------
+Producto: Morron
+Cantidad: 10
+Precio unitario: 600
+Subtotal: 6000
+------------------------
+------------------------
+Producto: Bondiola
+Cantidad: 2
+Precio unitario: 2400
+Subtotal: 4800
+------------------------
+------------------------
+Producto: Salchicha de cerdo
+Cantidad: 8
+Precio unitario: 1400
+Subtotal: 11200
+------------------------
+------------------------
+Producto: Huevos * 30
+Cantidad: 5
+Precio unitario: 1700
+Subtotal: 8500
+------------------------
+------------------------
+Producto: Vacio
+Cantidad: 4
+Precio unitario: 1200
+Subtotal: 4800
+------------------------
+Total a pagar: 27300

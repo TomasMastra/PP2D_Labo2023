@@ -1,0 +1,14 @@
+FACTURA
+-------
+Nombre del comprador: Juan Pérez
+Total: 6
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: ssass333232
+Cantidad: 2
+Precio unitario: 3
+Subtotal: 6
+------------------------
+Total a pagar: 6

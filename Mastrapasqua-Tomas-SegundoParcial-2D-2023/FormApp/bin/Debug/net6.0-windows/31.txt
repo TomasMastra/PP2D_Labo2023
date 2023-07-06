@@ -1,0 +1,14 @@
+FACTURA
+-------
+Nombre del comprador: Juan Pérez
+Total: 1170
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Berenjena
+Cantidad: 3
+Precio unitario: 390
+Subtotal: 1170
+------------------------
+Total a pagar: 1170
