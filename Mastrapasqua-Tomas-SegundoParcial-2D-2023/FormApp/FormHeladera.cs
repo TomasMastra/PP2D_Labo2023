@@ -14,7 +14,7 @@ namespace FormApp
         Form FormLogin;
         Vendedor vendedorCarniceria;
         DateTime hora;
-        private CancellationTokenSource cancellationTokenHora;
+        private CancellationTokenSource cancellationToken;
 
 
 
@@ -31,7 +31,7 @@ namespace FormApp
         {
             this.vendedorCarniceria = vendedor;
             this.FormLogin = formLogin;
-            cancellationTokenHora = new CancellationTokenSource();
+            cancellationToken = new CancellationTokenSource();
             Tienda.StockEnCero += Tienda_StockEnCero;
 
 
@@ -42,7 +42,8 @@ namespace FormApp
             inicializar();
             saludo.Text = $"Bienvenido {vendedorCarniceria.Nombre}";
             Cantidad.Maximum = 0;
-
+            //checkBoxStock.Checked = true;
+            //BotonAgregarStock.Enabled = false;
             IniciarReloj();
         }
 
@@ -146,6 +147,7 @@ namespace FormApp
             try
             {
                 Task.Run(() => ActualizarReloj());
+                Task.Run(() => AgregarStock());
             }
             catch (Exception ex)
             {
@@ -161,7 +163,7 @@ namespace FormApp
 
             try
             {
-                while (!cancellationTokenHora.IsCancellationRequested)
+                while (!cancellationToken.IsCancellationRequested)
                 {
                     Invoke((MethodInvoker)delegate
                     {
@@ -177,6 +179,29 @@ namespace FormApp
             }
         }
 
+        private void AgregarStock()
+        {
+            try
+            {
+                while (!cancellationToken.IsCancellationRequested)
+                {
+                    Invoke((MethodInvoker)delegate
+                    {
+                        if (checkBoxStock.Checked)
+                        {
+                            BotonAgregarStock_Click(this, EventArgs.Empty);
+
+                        }
+
+                    });
+                    Thread.Sleep(10000);
+                }
+            }
+            catch (ObjectDisposedException ex)
+            {
+                MessageBox.Show($"Error al cargar el reloj: {ex}");
+            }
+        }
 
 
         /// <summary>
@@ -646,6 +671,18 @@ namespace FormApp
         private void Tienda_StockEnCero(InfoCarneEventArgs infoCarne)
         {
             BotonAgregarStock_Click(this, EventArgs.Empty);
+        }
+
+        private void checkBoxStock_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxStock.Checked)
+            {
+                BotonAgregarStock.Enabled = false;
+            }
+            else
+            {
+                BotonAgregarStock.Enabled = true;
+            }
         }
     }
 }

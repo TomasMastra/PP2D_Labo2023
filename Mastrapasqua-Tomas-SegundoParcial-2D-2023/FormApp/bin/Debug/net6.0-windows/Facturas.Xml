@@ -528,4 +528,10 @@
     <Mail>María González</Mail>
     <Archivo>6/7/2023 16:19:34</Archivo>
   </Factura>
+  <Factura>
+    <Numero>89</Numero>
+    <Total>1200</Total>
+    <Mail>Carlos Rodríguez</Mail>
+    <Archivo>6/7/2023 17:12:05</Archivo>
+  </Factura>
 </ArrayOfFactura>

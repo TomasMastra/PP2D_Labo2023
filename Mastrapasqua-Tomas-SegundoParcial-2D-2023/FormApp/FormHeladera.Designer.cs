@@ -69,6 +69,7 @@
             button6 = new Button();
             BotonDeserializarJson = new Button();
             BotonAgregarStock = new Button();
+            checkBoxStock = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCarne).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Cantidad).BeginInit();
@@ -513,12 +514,25 @@
             BotonAgregarStock.UseVisualStyleBackColor = false;
             BotonAgregarStock.Click += BotonAgregarStock_Click;
             // 
+            // checkBoxStock
+            // 
+            checkBoxStock.AutoSize = true;
+            checkBoxStock.ForeColor = SystemColors.ButtonHighlight;
+            checkBoxStock.Location = new Point(615, 320);
+            checkBoxStock.Name = "checkBoxStock";
+            checkBoxStock.Size = new Size(163, 19);
+            checkBoxStock.TabIndex = 117;
+            checkBoxStock.Text = "Agregar stock automatico";
+            checkBoxStock.UseVisualStyleBackColor = true;
+            checkBoxStock.CheckedChanged += checkBoxStock_CheckedChanged;
+            // 
             // Heladera
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(30, 30, 30);
             ClientSize = new Size(1390, 651);
+            Controls.Add(checkBoxStock);
             Controls.Add(BotonAgregarStock);
             Controls.Add(BotonDeserializarJson);
             Controls.Add(button6);
@@ -609,6 +623,7 @@
         private Button button6;
         private Button BotonDeserializarJson;
         private Button BotonAgregarStock;
+        private CheckBox checkBoxStock;
         //private ListBox CarroCliente;
     }
 }

@@ -1,0 +1,14 @@
+FACTURA
+-------
+Nombre del comprador: Carlos Rodríguez
+Total: 1200
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Huevo de pavo *30
+Cantidad: 1
+Precio unitario: 1200
+Subtotal: 1200
+------------------------
+Total a pagar: 1200
