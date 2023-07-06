@@ -4,9 +4,8 @@
     <IdCarne>5000</IdCarne>
     <CortesCarne>Asado</CortesCarne>
     <PreciosCarne>2000</PreciosCarne>
-    <CantidadCarne>7</CantidadCarne>
+    <CantidadCarne>50</CantidadCarne>
     <TipoCarne>Res</TipoCarne>
-    <Estado>0</Estado>
   </Carniceria>
   <Carniceria>
     <IdCarne>5001</IdCarne>
@@ -14,7 +13,6 @@
     <PreciosCarne>1200</PreciosCarne>
     <CantidadCarne>24</CantidadCarne>
     <TipoCarne>Res</TipoCarne>
-    <Estado>0</Estado>
   </Carniceria>
   <Carniceria>
     <IdCarne>5002</IdCarne>
@@ -22,15 +20,13 @@
     <PreciosCarne>2400</PreciosCarne>
     <CantidadCarne>12215</CantidadCarne>
     <TipoCarne>Cerdo</TipoCarne>
-    <Estado>0</Estado>
   </Carniceria>
   <Carniceria>
     <IdCarne>5006</IdCarne>
     <CortesCarne>Salchicha de cerdo</CortesCarne>
     <PreciosCarne>1400</PreciosCarne>
-    <CantidadCarne>13444</CantidadCarne>
+    <CantidadCarne>13441</CantidadCarne>
     <TipoCarne>Otro</TipoCarne>
-    <Estado>0</Estado>
   </Carniceria>
   <Carniceria>
     <IdCarne>5007</IdCarne>
@@ -38,23 +34,20 @@
     <PreciosCarne>4500</PreciosCarne>
     <CantidadCarne>19</CantidadCarne>
     <TipoCarne>Condimento</TipoCarne>
-    <Estado>0</Estado>
   </Carniceria>
   <Carniceria>
     <IdCarne>5010</IdCarne>
     <CortesCarne>Huevos * 30</CortesCarne>
     <PreciosCarne>1700</PreciosCarne>
-    <CantidadCarne>6</CantidadCarne>
+    <CantidadCarne>50</CantidadCarne>
     <TipoCarne>Res</TipoCarne>
-    <Estado>0</Estado>
   </Carniceria>
   <Carniceria>
     <IdCarne>5011</IdCarne>
     <CortesCarne>Huevo de pavo *30</CortesCarne>
     <PreciosCarne>1200</PreciosCarne>
-    <CantidadCarne>17</CantidadCarne>
+    <CantidadCarne>50</CantidadCarne>
     <TipoCarne>Pavo</TipoCarne>
-    <Estado>0</Estado>
   </Carniceria>
   <Carniceria>
     <IdCarne>5013</IdCarne>
@@ -62,15 +55,13 @@
     <PreciosCarne>1600</PreciosCarne>
     <CantidadCarne>28</CantidadCarne>
     <TipoCarne>Res</TipoCarne>
-    <Estado>0</Estado>
   </Carniceria>
   <Carniceria>
     <IdCarne>5017</IdCarne>
     <CortesCarne>Milanesa de pollo</CortesCarne>
     <PreciosCarne>1900</PreciosCarne>
-    <CantidadCarne>100</CantidadCarne>
+    <CantidadCarne>94</CantidadCarne>
     <TipoCarne>Pollo</TipoCarne>
-    <Estado>0</Estado>
   </Carniceria>
   <Carniceria>
     <IdCarne>5021</IdCarne>
@@ -78,31 +69,27 @@
     <PreciosCarne>1000</PreciosCarne>
     <CantidadCarne>26</CantidadCarne>
     <TipoCarne>Res</TipoCarne>
-    <Estado>0</Estado>
   </Carniceria>
   <Carniceria>
     <IdCarne>5022</IdCarne>
     <CortesCarne>Papas fritas</CortesCarne>
     <PreciosCarne>1000</PreciosCarne>
-    <CantidadCarne>12221</CantidadCarne>
+    <CantidadCarne>12219</CantidadCarne>
     <TipoCarne>Otro</TipoCarne>
-    <Estado>0</Estado>
   </Carniceria>
   <Carniceria>
     <IdCarne>5023</IdCarne>
     <CortesCarne>Alitas de polo</CortesCarne>
     <PreciosCarne>400</PreciosCarne>
-    <CantidadCarne>50</CantidadCarne>
+    <CantidadCarne>47</CantidadCarne>
     <TipoCarne>Pollo</TipoCarne>
-    <Estado>0</Estado>
   </Carniceria>
   <Carniceria>
     <IdCarne>5025</IdCarne>
     <CortesCarne>Calamar</CortesCarne>
     <PreciosCarne>99996</PreciosCarne>
-    <CantidadCarne>99985</CantidadCarne>
+    <CantidadCarne>50</CantidadCarne>
     <TipoCarne>Pollo</TipoCarne>
-    <Estado>0</Estado>
   </Carniceria>
   <Carniceria>
     <IdCarne>5026</IdCarne>
@@ -110,7 +97,6 @@
     <PreciosCarne>350</PreciosCarne>
     <CantidadCarne>100000</CantidadCarne>
     <TipoCarne>Condimento</TipoCarne>
-    <Estado>0</Estado>
   </Carniceria>
   <Carniceria>
     <IdCarne>5027</IdCarne>
@@ -118,23 +104,13 @@
     <PreciosCarne>1000</PreciosCarne>
     <CantidadCarne>99965</CantidadCarne>
     <TipoCarne>Pollo</TipoCarne>
-    <Estado>0</Estado>
-  </Carniceria>
-  <Carniceria>
-    <IdCarne>5028</IdCarne>
-    <CortesCarne>Morron</CortesCarne>
-    <PreciosCarne>600</PreciosCarne>
-    <CantidadCarne>11</CantidadCarne>
-    <TipoCarne>Condimento</TipoCarne>
-    <Estado>0</Estado>
   </Carniceria>
   <Carniceria>
     <IdCarne>5029</IdCarne>
     <CortesCarne>Chimichurri</CortesCarne>
     <PreciosCarne>500</PreciosCarne>
-    <CantidadCarne>8</CantidadCarne>
+    <CantidadCarne>50</CantidadCarne>
     <TipoCarne>Condimento</TipoCarne>
-    <Estado>0</Estado>
   </Carniceria>
   <Carniceria>
     <IdCarne>5030</IdCarne>
@@ -142,7 +118,6 @@
     <PreciosCarne>500</PreciosCarne>
     <CantidadCarne>500</CantidadCarne>
     <TipoCarne>Otro</TipoCarne>
-    <Estado>0</Estado>
   </Carniceria>
   <Carniceria>
     <IdCarne>5031</IdCarne>
@@ -150,7 +125,6 @@
     <PreciosCarne>1000</PreciosCarne>
     <CantidadCarne>50</CantidadCarne>
     <TipoCarne>Res</TipoCarne>
-    <Estado>0</Estado>
   </Carniceria>
   <Carniceria>
     <IdCarne>5033</IdCarne>
@@ -158,7 +132,6 @@
     <PreciosCarne>390</PreciosCarne>
     <CantidadCarne>317</CantidadCarne>
     <TipoCarne>Otro</TipoCarne>
-    <Estado>0</Estado>
   </Carniceria>
   <Carniceria>
     <IdCarne>5035</IdCarne>
@@ -166,23 +139,20 @@
     <PreciosCarne>1200</PreciosCarne>
     <CantidadCarne>9994</CantidadCarne>
     <TipoCarne>Cerdo</TipoCarne>
-    <Estado>0</Estado>
   </Carniceria>
   <Carniceria>
     <IdCarne>5036</IdCarne>
-    <CortesCarne>22222</CortesCarne>
-    <PreciosCarne>1</PreciosCarne>
-    <CantidadCarne>1</CantidadCarne>
-    <TipoCarne>Condimento</TipoCarne>
-    <Estado>0</Estado>
+    <CortesCarne>Entraña</CortesCarne>
+    <PreciosCarne>1000</PreciosCarne>
+    <CantidadCarne>50</CantidadCarne>
+    <TipoCarne>Res</TipoCarne>
   </Carniceria>
   <Carniceria>
     <IdCarne>5039</IdCarne>
-    <CortesCarne>22212122122111</CortesCarne>
-    <PreciosCarne>1</PreciosCarne>
-    <CantidadCarne>1</CantidadCarne>
-    <TipoCarne>Otro</TipoCarne>
-    <Estado>0</Estado>
+    <CortesCarne>Bife Angosto</CortesCarne>
+    <PreciosCarne>1000</PreciosCarne>
+    <CantidadCarne>50</CantidadCarne>
+    <TipoCarne>Res</TipoCarne>
   </Carniceria>
   <Carniceria>
     <IdCarne>5041</IdCarne>
@@ -190,23 +160,13 @@
     <PreciosCarne>900</PreciosCarne>
     <CantidadCarne>151</CantidadCarne>
     <TipoCarne>Otro</TipoCarne>
-    <Estado>0</Estado>
-  </Carniceria>
-  <Carniceria>
-    <IdCarne>5042</IdCarne>
-    <CortesCarne>Morron</CortesCarne>
-    <PreciosCarne>300</PreciosCarne>
-    <CantidadCarne>67776</CantidadCarne>
-    <TipoCarne>Condimento</TipoCarne>
-    <Estado>0</Estado>
   </Carniceria>
   <Carniceria>
     <IdCarne>5045</IdCarne>
     <CortesCarne>Cebolla en polvo</CortesCarne>
     <PreciosCarne>100</PreciosCarne>
-    <CantidadCarne>10</CantidadCarne>
+    <CantidadCarne>50</CantidadCarne>
     <TipoCarne>Condimento</TipoCarne>
-    <Estado>0</Estado>
   </Carniceria>
   <Carniceria>
     <IdCarne>5046</IdCarne>
@@ -214,7 +174,6 @@
     <PreciosCarne>1000</PreciosCarne>
     <CantidadCarne>10</CantidadCarne>
     <TipoCarne>Otro</TipoCarne>
-    <Estado>0</Estado>
   </Carniceria>
   <Carniceria>
     <IdCarne>5047</IdCarne>
@@ -222,23 +181,20 @@
     <PreciosCarne>2</PreciosCarne>
     <CantidadCarne>50</CantidadCarne>
     <TipoCarne>Res</TipoCarne>
-    <Estado>0</Estado>
   </Carniceria>
   <Carniceria>
     <IdCarne>5048</IdCarne>
     <CortesCarne>Cebolla morada</CortesCarne>
     <PreciosCarne>900</PreciosCarne>
-    <CantidadCarne>21</CantidadCarne>
+    <CantidadCarne>50</CantidadCarne>
     <TipoCarne>Otro</TipoCarne>
-    <Estado>0</Estado>
   </Carniceria>
   <Carniceria>
     <IdCarne>5049</IdCarne>
-    <CortesCarne>aasas</CortesCarne>
-    <PreciosCarne>1</PreciosCarne>
-    <CantidadCarne>1</CantidadCarne>
-    <TipoCarne>Achuras</TipoCarne>
-    <Estado>0</Estado>
+    <CortesCarne>Ojo de bife</CortesCarne>
+    <PreciosCarne>1000</PreciosCarne>
+    <CantidadCarne>50</CantidadCarne>
+    <TipoCarne>Res</TipoCarne>
   </Carniceria>
   <Carniceria>
     <IdCarne>5051</IdCarne>
@@ -246,14 +202,19 @@
     <PreciosCarne>300</PreciosCarne>
     <CantidadCarne>50</CantidadCarne>
     <TipoCarne>Otro</TipoCarne>
-    <Estado>0</Estado>
   </Carniceria>
   <Carniceria>
     <IdCarne>5052</IdCarne>
-    <CortesCarne>2221</CortesCarne>
-    <PreciosCarne>1</PreciosCarne>
-    <CantidadCarne>1</CantidadCarne>
+    <CortesCarne>Carne de pollo picada</CortesCarne>
+    <PreciosCarne>1000</PreciosCarne>
+    <CantidadCarne>50</CantidadCarne>
+    <TipoCarne>Pollo</TipoCarne>
+  </Carniceria>
+  <Carniceria>
+    <IdCarne>5053</IdCarne>
+    <CortesCarne>Chinchulin</CortesCarne>
+    <PreciosCarne>300</PreciosCarne>
+    <CantidadCarne>50</CantidadCarne>
     <TipoCarne>Achuras</TipoCarne>
-    <Estado>0</Estado>
   </Carniceria>
 </ArrayOfCarniceria>

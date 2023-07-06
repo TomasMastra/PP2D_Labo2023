@@ -1,0 +1,26 @@
+FACTURA
+-------
+Nombre del comprador: Carlos Rodríguez
+Total: 3000
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Carne de pollo picada
+Cantidad: 1
+Precio unitario: 1000
+Subtotal: 1000
+------------------------
+------------------------
+Producto: Bife Angosto
+Cantidad: 1
+Precio unitario: 1000
+Subtotal: 1000
+------------------------
+------------------------
+Producto: Entraña
+Cantidad: 1
+Precio unitario: 1000
+Subtotal: 1000
+------------------------
+Total a pagar: 3000

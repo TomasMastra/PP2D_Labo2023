@@ -1,0 +1,20 @@
+FACTURA
+-------
+Nombre del comprador: Carlos Rodríguez
+Total: 110196
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Calamar
+Cantidad: 1
+Precio unitario: 99996
+Subtotal: 99996
+------------------------
+------------------------
+Producto: Huevos * 30
+Cantidad: 6
+Precio unitario: 1700
+Subtotal: 10200
+------------------------
+Total a pagar: 110196

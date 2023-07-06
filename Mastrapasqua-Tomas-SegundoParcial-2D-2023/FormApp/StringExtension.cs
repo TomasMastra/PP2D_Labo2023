@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,11 +24,14 @@ namespace FormApp
             return "La compra se realizo con exito";
         }
 
-        public static string ObtenerHora(this DateTime fecha)
+        public static bool HayCantidad(this int cantidadComprada, int totalProducto)
         {
-            fecha = DateTime.Now;
-            string fechaStr = fecha.ToString("HH:mm:ss");
-            return fechaStr;
+            if(totalProducto >= cantidadComprada) 
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

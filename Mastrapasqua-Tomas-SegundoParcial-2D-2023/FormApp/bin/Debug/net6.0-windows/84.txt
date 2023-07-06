@@ -1,0 +1,14 @@
+FACTURA
+-------
+Nombre del comprador: María González
+Total: 20400
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Huevo de pavo *30
+Cantidad: 17
+Precio unitario: 1200
+Subtotal: 20400
+------------------------
+Total a pagar: 20400

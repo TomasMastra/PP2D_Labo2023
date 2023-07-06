@@ -1,0 +1,14 @@
+FACTURA
+-------
+Nombre del comprador: María González
+Total: 14000
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Asado
+Cantidad: 7
+Precio unitario: 2000
+Subtotal: 14000
+------------------------
+Total a pagar: 14000

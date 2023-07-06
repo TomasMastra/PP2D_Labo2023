@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Clases
 {
+    /// <summary>
+    /// Proporciona informacion sobrre el corte de carne
+    /// </summary>
     public class InfoCarneEventArgs : EventArgs
     {
         private string corte;

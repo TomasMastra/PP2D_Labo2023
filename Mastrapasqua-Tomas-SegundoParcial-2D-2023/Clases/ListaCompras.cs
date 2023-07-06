@@ -12,7 +12,6 @@ namespace Clases
         int idCliente;
         int idProducto;
         int cantidadComprada;
-        bool comprado;
         int precioTotal;
 
         public ListaCompras()
@@ -29,7 +28,6 @@ namespace Clases
             this.idCliente = idCliente;
             this.idProducto = idProducto;
             this.cantidadComprada = cantidadCompra;
-            this.comprado = false;
         }
 
         /// <summary>
@@ -63,12 +61,6 @@ namespace Clases
         {
             get { return cantidadComprada; }
             set { cantidadComprada = value; }
-        }
-
-        public bool Comprado
-        {
-            get { return comprado; }
-            set { comprado = value; }
         }
 
         public int PrecioTotal

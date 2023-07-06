@@ -68,7 +68,7 @@
             BotonSerializarJson = new Button();
             button6 = new Button();
             BotonDeserializarJson = new Button();
-            button5 = new Button();
+            BotonAgregarStock = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCarne).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Cantidad).BeginInit();
@@ -500,15 +500,18 @@
             BotonDeserializarJson.UseVisualStyleBackColor = false;
             BotonDeserializarJson.Click += BotonDeserializarJson_Click;
             // 
-            // button5
+            // BotonAgregarStock
             // 
-            button5.Location = new Point(621, 431);
-            button5.Name = "button5";
-            button5.Size = new Size(112, 23);
-            button5.TabIndex = 116;
-            button5.Text = "Agregar stock";
-            button5.UseVisualStyleBackColor = true;
-            button5.Click += button5_Click;
+            BotonAgregarStock.BackColor = Color.Black;
+            BotonAgregarStock.FlatStyle = FlatStyle.Flat;
+            BotonAgregarStock.ForeColor = Color.HotPink;
+            BotonAgregarStock.Location = new Point(610, 266);
+            BotonAgregarStock.Name = "BotonAgregarStock";
+            BotonAgregarStock.Size = new Size(120, 44);
+            BotonAgregarStock.TabIndex = 116;
+            BotonAgregarStock.Text = "Agregar stock (+50)";
+            BotonAgregarStock.UseVisualStyleBackColor = false;
+            BotonAgregarStock.Click += BotonAgregarStock_Click;
             // 
             // Heladera
             // 
@@ -516,7 +519,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(30, 30, 30);
             ClientSize = new Size(1390, 651);
-            Controls.Add(button5);
+            Controls.Add(BotonAgregarStock);
             Controls.Add(BotonDeserializarJson);
             Controls.Add(button6);
             Controls.Add(BotonSerializarJson);
@@ -605,7 +608,7 @@
         private Button BotonSerializarJson;
         private Button button6;
         private Button BotonDeserializarJson;
-        private Button button5;
+        private Button BotonAgregarStock;
         //private ListBox CarroCliente;
     }
 }

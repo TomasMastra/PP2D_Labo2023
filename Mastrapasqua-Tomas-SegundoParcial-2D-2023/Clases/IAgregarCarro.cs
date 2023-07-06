@@ -9,11 +9,8 @@ namespace Clases
 {
     internal interface IAgregarCarro
     {
-
         bool AgregarCarro(ListaCompras producto);
-
         void VaciarCarro();
         
-
     }
 }

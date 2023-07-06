@@ -1,0 +1,20 @@
+FACTURA
+-------
+Nombre del comprador: Carlos Rodríguez
+Total: 2000
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Ojo de bife
+Cantidad: 1
+Precio unitario: 1000
+Subtotal: 1000
+------------------------
+------------------------
+Producto: Cebolla en polvo
+Cantidad: 10
+Precio unitario: 100
+Subtotal: 1000
+------------------------
+Total a pagar: 2000

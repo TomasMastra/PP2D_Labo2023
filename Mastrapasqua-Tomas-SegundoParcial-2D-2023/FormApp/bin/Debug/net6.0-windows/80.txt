@@ -1,0 +1,14 @@
+FACTURA
+-------
+Nombre del comprador: María González
+Total: 4000
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Chimichurri
+Cantidad: 8
+Precio unitario: 500
+Subtotal: 4000
+------------------------
+Total a pagar: 4000

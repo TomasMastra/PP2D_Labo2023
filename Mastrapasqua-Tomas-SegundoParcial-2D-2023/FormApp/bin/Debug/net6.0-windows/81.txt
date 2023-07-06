@@ -1,0 +1,20 @@
+FACTURA
+-------
+Nombre del comprador: Carlos Rodríguez
+Total: 5700
+Dirección: Mitre 1289
+Telefono: 45239868
+Detalles de los productos:
+------------------------
+Producto: Chinchulin
+Cantidad: 2
+Precio unitario: 300
+Subtotal: 600
+------------------------
+------------------------
+Producto: Costillas de cerdo
+Cantidad: 3
+Precio unitario: 1700
+Subtotal: 5100
+------------------------
+Total a pagar: 5700

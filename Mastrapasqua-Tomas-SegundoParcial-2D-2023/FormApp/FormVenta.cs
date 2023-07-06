@@ -98,7 +98,6 @@ namespace FormApp
             bool existe = false;
 
             int idCarro = Tienda.ObtenerUltimoIdCarro() + 1;
-            MessageBox.Show(idCarro.ToString());
             int idCliente = cliente.Id;
             int idProducto;
             int cantidad;
@@ -119,15 +118,10 @@ namespace FormApp
                             existe = cliente.AgregarCarro(carro);
                             Carniceria producto = Tienda.ObtenerCorteCarne(carro.IdProducto);
 
-                            // Suponiendo que carro es un objeto de la clase ListaCompras
-                            MessageBox.Show($"ID Carro: {carro.IdCarro}\n" +
-                                            $"ID Cliente: {carro.IdCliente}\n" +
-                                            $"ID Carne: {carro.IdProducto} - {producto.IdCarne}\n" +
-                                            $"Cantidad Comprar: {carro.CantidadComprada}");
+                          
 
                             monto = monto - totalPagar;
                             TextoMonto.Text = $"Monto disponible: {monto.ToString()}";
-                            MessageBox.Show($"Monto disponible: {monto}, Lista: {cliente.ListaCompras.Count}");
                             TotalComprar.Text = (Convert.ToInt32(TotalPagar.Text) + Convert.ToInt32(TotalComprar.Text)).ToString();
                             DatosCarne.SelectedIndex = -1;
                             Tipo.Text = "";

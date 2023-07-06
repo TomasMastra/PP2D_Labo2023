@@ -26,6 +26,8 @@ namespace Clases
         public delegate void DelegadoStock(InfoCarneEventArgs infoCarne);
         public static event DelegadoStock StockEnCero;
 
+        public delegate bool DelegadoHayCantidad(int cantidadComprada, int totalProducto);
+
 
 
 
@@ -141,6 +143,8 @@ namespace Clases
             float totalCompra = 0;
             StringBuilder sb = new StringBuilder();
             List<ListaCompras> auxListaCompras = new List<ListaCompras>(cliente.ListaCompras);
+            DelegadoHayCantidad delegado = BuscarCantidad;
+
 
             for (int i = auxListaCompras.Count - 1; i >= 0; i--)
             {
@@ -149,7 +153,9 @@ namespace Clases
 
                 if (carro.IdProducto == carne.IdCarne)
                 {
-                    if (carne.CantidadCarne >= carro.CantidadComprada)
+                    bool hayCantidad = delegado.Invoke(carne.CantidadCarne, carro.CantidadComprada); // Ejemplo de uso del delegado
+
+                    if (hayCantidad)
                     {
                         totalCompra += (carro.CantidadComprada * carne.PreciosCarne);
                         carne.CantidadCarne -= carro.CantidadComprada;
@@ -284,9 +290,20 @@ namespace Clases
             return corteCarne;
         }
 
-
-        public static void AgregarStock()
+        public static bool BuscarCantidad(int cantidadComprada, int totalProducto)
         {
+            if (cantidadComprada >= totalProducto)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public static List<String> AgregarStock()
+        {
+            List<string> productosAgregados = new List<string>();
+
             foreach (Carniceria carne in carne)
             {
                 if (carne.CantidadCarne == 0)
@@ -299,7 +316,8 @@ namespace Clases
                         {
                             carne.CantidadCarne += 50;
                             CarniceriaDAO.ModificarCarne(carne);
-                            StockEnCero.Invoke(infoCarne);// Invoca el evento y se ejecutan los metodos suscritos
+                            StockEnCero.Invoke(infoCarne);
+                            productosAgregados.Add(infoCarne.Corte);
 
                         }
                         catch (Exception ex)
@@ -309,6 +327,8 @@ namespace Clases
                     }
                 }
             }
+
+            return productosAgregados;
         }
 
     }

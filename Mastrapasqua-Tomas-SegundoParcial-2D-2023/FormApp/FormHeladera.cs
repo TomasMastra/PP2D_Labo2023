@@ -13,10 +13,11 @@ namespace FormApp
     {
         Form FormLogin;
         Vendedor vendedorCarniceria;
-        private DateTime hora;
+        DateTime hora;
         private CancellationTokenSource cancellationTokenHora;
 
-        
+
+
 
 
 
@@ -42,7 +43,7 @@ namespace FormApp
             saludo.Text = $"Bienvenido {vendedorCarniceria.Nombre}";
             Cantidad.Maximum = 0;
 
-            TareaReloj();
+            IniciarReloj();
         }
 
         /// <summary>
@@ -137,7 +138,10 @@ namespace FormApp
             }
         }
 
-        private void TareaReloj()
+        /// <summary>
+        /// Iniciamos la tarea del reloj
+        /// </summary>
+        private void IniciarReloj()
         {
             try
             {
@@ -149,15 +153,20 @@ namespace FormApp
             }
         }
 
+        /// <summary>
+        /// Modificamos el label obteniendo la hora actual
+        /// </summary>
         private void ActualizarReloj()
         {
+
             try
             {
                 while (!cancellationTokenHora.IsCancellationRequested)
                 {
                     Invoke((MethodInvoker)delegate
                     {
-                        labelHora.Text = hora.ObtenerHora();
+                        DateTime fecha = DateTime.Now;
+                        labelHora.Text = fecha.ToString("HH:mm:ss");
                     });
                     Thread.Sleep(1000);
                 }
@@ -408,7 +417,6 @@ namespace FormApp
 
                         existe = clientes[ListClientes.SelectedIndex].AgregarCarro(carro);
                         PrecioTotal.Text = "";
-                        MessageBox.Show(existe.ToString());
 
 
                     }
@@ -620,23 +628,28 @@ namespace FormApp
             }
         }
 
-       
 
-        private void button5_Click(object sender, EventArgs e)
+
+        private void BotonAgregarStock_Click(object sender, EventArgs e)
         {
-
-            Tienda.AgregarStock();
+            List<string> productosAgregados = Tienda.AgregarStock();
             cargarDataGridViewCortesCarne();
             CargarListBoxCarne();
+
+            if (productosAgregados.Count > 0)
+            {
+                string mensaje = "Se agregó stock para los siguientes productos:\n";
+                mensaje += string.Join("\n", productosAgregados);
+                MessageBox.Show(mensaje);
+            }
         }
-
-
         private void Tienda_StockEnCero(InfoCarneEventArgs infoCarne)
-        {           
-            button5_Click(this, EventArgs.Empty); 
+        {
+            BotonAgregarStock_Click(this, EventArgs.Empty);
         }
     }
 }
+
 
 
 

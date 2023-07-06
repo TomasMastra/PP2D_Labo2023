@@ -456,4 +456,76 @@
     <Mail>María González</Mail>
     <Archivo>5/7/2023 22:17:48</Archivo>
   </Factura>
+  <Factura>
+    <Numero>77</Numero>
+    <Total>14000</Total>
+    <Mail>María González</Mail>
+    <Archivo>5/7/2023 23:18:08</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>78</Numero>
+    <Total>110196</Total>
+    <Mail>Carlos Rodríguez</Mail>
+    <Archivo>5/7/2023 23:21:53</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>79</Numero>
+    <Total>18900</Total>
+    <Mail>María González</Mail>
+    <Archivo>5/7/2023 23:23:17</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>80</Numero>
+    <Total>4000</Total>
+    <Mail>María González</Mail>
+    <Archivo>5/7/2023 23:24:27</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>81</Numero>
+    <Total>5700</Total>
+    <Mail>Carlos Rodríguez</Mail>
+    <Archivo>5/7/2023 23:26:32</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>82</Numero>
+    <Total>3000</Total>
+    <Mail>Carlos Rodríguez</Mail>
+    <Archivo>5/7/2023 23:31:29</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>83</Numero>
+    <Total>2000</Total>
+    <Mail>Carlos Rodríguez</Mail>
+    <Archivo>5/7/2023 23:33:14</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>84</Numero>
+    <Total>20400</Total>
+    <Mail>María González</Mail>
+    <Archivo>5/7/2023 23:38:30</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>85</Numero>
+    <Total>0</Total>
+    <Mail>Carlos Rodríguez</Mail>
+    <Archivo>6/7/2023 16:11:16</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>86</Numero>
+    <Total>11400</Total>
+    <Mail>Carlos Rodríguez</Mail>
+    <Archivo>6/7/2023 16:12:00</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>87</Numero>
+    <Total>5400</Total>
+    <Mail>Juan Pérez</Mail>
+    <Archivo>6/7/2023 16:13:58</Archivo>
+  </Factura>
+  <Factura>
+    <Numero>88</Numero>
+    <Total>2000</Total>
+    <Mail>María González</Mail>
+    <Archivo>6/7/2023 16:19:34</Archivo>
+  </Factura>
 </ArrayOfFactura>
