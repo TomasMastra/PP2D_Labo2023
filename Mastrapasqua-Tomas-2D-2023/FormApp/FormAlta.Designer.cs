@@ -41,15 +41,17 @@
             TextPrecio = new Label();
             TextCantidad = new Label();
             BotonRegresar = new Button();
+            GroupBoxDatos = new GroupBox();
             ((System.ComponentModel.ISupportInitialize)Precio).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Cantidad).BeginInit();
+            GroupBoxDatos.SuspendLayout();
             SuspendLayout();
             // 
             // TextBoxCorte
             // 
             TextBoxCorte.BackColor = SystemColors.InfoText;
             TextBoxCorte.ForeColor = SystemColors.ButtonHighlight;
-            TextBoxCorte.Location = new Point(74, 99);
+            TextBoxCorte.Location = new Point(68, 29);
             TextBoxCorte.Name = "TextBoxCorte";
             TextBoxCorte.PlaceholderText = "Corte";
             TextBoxCorte.Size = new Size(120, 23);
@@ -59,7 +61,7 @@
             // 
             Precio.BackColor = SystemColors.InfoText;
             Precio.ForeColor = SystemColors.ButtonHighlight;
-            Precio.Location = new Point(74, 169);
+            Precio.Location = new Point(68, 99);
             Precio.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             Precio.Name = "Precio";
             Precio.Size = new Size(120, 23);
@@ -69,7 +71,7 @@
             // 
             Cantidad.BackColor = SystemColors.InfoText;
             Cantidad.ForeColor = SystemColors.ButtonHighlight;
-            Cantidad.Location = new Point(74, 198);
+            Cantidad.Location = new Point(68, 128);
             Cantidad.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             Cantidad.Name = "Cantidad";
             Cantidad.Size = new Size(120, 23);
@@ -82,7 +84,7 @@
             ListaCortesCarne.FlatStyle = FlatStyle.Flat;
             ListaCortesCarne.ForeColor = SystemColors.ButtonHighlight;
             ListaCortesCarne.FormattingEnabled = true;
-            ListaCortesCarne.Location = new Point(74, 70);
+            ListaCortesCarne.Location = new Point(34, 70);
             ListaCortesCarne.Name = "ListaCortesCarne";
             ListaCortesCarne.Size = new Size(121, 23);
             ListaCortesCarne.TabIndex = 3;
@@ -117,7 +119,7 @@
             TextCorte.AutoSize = true;
             TextCorte.BackColor = Color.FromArgb(30, 30, 30);
             TextCorte.ForeColor = Color.White;
-            TextCorte.Location = new Point(37, 128);
+            TextCorte.Location = new Point(31, 58);
             TextCorte.Name = "TextCorte";
             TextCorte.Size = new Size(30, 15);
             TextCorte.TabIndex = 6;
@@ -130,7 +132,7 @@
             ListaTipos.FlatStyle = FlatStyle.Flat;
             ListaTipos.ForeColor = SystemColors.ButtonHighlight;
             ListaTipos.FormattingEnabled = true;
-            ListaTipos.Location = new Point(74, 128);
+            ListaTipos.Location = new Point(68, 58);
             ListaTipos.Name = "ListaTipos";
             ListaTipos.Size = new Size(121, 23);
             ListaTipos.TabIndex = 7;
@@ -139,7 +141,7 @@
             // 
             TextModificar.AutoSize = true;
             TextModificar.ForeColor = Color.FromArgb(30, 30, 30);
-            TextModificar.Location = new Point(63, 52);
+            TextModificar.Location = new Point(34, 52);
             TextModificar.Name = "TextModificar";
             TextModificar.Size = new Size(153, 15);
             TextModificar.TabIndex = 8;
@@ -150,7 +152,7 @@
             label2.AutoSize = true;
             label2.BackColor = Color.FromArgb(30, 30, 30);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(32, 102);
+            label2.Location = new Point(26, 32);
             label2.Name = "label2";
             label2.Size = new Size(36, 15);
             label2.TabIndex = 9;
@@ -161,7 +163,7 @@
             TextPrecio.AutoSize = true;
             TextPrecio.BackColor = Color.FromArgb(30, 30, 30);
             TextPrecio.ForeColor = Color.White;
-            TextPrecio.Location = new Point(27, 171);
+            TextPrecio.Location = new Point(21, 101);
             TextPrecio.Name = "TextPrecio";
             TextPrecio.Size = new Size(40, 15);
             TextPrecio.TabIndex = 10;
@@ -172,7 +174,7 @@
             TextCantidad.AutoSize = true;
             TextCantidad.BackColor = Color.FromArgb(30, 30, 30);
             TextCantidad.ForeColor = Color.White;
-            TextCantidad.Location = new Point(13, 200);
+            TextCantidad.Location = new Point(7, 130);
             TextCantidad.Name = "TextCantidad";
             TextCantidad.Size = new Size(55, 15);
             TextCantidad.TabIndex = 11;
@@ -191,30 +193,43 @@
             BotonRegresar.UseVisualStyleBackColor = false;
             BotonRegresar.Click += BotonRegresar_Click;
             // 
+            // GroupBoxDatos
+            // 
+            GroupBoxDatos.Controls.Add(TextBoxCorte);
+            GroupBoxDatos.Controls.Add(Precio);
+            GroupBoxDatos.Controls.Add(TextCantidad);
+            GroupBoxDatos.Controls.Add(Cantidad);
+            GroupBoxDatos.Controls.Add(TextPrecio);
+            GroupBoxDatos.Controls.Add(TextCorte);
+            GroupBoxDatos.Controls.Add(label2);
+            GroupBoxDatos.Controls.Add(ListaTipos);
+            GroupBoxDatos.ForeColor = SystemColors.ButtonHighlight;
+            GroupBoxDatos.Location = new Point(34, 99);
+            GroupBoxDatos.Name = "GroupBoxDatos";
+            GroupBoxDatos.Size = new Size(198, 162);
+            GroupBoxDatos.TabIndex = 13;
+            GroupBoxDatos.TabStop = false;
+            GroupBoxDatos.Text = "Datos";
+            // 
             // FormAlta
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(30, 30, 30);
-            ClientSize = new Size(272, 385);
+            ClientSize = new Size(269, 381);
+            Controls.Add(GroupBoxDatos);
             Controls.Add(BotonRegresar);
-            Controls.Add(TextCantidad);
-            Controls.Add(TextPrecio);
-            Controls.Add(label2);
             Controls.Add(TextModificar);
-            Controls.Add(ListaTipos);
-            Controls.Add(TextCorte);
             Controls.Add(TextError);
             Controls.Add(BotonAgregar);
             Controls.Add(ListaCortesCarne);
-            Controls.Add(Cantidad);
-            Controls.Add(Precio);
-            Controls.Add(TextBoxCorte);
             Name = "FormAlta";
             Text = "FormAlta";
             Load += FormAlta_Load;
             ((System.ComponentModel.ISupportInitialize)Precio).EndInit();
             ((System.ComponentModel.ISupportInitialize)Cantidad).EndInit();
+            GroupBoxDatos.ResumeLayout(false);
+            GroupBoxDatos.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -234,5 +249,6 @@
         private Label TextPrecio;
         private Label TextCantidad;
         private Button BotonRegresar;
+        private GroupBox GroupBoxDatos;
     }
 }

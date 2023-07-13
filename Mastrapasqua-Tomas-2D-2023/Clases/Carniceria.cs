@@ -16,6 +16,7 @@ namespace Clases
         int precioCarne;
         int cantidadDisponible;
         Tipo tipoCarne;
+        int idCarne;
 
 
         /// <summary>
@@ -35,8 +36,9 @@ namespace Clases
         /// <param name="precio">El precio del corte de carne</param>
         /// <param name="cantidad">La cantidad disponible del corte de carne</param>
         /// <param name="tipo">El tipo de carne</param>
-        public Carniceria(string corte, int precio, int cantidad, Tipo tipo) :this()
+        public Carniceria(int id, string corte, int precio, int cantidad, Tipo tipo) :this()
         {
+            this.idCarne = id;
             this.corteCarne = corte;
             this.precioCarne = precio;
             this.cantidadDisponible = cantidad;
@@ -83,6 +85,12 @@ namespace Clases
             set { tipoCarne = value; }
         }
 
+        public int IdCarne
+        {
+            get { return idCarne; }
+            set { idCarne = value; }
+        }
+
         /// <summary>
         /// Modifica los valores del corte de carne
         /// </summary>
@@ -90,33 +98,14 @@ namespace Clases
         /// <param name="tipo">El nuevo tipo de carne</param>
         /// <param name="cantidad">La nueva cantidad disponible del corte de carne</param>
         /// <param name="precio">El nuevo precio del corte de carne</param>
-        public void modificar(string corte, Tipo tipo, int cantidad, int precio)
+        public void modificar(Carniceria carne)
         {
-            CortesCarne = corte;
-            TipoCarne = tipo;
-            CantidadCarne = cantidad;
-            PreciosCarne = precio;
+            CortesCarne = carne.CortesCarne;
+            TipoCarne = carne.TipoCarne;
+            CantidadCarne = carne.CantidadCarne;
+            PreciosCarne = carne.PreciosCarne;
 
         }
-
-
-
-        /// <summary>
-        /// Resta la cantidad comprada de carne a la cantidad disponible (Establece el stock de carne después de que un cliente haya comprado)
-        /// </summary>
-        /// <param name="cantidadComprada">La cantidad de carne comprada</param>
-        /// <returns>La cantidad actualizada de carne disponible</returns>
-        public int restarCantidad(int cantidadComprada)
-        {
-            CantidadCarne = CantidadCarne - cantidadComprada;
-
-            return CantidadCarne;
-        }
-       
-        
-
-      
-
 
 
     }

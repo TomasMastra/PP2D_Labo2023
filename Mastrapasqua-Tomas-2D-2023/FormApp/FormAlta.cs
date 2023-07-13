@@ -4,7 +4,7 @@ namespace FormApp
 {
     public partial class FormAlta : Form
     {
-        bool modificar;
+        int estado;
         Form formHeladera;
 
         /// <summary>
@@ -15,7 +15,7 @@ namespace FormApp
         {
 
             InitializeComponent();
-            this.modificar = false;
+            this.estado = 1;
             this.formHeladera = heladera;
 
 
@@ -26,18 +26,38 @@ namespace FormApp
         /// Constructor de la clase FormLogin
         /// Ingresa cuando se va a modificar un corte y modificar es true
         /// </summary>
-        public FormAlta(bool modificar, Heladera heladera)
+        public FormAlta(int estado, Heladera heladera)
         {
             InitializeComponent();
-            this.modificar = modificar;
-           // this.carne = carne;
             ListaCortesCarne.Visible = true;
             cargarComboBox();
-            BotonAgregar.ForeColor = Color.Yellow;
-            BotonAgregar.Text = "modificar";
-            TextModificar.ForeColor = Color.Yellow;
             this.formHeladera = heladera;
-            this.Name = "Modificar el corte";
+
+
+
+
+            if (estado == 2)
+            {
+                this.estado = 2;
+                BotonAgregar.ForeColor = Color.Yellow;
+                BotonAgregar.Text = "modificar";
+                this.Name = "Modificar el corte";
+
+
+
+            }
+            else
+            {
+                this.estado = 3;
+                TextModificar.ForeColor = Color.Red;
+                BotonAgregar.Text = "Eliminar";
+                this.Name = "Eliminar el corte";
+
+                GroupBoxDatos.Enabled = false;
+
+
+            }
+
 
 
         }
@@ -60,8 +80,9 @@ namespace FormApp
         /// </summary>
         public void cargarComboBox()
         {
-            List<Carniceria> carne = ListaCarne.Obtener();
-            foreach(Carniceria corte in carne) 
+            List<Carniceria> carne = Tienda.ObtenerCarne();
+
+            foreach (Carniceria corte in carne)
             {
                 ListaCortesCarne.Items.Add(corte.CortesCarne);
 
@@ -75,7 +96,8 @@ namespace FormApp
         public void cargarTipos()
         {
             List<string> tiposOrdenados = Enum.GetNames(typeof(Tipo)).OrderBy(x => x).ToList();
-            foreach(string tipo in tiposOrdenados)
+
+            foreach (string tipo in tiposOrdenados)
             {
                 ListaTipos.Items.Add(tipo);
             }
@@ -88,12 +110,24 @@ namespace FormApp
         private void ListaCortesCarne_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            List<Carniceria> carne = ListaCarne.Obtener();
-            TextBoxCorte.Text = carne[ListaCortesCarne.SelectedIndex].CortesCarne;
-            Precio.Value = Convert.ToInt32(carne[ListaCortesCarne.SelectedIndex].PreciosCarne);
-            Cantidad.Value = Convert.ToInt32(carne[ListaCortesCarne.SelectedIndex].CantidadCarne);
+            List<Carniceria> listaCarne = Tienda.ObtenerCarne();
+            Carniceria carne = listaCarne[ListaCortesCarne.SelectedIndex];
+
+            TextBoxCorte.Text = carne.CortesCarne;
+            Precio.Value = Convert.ToInt32(carne.PreciosCarne);
+            Cantidad.Value = Convert.ToInt32(carne.CantidadCarne);
             ListaTipos.SelectedIndex = ListaTipos.FindStringExact(ListaCortesCarne.SelectedItem.ToString());
 
+        }
+
+        /// <summary>
+        /// Pregunta si deasea realizar los cambios y guardar
+        /// </summary>
+        /// <returns></returns>
+        public bool ConfirmarGuardar()
+        {
+            DialogResult resultado = MessageBox.Show("¿Desea guardar los cambios?", "Guardar cambios", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            return resultado == DialogResult.Yes;
         }
 
 
@@ -103,48 +137,82 @@ namespace FormApp
         private void BotonAgregar_Click(object sender, EventArgs e)
         {
 
-            //MessageBox.Show($"{carne.CortesCarne[1]}");
-            if (modificar == false)
-            {
-                if (TextBoxCorte.Text != string.Empty && Precio.Value > 0 && ListaTipos.SelectedIndex > -1)
-                {
-                    
-                    Carniceria carne = new Carniceria(TextBoxCorte.Text, Convert.ToInt32(Precio.Value), Convert.ToInt32(Cantidad.Value), ((Tipo)Enum.Parse(typeof(Tipo), ListaTipos.Items[ListaTipos.SelectedIndex].ToString())));
-                    ListaCarne.Agregar(carne);
-                    //this.carne.Carne.Add(carne);
-                    //this.heladera.
 
-                   // Heladera formHeladera = new Heladera();
-                    formHeladera.Show();
-                    this.Hide();
+
+            if (GroupBoxDatos.Enabled == true)
+            {
+                if (Cantidad.Value > 0 && TextBoxCorte.Text != string.Empty && Precio.Value > 0 && ListaTipos.SelectedIndex > -1)
+                {
+                    string corteCarne = TextBoxCorte.Text;
+                    int cantidad = Convert.ToInt32(Cantidad.Value);
+                    int precio = Convert.ToInt32(Precio.Value);
+                    Tipo tipo = ((Tipo)Enum.Parse(typeof(Tipo), ListaTipos.Items[ListaTipos.SelectedIndex].ToString()));
+
+                    if (estado == 1 && ConfirmarGuardar() == true)
+                    {
+
+                        int id = Tienda.ObtenerId() + 1;
+
+                        Carniceria carne = new Carniceria(id, corteCarne, precio, cantidad, tipo);
+                        Tienda.AgregarCarne(carne);
+
+                        MessageBox.Show($"Se agrego: {carne.CortesCarne}");
+
+                        this.Hide();
+
+                    }
+                    else
+                    if (ConfirmarGuardar() == true)
+                    {
+                        if (ListaCortesCarne.SelectedIndex > -1)
+                        {
+                            List<Carniceria> carne = Tienda.ObtenerCarne();
+                            Carniceria carneModificar = carne[ListaCortesCarne.SelectedIndex];
+
+                            carneModificar.CantidadCarne = cantidad;
+                            carneModificar.CortesCarne = corteCarne;
+                            carneModificar.PreciosCarne = precio;
+                            carneModificar.TipoCarne = tipo;
+
+                            carneModificar.modificar(carneModificar);
+                            carneModificar.modificar(carneModificar);
+                            MessageBox.Show($"Se Modifico: {carneModificar.CortesCarne}");
+
+
+                            this.Hide();
+                        }
+
+                    }
                 }
                 else
                 {
                     TextError.ForeColor = Color.Red;
                 }
+
+
             }
             else
             {
-
-                if (ListaCortesCarne.SelectedIndex > -1 && TextBoxCorte.Text != string.Empty && Precio.Value > 0 && ListaTipos.SelectedIndex > -1)
+                if (ListaCortesCarne.SelectedIndex > -1)
                 {
-                    //carne.Carne[ListaCortesCarne.SelectedIndex].modificar(TextBoxCorte.Text, (Tipo)Enum.Parse(typeof(Tipo), ListaTipos.Items[ListaTipos.SelectedIndex].ToString()), Convert.ToInt32(Cantidad.Value), Convert.ToInt32(Precio.Value));
+                    if (ConfirmarGuardar() == true)
+                    {
+                        List<Carniceria> carne = Tienda.ObtenerCarne();
+                        Carniceria carneEliminar = carne[ListaCortesCarne.SelectedIndex];
 
-                    List<Carniceria> carne = ListaCarne.Obtener();
+                        Tienda.EliminarProductoCarroCliente(carneEliminar.IdCarne);
+                        Tienda.EliminarCarne(carneEliminar);
 
-                    Carniceria carneModificar = carne[ListaCortesCarne.SelectedIndex];
-
-                    carneModificar.modificar(TextBoxCorte.Text, ((Tipo)Enum.Parse(typeof(Tipo), ListaTipos.Items[ListaTipos.SelectedIndex].ToString())), Convert.ToInt32(Cantidad.Value), Convert.ToInt32(Precio.Value));
-                   // Heladera formHeladera = new Heladera();
-                    formHeladera.Show();
-                    this.Hide();
+                        MessageBox.Show($"Se elimino: {carneEliminar.CortesCarne}");
+                        this.Hide();
+                    }
                 }
                 else
                 {
+                    TextError.Text = "No selecciono el corte a eliminar";
                     TextError.ForeColor = Color.Red;
                 }
             }
-
 
         }
 
@@ -153,9 +221,14 @@ namespace FormApp
         /// </summary>
         private void BotonRegresar_Click(object sender, EventArgs e)
         {
-           // FormLogin formLogin = new FormLogin();
+            // FormLogin formLogin = new FormLogin();
             formHeladera.Show();
             this.Hide();
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
 
         }
     }
@@ -163,6 +236,7 @@ namespace FormApp
 
 
 
-    
 
-    
+
+
+

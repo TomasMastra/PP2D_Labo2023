@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DK/bYcBk3PoSn/8UfOf5Kce3VUyYW7A+RTB6+e1ThMrXk4h/pZKcRaQnX6DSLSsmIojkQXP6puUOnYV6uOTvvg==",
+  "dgSpecHash": "u/Xei/lN1tjao5QsSQtYPvwzy+F1sbXA/5lCzUhKRRJ6DFQ6eP9c/NBJueBsKQ5RXySRZodKFgEQzbrzkRHQ7Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Tomas Mastra\\source\\repos\\Clases\\Clases.csproj",
+  "projectFilePath": "C:\\Users\\Tomas Mastra\\Downloads\\PP2D_Labo2023\\Mastrapasqua-Tomas-2D-2023\\Clases\\Clases.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Tomas Mastra\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\Tomas Mastra\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

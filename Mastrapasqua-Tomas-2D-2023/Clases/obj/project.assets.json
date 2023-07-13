@@ -475,11 +475,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Tomas Mastra\\source\\repos\\Clases\\Clases.csproj",
+      "projectUniqueName": "C:\\Users\\Tomas Mastra\\Downloads\\PP2D_Labo2023\\Mastrapasqua-Tomas-2D-2023\\Clases\\Clases.csproj",
       "projectName": "Clases",
-      "projectPath": "C:\\Users\\Tomas Mastra\\source\\repos\\Clases\\Clases.csproj",
+      "projectPath": "C:\\Users\\Tomas Mastra\\Downloads\\PP2D_Labo2023\\Mastrapasqua-Tomas-2D-2023\\Clases\\Clases.csproj",
       "packagesPath": "C:\\Users\\Tomas Mastra\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Tomas Mastra\\source\\repos\\Clases\\obj\\",
+      "outputPath": "C:\\Users\\Tomas Mastra\\Downloads\\PP2D_Labo2023\\Mastrapasqua-Tomas-2D-2023\\Clases\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Tomas Mastra\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -529,7 +529,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
       }
     }
   }

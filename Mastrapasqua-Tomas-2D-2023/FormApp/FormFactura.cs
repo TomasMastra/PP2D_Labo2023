@@ -85,7 +85,7 @@ namespace FormApp
 
             // Celda 1 creada
             DataGridViewCell cellNumero = new DataGridViewTextBoxCell();
-            cellNumero.Value = dataGridView1.RowCount + 1;
+            cellNumero.Value = factura.Numero;
             row.Cells.Add(cellNumero);
 
             // Celda 2 creada
@@ -114,32 +114,37 @@ namespace FormApp
             for (int i = 0; i < cliente.ListaCompras.Count; i++)
             {
 
+                Carniceria producto = Tienda.ObtenerCorteCarne(cliente.ListaCompras[i].IdProducto);
+                float precioTotal = (cliente.ListaCompras[i].CantidadComprada * producto.PreciosCarne);
 
-                // Nueva fila para poder cargar datos del vendedor
-                DataGridViewRow row = new DataGridViewRow();
+                if (producto != null)
+                {
 
-
-                // Celda 1 creada
-                DataGridViewCell cell = new DataGridViewTextBoxCell();
-                cell.Value = cliente.ListaCompras[i].Producto;
-                row.Cells.Add(cell);
-
-                // Celda 2 creada
-                DataGridViewCell cell2 = new DataGridViewTextBoxCell();
-                cell2.Value = cliente.ListaCompras[i].CantidadComprada.ToString();
-                row.Cells.Add(cell2);
-
-                // Celda 3 creada
-                DataGridViewCell cellPrecio = new DataGridViewTextBoxCell();
-                cellPrecio.Value = cliente.ListaCompras[i].PrecioTotal;
-                row.Cells.Add(cellPrecio);
+                    // Nueva fila para poder cargar datos del vendedor
+                    DataGridViewRow row = new DataGridViewRow();
 
 
-                dataGridView1.Rows.Add(row);
+                    // Celda 1 creada (Nombre del producto)
+                    DataGridViewCell cell = new DataGridViewTextBoxCell();
+                    cell.Value = producto.CortesCarne.ToString();
+                    row.Cells.Add(cell);
+
+                    // Celda 2 creada
+                    DataGridViewCell cell2 = new DataGridViewTextBoxCell();
+                    cell2.Value = cliente.ListaCompras[i].CantidadComprada.ToString();
+                    row.Cells.Add(cell2);
+
+                    // Celda 3 creada
+                    DataGridViewCell cellPrecio = new DataGridViewTextBoxCell();
+                    cellPrecio.Value = precioTotal.ToString();
+                    row.Cells.Add(cellPrecio);
+
+
+                    dataGridView1.Rows.Add(row);
+                }
 
             }
         }
-
 
 
 

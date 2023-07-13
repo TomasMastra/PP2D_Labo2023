@@ -1,30 +1,28 @@
 ﻿using Clases;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Threading;
+using System.Windows.Forms;
+using System.Timers;
 
 namespace FormApp
 {
     public partial class Heladera : Form
     {
-
         Form FormLogin;
         Vendedor vendedorCarniceria;
-        List<Cliente> listaClientes;
+
         public Heladera()
         {
             InitializeComponent();
-            cargarDataGridViewCortesCarne();
         }
 
-        public Heladera(Vendedor vendedor, Form formLogin, List<Cliente> listaClientes) : this()
+        public Heladera(Vendedor vendedor, Form formLogin) : this()
         {
-
             this.vendedorCarniceria = vendedor;
             this.FormLogin = formLogin;
-            this.listaClientes = listaClientes;
-            //dataGridViewCarne.CurrentCell = null;//ver
-            //cargarDataGridView(vendedorCarniceria);
-
         }
 
         private void FormVendedor_Load(object sender, EventArgs e)
@@ -32,7 +30,8 @@ namespace FormApp
             inicializar();
             saludo.Text = $"Bienvenido {vendedorCarniceria.Nombre}";
             Cantidad.Maximum = 0;
-
+            //checkBoxStock.Checked = true;
+            //BotonAgregarStock.Enabled = false;
         }
 
         /// <summary>
@@ -41,20 +40,21 @@ namespace FormApp
         /// </summary>
         public void inicializar()
         {
-
-            cargarListBoxClientes();
-            cargarDataGridViewCortesCarne();
-            cargarListBoxCarne();
-
+            CargarListBoxClientes();
+            CargarDataGridViewCortesCarne();
+            CargarListBoxCarne();
         }
+
+
         /// <summary>
         /// Método que inicializa el listBox de clientes, cargando el nombre
         /// </summary>
-        public void cargarListBoxClientes()
+        public void CargarListBoxClientes()
         {
-            if (ListClientes.Items.Count == 0 && listaClientes != null && listaClientes.Count > -1)
+            List<Cliente> clientes = Tienda.ObtenerClientes();
+            if (ListClientes.Items.Count == 0 && clientes != null && clientes.Count > -1)
             {
-                foreach (Cliente cliente in listaClientes)
+                foreach (Cliente cliente in clientes)
                 {
                     ListClientes.Items.Add(cliente.Nombre);
                 }
@@ -66,14 +66,22 @@ namespace FormApp
         /// Carga los datos del vendedor en el DataGridView.
         /// </summary>
         /// <param name="vendedor">El vendedor cuyos datos se cargarán en el DataGridView.</param>
-        public void cargarDataGridViewCortesCarne()
+        public void CargarDataGridViewCortesCarne()
         {
-            List<Carniceria> listaCortes = ListaCarne.Obtener();
 
-            dataGridViewCarne.Rows.Clear();
+            List<Carniceria> listaCortes = Tienda.ObtenerCarne();
+
+            if (dataGridViewCarne.Rows.Count > 0)
+            {
+                dataGridViewCarne.Rows.Clear();
+
+            }
+
+
 
             foreach (Carniceria corte in listaCortes)
             {
+
                 DataGridViewRow row = new DataGridViewRow();
 
                 // Celda 1 creada (Corte)
@@ -97,19 +105,32 @@ namespace FormApp
                 row.Cells.Add(cell4);
 
                 dataGridViewCarne.Rows.Add(row);
+
             }
+
+
         }
 
         /// <summary>
         /// Carga los datos de la lista de cortes de carne en el ListBox
         /// </summary>
-        public void cargarListBoxCarne()
+        public void CargarListBoxCarne()
         {
-            foreach (Carniceria carne in ListaCarne.Obtener())
+            ListCarro.Items.Clear();
+
+            foreach (Carniceria carne in Tienda.ObtenerCarne())
             {
                 ListCarro.Items.Add(carne.CortesCarne);
             }
         }
+
+
+
+
+
+
+
+
 
         /// <summary>
         /// Método que se ejecuta cuando se hace clic en el botón "Regresar"
@@ -126,13 +147,13 @@ namespace FormApp
         /// Método que se ejecuta cuando se hace clic en el botón "Agregar"
         /// Abre el formulario de alta que permite agregar un nuevo corte de carne y oculta el formulario actual
         /// </summary>
-        private void botoAgregar_Click(object sender, EventArgs e)//BIEN
+        private void botonAgregar_Click(object sender, EventArgs e)
         {
-
             FormAlta formAlta = new FormAlta(this);
             formAlta.ShowDialog();
-            // this.Hide();
 
+            CargarDataGridViewCortesCarne();
+            CargarListBoxCarne();
         }
 
 
@@ -140,7 +161,7 @@ namespace FormApp
         /// Método que se ejecuta cuando se hace clic en el botón "?" que tiene instrucciones sobre el programa y su funcionamiento
         /// Muestra un mensaje de ayuda con las instrucciones para agregar y modificar cortes de carne
         /// </summary>
-        private void button1_Click_1(object sender, EventArgs e)//BIEN
+        private void button1_Click_1(object sender, EventArgs e)
         {
             MessageBox.Show($"1. Agregar es para ingresar un nuevo corte de carne a la carniceria\n2. Modificar se refiere a cambiar el valor de algun corte de carne. El corte de carne se selecciona en el ComboBox\n" +
                 $"\n3. Eliminar es para borrar por completo un corte de carne ingresado\nPara ambas opciones es ecesario haber igresado los datos en cada campo ");
@@ -154,9 +175,11 @@ namespace FormApp
         /// </summary>
         private void BotonModificar_Click(object sender, EventArgs e)
         {
-            FormAlta formAlta = new FormAlta(true, this);
+            FormAlta formAlta = new FormAlta(2, this);
             formAlta.ShowDialog();
-            // this.Hide();
+
+            CargarDataGridViewCortesCarne();
+            CargarListBoxCarne();
         }
 
 
@@ -168,7 +191,8 @@ namespace FormApp
         /// </summary>
         private void Actualizar_Click(object sender, EventArgs e)
         {
-            cargarDataGridViewCortesCarne();
+            CargarDataGridViewCortesCarne();
+            CargarListBoxCarne();
 
         }
 
@@ -178,60 +202,73 @@ namespace FormApp
         /// </summary>
         private void ListClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ListClientes.SelectedIndex > -1 && listaClientes[ListClientes.SelectedIndex].ListaCompras.Count == 0)
+            List<Cliente> clientes = Tienda.ObtenerClientes();
+
+            if (ListClientes.SelectedIndex > -1)
             {
+                Cliente cliente = clientes[ListClientes.SelectedIndex];//error
 
-                Cliente cliente = listaClientes[ListClientes.SelectedIndex];
-                BotonVerCarro.Text = $"Ver carro de {cliente.Nombre}";
-                ListClientes.Enabled = false;
-
+                if (ListClientes.SelectedIndex > -1)
+                {
+                    BotonVerCarro.Text = $"Ver carro de {cliente.Nombre}";
+                    ListClientes.Enabled = false;
+                }
             }
-
         }
 
         /// <summary>
         /// Método que se ejecuta cuando se hace clic en el botón "Aceptar" 
         /// Crea una factura para el cliente seleccionado y actualiza los datos del vendedor y del cliente
         /// </summary>
-        private void BotonAceptar_Click(object sender, EventArgs e)
+        private void BotonAceptar_Click(object sender, EventArgs e)//compra del cliente
         {
-
+            List<Cliente> clientes = Tienda.ObtenerClientes();
             string noSeCompro;
+            string mensaje = null;
+
+
             if (ListClientes.SelectedIndex > -1 && ListClientes.Items.Count > 0)
             {
-                Cliente clienteComprar = listaClientes[ListClientes.SelectedIndex];
-                
+                Cliente clienteComprar = clientes[ListClientes.SelectedIndex];
 
-                    if (listaClientes[ListClientes.SelectedIndex].ListaCompras.Count > 0)
-                    {
 
-                        noSeCompro = ListaCarne.Comprar(clienteComprar);
-                       
-                        Restablecer();
-                        if (noSeCompro.Length != 21)
-                        {
-                            MessageBox.Show($"{noSeCompro}");
-                        }else
+                if (clienteComprar.ListaCompras.Count > 0)
+                {
+                    Restablecer();
+                    noSeCompro = Tienda.Comprar(clienteComprar, esRecargo.Checked);
+
+                    if (noSeCompro.Length != 0)
                     {
-                        MessageBox.Show($"La compra se realizo con exito!!!");
+                        MessageBox.Show($"No se pudo comprar: \n{noSeCompro}");
+                    }
+                    else
+                    {
+                        MessageBox.Show("La compra se realizo con exito!!!");
 
                     }
 
 
                 }
                 else
-                    {
-                        MessageBox.Show("No agrego nada al carro");
-                    }
+                {
+                    MessageBox.Show($"No hay nada en el carro de {clienteComprar}");
 
+                }
             }
             else
             {
-                MessageBox.Show($"No selecciono un cliente");
+                MessageBox.Show("No selecciono ningun cliente");
 
             }
 
+            CargarDataGridViewCortesCarne();
+            CargarListBoxCarne();
         }
+
+
+
+
+
 
         /// <summary>
         /// Restablece todos los controles por default luego de realizarse una compra
@@ -242,35 +279,10 @@ namespace FormApp
             ListClientes.Enabled = true;
             ListCarro.SelectedIndex = -1;
             Cantidad.Value = 0;
-        }
-        ///////////////////////////////////
-        
-
-      
-
-        /// <summary>
-        /// Crea la factura al cliente
-        /// </summary>
-        public void crearFacturas(Cliente cliente, float total)
-        {
-            Clases.Factura factura = new Clases.Factura(cliente.ListaCompras.Count, total, cliente.Mail);
-
-
-            if (esRecargo.Checked != true)
-            {
-
-                ListaFacturas.Agregar(factura);
-            }
-            else
-            {
-                Clases.Factura facturaCredito = new Clases.Factura(1, Convert.ToSingle(total * 0.05), cliente.Mail);
-
-                ListaFacturas.Agregar(facturaCredito);
-            }
+            PrecioKilo.Text = "Precio por KG:";
         }
 
 
-        ///////////////////////////////////////////////////
 
         /// <summary>
         /// Muestra los datos del vendedor que inicio sesion
@@ -285,20 +297,17 @@ namespace FormApp
         private void BotonFacturas_Click(object sender, EventArgs e)
         {
 
-            List<Clases.Factura> facturas = ListaFacturas.Obtener();
+            List<Clases.Factura> facturas = Tienda.ObtenerFacturas();
+
 
             if (facturas != null && facturas.Count > 0)
             {
-
-
                 Factura formFacturas = new Factura(facturas, true);
                 formFacturas.Show();
-
             }
             else
             {
                 MessageBox.Show("No hay facturas disponibles");
-
             }
         }
 
@@ -310,7 +319,9 @@ namespace FormApp
         private void FormVender_Click(object sender, EventArgs e)//Agregar al carro
         {
             bool existe;
-            List<Carniceria> carne = ListaCarne.Obtener();
+            List<Carniceria> carne = Tienda.ObtenerCarne();
+            List<Cliente> clientes = Tienda.ObtenerClientes();
+
             if (ListClientes.SelectedIndex > -1)
             {
                 if (ListCarro.SelectedIndex > -1 && Cantidad.Value > 0)
@@ -318,20 +329,15 @@ namespace FormApp
                     if (Convert.ToInt32(dataGridViewCarne.Rows[ListCarro.SelectedIndex].Cells[3].Value) > 0 && Cantidad.Value > 0)
                     {
 
-                        string corteCarne = carne[ListCarro.SelectedIndex].CortesCarne.ToString();
                         int cantidad = Convert.ToInt32(Cantidad.Value);
-                        int precioTotal = Convert.ToInt32(carne[ListCarro.SelectedIndex].PreciosCarne) * cantidad;
+                        int idCarro = Tienda.ObtenerUltimoIdCarro() + 1;
+                        int idCliente = clientes[ListClientes.SelectedIndex].Id;
+                        int idCarne = carne[ListCarro.SelectedIndex].IdCarne;
 
+                        ListaCompras carro = new ListaCompras(idCarro, idCliente, idCarne, cantidad);
 
-                        ListaCompras carro = new ListaCompras(corteCarne, precioTotal, cantidad);
-
-
-
-
-                        existe = listaClientes[ListClientes.SelectedIndex].AgregarCarro(carro);
+                        existe = clientes[ListClientes.SelectedIndex].AgregarCarro(carro);
                         PrecioTotal.Text = "";
-                        //listaClientes[ListClientes.SelectedIndex].ListaCompras.Add(carro);//MODIFICAR Y HACER DENTRO DE LA CLASE DE CLIENTE
-
                     }
                     else
                     {
@@ -357,12 +363,14 @@ namespace FormApp
         /// </summary>
         private void ListCarro_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<Carniceria> carne = ListaCarne.Obtener();
+            List<Carniceria> carne = Tienda.ObtenerCarne();
 
             if (ListCarro.SelectedIndex > -1)
             {
                 Cantidad.Maximum = carne[ListCarro.SelectedIndex].CantidadCarne;
+
                 Cantidad.Value = 0;
+
                 PrecioKilo.Text = $"Precio (KILO): {carne[ListCarro.SelectedIndex].PreciosCarne.ToString()}$";
             }
 
@@ -377,7 +385,7 @@ namespace FormApp
         {
             if (ListCarro.SelectedIndex > -1)
             {
-                List<Carniceria> carne = ListaCarne.Obtener();
+                List<Carniceria> carne = Tienda.ObtenerCarne();
 
 
 
@@ -391,8 +399,12 @@ namespace FormApp
         /// </summary>
         private void BotonCancelarCliente_Click(object sender, EventArgs e)
         {
+            List<Cliente> listaClientes = Tienda.ObtenerClientes();
+
+
             if ((ListClientes.SelectedIndex > -1))
-            {
+            {           // MessageBox.Show($"{listaClientes[0].Nombre}{listaClientes[1].Nombre}");
+
                 listaClientes[ListClientes.SelectedIndex].VaciarCarro();
                 ListClientes.Enabled = true;
                 ListClientes.SelectedIndex = -1;
@@ -407,6 +419,8 @@ namespace FormApp
 
         private void BotonVerCarro_Click(object sender, EventArgs e)
         {
+            List<Cliente> listaClientes = Tienda.ObtenerClientes();
+
             if (ListClientes.SelectedIndex > -1)
             {
                 Cliente cliente = listaClientes[ListClientes.SelectedIndex];
@@ -418,8 +432,24 @@ namespace FormApp
                 MessageBox.Show("No selecciono ningun cliente");
             }
         }
+
+
+        private void Eliminar_Click(object sender, EventArgs e)
+        {
+            FormAlta formAlta = new FormAlta(3, this);
+            formAlta.ShowDialog();
+
+
+
+            CargarDataGridViewCortesCarne();
+            CargarListBoxCarne();
+        }
+
+        
     }
-
-
 }
+
+
+
+
 

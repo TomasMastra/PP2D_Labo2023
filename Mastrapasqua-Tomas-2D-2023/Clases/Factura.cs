@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Clases
@@ -11,55 +12,29 @@ namespace Clases
     /// </summary>
     public class Factura
     {
-        int numero;
-        float total;
-        string mailCompra;
+        public int Numero { get; set; }
+        public float Total { get; set; }
+        public string Mail { get; set; }
 
         /// <summary>
         /// Constructor de Factura
         /// </summary>
-        public Factura(int numero, float total, string mailCompra) 
+
+        public Factura()
         {
-            this.numero = numero;
-            this.total = total;
-            this.mailCompra = mailCompra;
-        
         }
 
-        /// <summary>
-        /// Propiedad Numero con getter y setter que permite devolver o asignarle un valor 
-        /// </summary>
-        public int Numero
+        public Factura(int numero, float total, string mailCompra) : this()
         {
-            get { return numero; }
-            set { numero = value; }
+            Numero = numero;
+            Total = total;
+            Mail = mailCompra;
         }
 
-        /// <summary>
-        /// Propiedad Total con getter y setter que permite devolver o asignarle un valor 
-        /// </summary>
-        public float Total
-        {
-            get { return total; }
-            set { total = value; }
-        }
-
-        /// <summary>
-        /// Propiedad Mail con getter y setter que permite devolver o asignarle un valor 
-        /// </summary>
-        public string Mail
-        {
-            get { return mailCompra; }
-            set { mailCompra = value; }
-        }
-
-
-        public void crearFactura()
-        {
-
-        }
+      
 
         
+
 
 
 

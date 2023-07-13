@@ -185,7 +185,7 @@
             botoAgregar.TabIndex = 65;
             botoAgregar.Text = "Agregar";
             botoAgregar.UseVisualStyleBackColor = false;
-            botoAgregar.Click += botoAgregar_Click;
+            botoAgregar.Click += botonAgregar_Click;
             // 
             // button1
             // 
@@ -211,6 +211,7 @@
             Eliminar.TabIndex = 90;
             Eliminar.Text = "Eliminar";
             Eliminar.UseVisualStyleBackColor = false;
+            Eliminar.Click += Eliminar_Click;
             // 
             // button7
             // 
