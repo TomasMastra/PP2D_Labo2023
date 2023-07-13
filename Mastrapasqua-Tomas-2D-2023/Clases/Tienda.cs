@@ -63,7 +63,7 @@ namespace Clases
         {
             List<string> corteCarne = new List<string> { "Asado", "Vacio", "Bondiola", "Chorizo", "Pollo", "Huevos x 30", "Chimichurri", "Huevo de pavo x 7", "Bife de chorizo", "Matambre", "Morcilla", "Salchicha", "Pechuga de pollo", "Hígado de ternera" };
             List<int> precios = new List<int> { 3000, 2000, 3000, 1000, 900, 1700, 300, 1700, 2500, 1500, 1200, 800, 1100, 900 };
-            List<int> cantidad = new List<int> { 2, 2, 3, 4, 0, 5, 9, 7, 3, 2, 4, 6, 0, 1 };
+            List<int> cantidad = new List<int> { 20, 20, 35, 40, 0, 55, 90, 70, 30, 20, 40, 60, 0, 15 };
             List<Tipo> tipo = new List<Tipo> { Tipo.Res, Tipo.Res, Tipo.Cerdo, Tipo.Cerdo, Tipo.Pollo, Tipo.Pollo, Tipo.Condimento, Tipo.Pavo, Tipo.Res, Tipo.Pollo, Tipo.Cerdo, Tipo.Cerdo, Tipo.Pollo, Tipo.Res };
 
             List<Carniceria> cortes = new List<Carniceria>();
@@ -236,9 +236,7 @@ namespace Clases
             {
                 Factura factura = new Factura(ObtenerUltimoIdFactura() + 1, totalCompra, cliente.Nombre);
                 AgregarFactura(factura);
-                //string facturaArchivo = factura.crearFactura(Tienda.ObtenerUltimoIdFactura(), cliente.ListaCompras, cliente);
 
-                //string currentDirectory = Environment.CurrentDirectory;
                 string archivo = $"{factura.Numero}.txt";
 
 

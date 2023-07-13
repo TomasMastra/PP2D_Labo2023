@@ -346,14 +346,9 @@ namespace FormApp
             string noSeCompro;
 
 
-            float total = 0;
-            if (cliente.ListaCompras.Count > 0)
+            if (cliente.ListaCompras.Count > 0 )
             {
                 noSeCompro = Tienda.Comprar(cliente, Recargo.Checked);
-                int lastIndexOf = facturas.Count - 1;
-                Factura formCarro = new Factura(facturas[lastIndexOf]);
-                formCarro.Show();
-
 
                 if (noSeCompro.Length != 0)
                 {
@@ -365,7 +360,26 @@ namespace FormApp
 
                 }
 
-                inicializar();
+                if (Convert.ToInt32(TotalComprar.Text) > 0)
+                {
+
+                    int lastIndexOf = facturas.Count - 1;
+                    if( lastIndexOf > -1 ) {
+                        Factura formCarro = new Factura(facturas[lastIndexOf]);
+                        formCarro.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("HUBO un error, No se pudo mostrar la factura!!!");
+                    }
+                    
+
+
+                   
+                }
+
+
+
             }
             else
             {
