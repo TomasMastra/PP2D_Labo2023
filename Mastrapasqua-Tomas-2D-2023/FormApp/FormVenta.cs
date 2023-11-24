@@ -364,6 +364,7 @@ namespace FormApp
                 {
 
                     int lastIndexOf = facturas.Count - 1;
+
                     if( lastIndexOf > -1 ) {
                         Factura formCarro = new Factura(facturas[lastIndexOf]);
                         formCarro.Show();
@@ -391,12 +392,7 @@ namespace FormApp
 
         }
 
-        
-
-        private void TotalPagar_Click(object sender, EventArgs e)
-        {
-
-        }
+      
     }
 }
 

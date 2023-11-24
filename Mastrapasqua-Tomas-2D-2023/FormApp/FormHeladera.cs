@@ -224,9 +224,6 @@ namespace FormApp
         {
             List<Cliente> clientes = Tienda.ObtenerClientes();
             string noSeCompro;
-            string mensaje = null;
-
-
             if (ListClientes.SelectedIndex > -1 && ListClientes.Items.Count > 0)
             {
                 Cliente clienteComprar = clientes[ListClientes.SelectedIndex];
@@ -246,7 +243,6 @@ namespace FormApp
                         MessageBox.Show("La compra se realizo con exito!!!");
 
                     }
-
 
                 }
                 else

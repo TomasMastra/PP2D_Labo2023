@@ -169,7 +169,6 @@
             TotalPagar.Size = new Size(13, 15);
             TotalPagar.TabIndex = 5;
             TotalPagar.Text = "0";
-            TotalPagar.Click += TotalPagar_Click;
             // 
             // CantidadComprar
             // 
